@@ -1,0 +1,5 @@
+1. Parse points from geojson file - DONE BEFORE I EVEN ADDED IT??! <-
+2. Clipping - DONE
+3. Add more detailed inline documentation - DOING
+4. Parse name of user who placed points - NOT STARTED
+5. Rename some modules / classes to be more clear - STARTED ON IT (Do this last)
