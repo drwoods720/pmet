@@ -17,6 +17,9 @@ Please put on your 3d glasses now.
 '''
 
 def run() -> None:
+    """
+    The entry point for the entire program.
+    """
     parser = argparse.ArgumentParser(
         description="(EvE)aluates Various modEls"
     )

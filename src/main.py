@@ -39,6 +39,7 @@ def importDataset(mask_file: Path, root: Path) -> list[dt.Comparison]:
     Parameters:
         mask_file: Mask file to use in dataset
         root: The path to look in for data to import
+    Returns: A list of import dataset objects
     """
 
     jobs: list[dt.Comparison] = []
@@ -83,18 +84,26 @@ def importDataset(mask_file: Path, root: Path) -> list[dt.Comparison]:
 
         # Construct job
         jobs.append(dt.Comparison(
-            metadata,
-            cell_objects,
-            points,
-            mask_array,
-            sample_area
+            metadata=metadata,
+            cells=cell_objects,
+            points=points,
+            mask=mask_array,
+            sample_area=sample_area
         ))
 
     return jobs
 
 def processJob(mask_file: Path, root: Path, output_directory: Path) -> None:
+    """
+    Fully imports and processes one job.
+
+    Parameters:
+        mask_file: Mask file to process
+        root: Path to where files should be imported from
+        output_directory: Path to where output files should be stored
+    """
     # Build the job object(s)
-    datasets = importDataset(mask_file, root)
+    datasets: list[dt.Comparison] = importDataset(mask_file, root)
 
     for data in datasets:
         for process in processing_pipeline:
@@ -104,6 +113,13 @@ def processJob(mask_file: Path, root: Path, output_directory: Path) -> None:
             output.run(data, output_directory)
 
 def run(root_dir: str, output_dir: str | None = None) -> None:
+    """
+    Run the program
+
+    Parameters:
+        root_dir: Path to where to look for file when importing
+        output_dir: Path to where output files should be stored
+    """
     root_path: Path = Path(root_dir)
 
     output_path: Path = Path(root_path.parent / "Results")
