@@ -1,6 +1,6 @@
-1. Add more detailed inline documentation - DOING <-
-2. Remove magic numbers
-2. Start working on final user interface - HIGH
+1. Add more detailed inline documentation - DOING
+2. Remove magic numbers - DOING <-
+2. Start working on final user interface - BASIC CLI DONE
 3. Start work on user documentation - HIGH
 4. Package with pip - MEDIUM
 5. Rename some modules / classes to be more clear - CLEANING

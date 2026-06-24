@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
-# E.V.E - Evalutates Various modeEls
-
 import os
-import src.run as run
+import argparse
+import src.main as main
 
 title: str = r'''
  _____      _____
@@ -13,68 +12,52 @@ title: str = r'''
 | |___\ V /| |___
 \____(_)_(_)____/
 (EvE)aluates Various modEls
+
+Please put on your 3d glasses now.
 '''
 
-def setInputDirectory() -> str:
-    while True:
-        print("Please enter the input directory or EXIT to exit")
-        user_input = input("Input directory: ")
+def run() -> None:
+    parser = argparse.ArgumentParser(
+        description="(EvE)aluates Various modEls"
+    )
 
-        if user_input == "EXIT":
-            print("Exiting...")
-            return ""
-        elif os.path.isdir(user_input):
-            return user_input
-        else:
-            print(f"Invalid directory {user_input} entered!")
-            _ = input()
+    parser.add_argument("-i", "--input", type=str, help="Input directory.")
+    parser.add_argument("-o", "--output", type=str, help="Output directory")
+    parser.add_argument("-c", "--code", type=str, help="Cheat codes")
 
-def mainMenu(title: str) -> None:
-    """
-    Main menu to control the program
+    args = parser.parse_args()
 
-    Parameters:
-        title: Main logo to display
-    """
-    input_directory: str = ""
-
-    while(True):
+    if args.code == "uuddlrlrba":
+        # Super mode activated!
+        print("[31mS[0m[33mU[0m[32mP[0m[36mE[0m[34mR[0m [35mM[0m[31mO[0m[33mD[0m[32mE[0m [36mA[0m[34mC[0m[35mT[0m[31mI[0m[33mV[0m[32mA[0m[36mT[0m[34mE[0m[35mD[0m[31m![0m")
+        print(title[::-1])
+    else:
         print(title)
-        print("(I)nput directory")
-        print("(R)un")
-        print("(E)xit")
 
-        selection: str = input("Selection: ")
-        selection_lower = selection.lower()[0]
+    input_dir: str | None = None
+    output_dir: str = args.output
 
+    if args.input:
+        input_dir = args.input
+    else:
+        print("No input directory specified!")
+        print("Try '-h' or '--help' for more information.")
+        exit()
 
-        if selection_lower == "e":
-            break
-        elif selection_lower == "r":
-            if input_directory != "":
-                run.run(input_directory)
-                print("Processing Complete!")
-                exit()
-            else:
-                print("No input directory set!")
-            print("Press enter key to continue...")
-            _ = input()
-        elif selection_lower == "i":
-            input_directory = setInputDirectory()
-            print(f"input directory set to {input_directory}")
-            print("Press enter to continue")
-            _ = input()
-        # Small easter egg
-        elif selection == "uuddlrlrbastart":
-            print("Super Mode activated!")
-        else:
-            print(f"Unknown option {selection}")
-            print("Please try again")
+    if not os.path.isdir(input_dir):
+        print(f"Invalid directory {input_dir} entered!")
+        print("Please check your parameters and try again.")
+        exit()
 
-    print("Thank you, please come again!")
+    print(f"Input: {input_dir} \nOutput: {output_dir}")
 
-def main():
-    mainMenu(title)
+    if args.output:
+        main.run(input_dir, args.output)
+    else:
+        main.run(input_dir)
+
+    print("Processing complete!")
+    print("Thank you for using EvE, You can now take off your 3d glasses.")
 
 if __name__ == "__main__":
-    main()
+    run()
