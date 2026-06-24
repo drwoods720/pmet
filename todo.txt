@@ -1,4 +1,8 @@
 1. Add more detailed inline documentation - DOING <-
-2. Rename some modules / classes to be more clear - NEXT UP
-3. Migrate to mapcore github
-4. Parse name of user who placed points - LOW URGENCY (no format given yet... waiting)
+2. Remove magic numbers
+2. Start working on final user interface - HIGH
+3. Start work on user documentation - HIGH
+4. Package with pip - MEDIUM
+5. Rename some modules / classes to be more clear - CLEANING
+6. Migrate to mapcore github - DO AFTER CLEANING
+7. Parse name of user who placed points - LOW URGENCY (no format given yet... waiting)
