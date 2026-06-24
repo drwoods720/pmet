@@ -8,13 +8,12 @@ import src.datatypes as dt
 
 import src.main as main
 
-def run(path: str, multithreaded: bool) -> None:
+def run(path: str) -> None:
     """
     Runs the processing pipeline on files from a specific directory.
 
     Parameters:
         path: Path to input files
-        multithreaded: Whether or not to use multithreading
     """
 
     start_time = time.time()

@@ -29,22 +29,6 @@ def setInputDirectory() -> str:
             print(f"Invalid directory {user_input} entered!")
             _ = input()
 
-def setThreading() -> bool:
-    while True:
-        print("Would you like to enable multithreading?")
-        user_input: str = input("(y/n): ").lower()
-
-        if user_input.lower() == "y":
-            print("Multithreading enabled!")
-            print("Warning! Multithreading is an experemental feature and may not work as expected!")
-            return True
-        if user_input.lower() == "n":
-            print("Multithreading disabled!")
-            return False
-        else:
-            print(f"Unknown option {user_input}")
-
-
 def mainMenu(title: str) -> None:
     """
     Main menu to control the program
@@ -53,12 +37,10 @@ def mainMenu(title: str) -> None:
         title: Main logo to display
     """
     input_directory: str = ""
-    multithreading: bool = False
 
     while(True):
         print(title)
         print("(I)nput directory")
-        print("(M)ultithreading")
         print("(R)un")
         print("(E)xit")
 
@@ -70,7 +52,7 @@ def mainMenu(title: str) -> None:
             break
         elif selection_lower == "r":
             if input_directory != "":
-                run.run(input_directory, multithreading)
+                run.run(input_directory)
                 print("Processing Complete!")
                 exit()
             else:
@@ -82,8 +64,6 @@ def mainMenu(title: str) -> None:
             print(f"input directory set to {input_directory}")
             print("Press enter to continue")
             _ = input()
-        elif selection_lower == "m":
-            multithreading = setThreading()
         # Small easter egg
         elif selection == "uuddlrlrbastart":
             print("Super Mode activated!")
