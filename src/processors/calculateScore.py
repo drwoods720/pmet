@@ -13,7 +13,6 @@ class CalculateScore():
             data: Dataset to calculate scores for.
         Returns: Dataset with scores added.
         """
-
         # Count false negatives
         for point in data.points:
             if point.cell < 1:

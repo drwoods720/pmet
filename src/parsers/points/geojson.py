@@ -12,7 +12,6 @@ def parse(filepath: str) -> list[dt.Point]:
         filepath: Path to the geojson file.
     Returns: A list of point objects
     """
-
     # Declare points list
     points: list[dt.Point] = []
 

@@ -12,13 +12,12 @@ title: str = r'''
 | |___\ V /| |___
 \____(_)_(_)____/
 (EvE)aluates Various modEls
-
 Please put on your 3d glasses now.
 '''
 
-def run() -> None:
+def eve() -> None:
     """
-    The entry point for the entire program.
+    The user interface for the eve program.
     """
     parser = argparse.ArgumentParser(
         description="(EvE)aluates Various modEls"
@@ -67,4 +66,4 @@ def run() -> None:
     print("Thank you for using EvE, You can now take off your 3d glasses.")
 
 if __name__ == "__main__":
-    run()
+    eve()
