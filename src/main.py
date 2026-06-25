@@ -17,8 +17,6 @@ import src.processors as processors
 import src.outputs as outputs
 import src.datatypes as dt
 
-MAX_WORKERS: int = 7
-
 # Ordered list of processing steps that will be run on the data
 processing_pipeline = [
     processors.CountPoints(),
@@ -46,7 +44,7 @@ def importDataset(mask_file: Path, root: Path) -> list[dt.Comparison]:
 
     # Parse model info
     mask_file_regex = re.compile(
-        r"(?P<image>.+?)\.ome\.tif\s*-\s*Image0\s*_?(?P<model>.+?)_label\.tif"
+        r"(?P<image>.+?)\.ome\.tif\s*-\s*Image\d*\s*_?(?P<model>.+?)_label\.tif"
     )
 
     mask_file_regex_matches = mask_file_regex.search(mask_file.name)
@@ -63,7 +61,7 @@ def importDataset(mask_file: Path, root: Path) -> list[dt.Comparison]:
 
     # Find all points files associated with mask
     points_file_regex = re.compile(
-        rf"^{re.escape(image_name)}\.ome\.tif - Image\d+\.geojson$"
+        rf"^{re.escape(image_name)}\.ome\.tif - Image\d*\.geojson$"
     )
 
     points_files = [
@@ -112,7 +110,7 @@ def processJob(mask_file: Path, root: Path, output_directory: Path) -> None:
         for output in output_pipeline:
             output.run(data, output_directory)
 
-def run(root_dir: str, output_dir: str | None = None) -> None:
+def run(root_dir: str, output_dir: str | None = None, max_workers: int = 4) -> None:
     """
     Run the program
 
@@ -126,10 +124,11 @@ def run(root_dir: str, output_dir: str | None = None) -> None:
     if output_dir:
         output_path = Path(output_dir)
 
+
     mask_filepaths: list[Path] = list(root_path.rglob("*.tif"))
 
     with alive_bar(len(mask_filepaths), title="Processing Data") as bar:
-        with ProcessPoolExecutor(MAX_WORKERS) as pool:
+        with ProcessPoolExecutor(max_workers) as pool:
             job = partial(processJob, root=root_path, output_directory=output_path)
             for _ in pool.map(job, mask_filepaths):
                 bar()

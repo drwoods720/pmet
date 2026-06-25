@@ -2,6 +2,8 @@
 
 import os
 import argparse
+from typing import Any
+
 import src.main as main
 
 title: str = r'''
@@ -23,11 +25,12 @@ def eve() -> None:
         description="(EvE)aluates Various modEls"
     )
 
-    parser.add_argument("-i", "--input", type=str, help="input directory")
-    parser.add_argument("-o", "--output", type=str, help="output directory")
+    _ = parser.add_argument("-i", "--input", type=str, help="input directory")
+    _ = parser.add_argument("-o", "--output", type=str, help="output directory")
+    _ = parser.add_argument("-w", "--workers", type=int, help="maximum number of parallel processes")
 
     # Hidden cheat code argument
-    parser.add_argument("cheatcode", nargs="?", help=argparse.SUPPRESS)
+    _ = parser.add_argument("cheatcode", nargs="?", help=argparse.SUPPRESS)
 
     args = parser.parse_args()
 
@@ -40,27 +43,27 @@ def eve() -> None:
     else:
         print(title)
 
-    input_dir: str | None = None
-    output_dir: str = args.output
 
-    if args.input:
-        input_dir = args.input
-    else:
+    kwargs: dict[str, Any] = {
+        "root_dir": args.input,
+    }
+
+    if args.output:
+        kwargs["output_dir"] = args.output
+
+    # Input validation
+    if not args.input:
         print("No input directory specified!")
         print("Try '-h' or '--help' for more information.")
         exit()
 
-    if not os.path.isdir(input_dir):
-        print(f"Invalid directory {input_dir} entered!")
+    if not os.path.isdir(kwargs["root_dir"]):
+        print(f"Invalid directory {kwargs["root_dir"]} entered!")
         print("Please check your parameters and try again.")
         exit()
 
-    print(f"Input: {input_dir} \nOutput: {output_dir}")
 
-    if args.output:
-        main.run(input_dir, args.output)
-    else:
-        main.run(input_dir)
+    main.run(**kwargs)
 
     print("Processing complete!")
     print("Thank you for using EvE, You can now take off your 3d glasses.")
