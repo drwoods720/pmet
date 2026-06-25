@@ -120,6 +120,8 @@ def run(root_dir: str, output_dir: str | None = None, max_workers: int = 4) -> N
     """
     root_path: Path = Path(root_dir)
 
+    print(f"Workers: {max_workers}")
+
     output_path: Path = Path(root_path.parent / "Results")
     if output_dir:
         output_path = Path(output_dir)

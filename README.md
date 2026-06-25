@@ -4,15 +4,17 @@
 //Coming soon™//
 
 ## Running
-After installation running EvE is pretty straightforward.
-1. Place all files you wish to process in a dedicated directory. (Importation is done by file name so any file structure within this directory will work.)
-2. Decide on an output directory. This should be separate from the input directory. If no output directory is specified one will be automatically created in the same directory as the input directory.
-3. Run EvE like so: `python eve.py -i [your input directory] -o [your output directory]`
+After installation, running EvE is straightforward.
+1. **Input Directory** Place all files to process in a dedicated input directory. Import is done by file name so any directory structure is fine.
+2. **Output Directory** Create a directory for the outputted files. If no output directory is specified one will be created alongside the input directory.
+3. **Run EvE** with the following command:
 
-You can optionally set the number of parallel workers to use with the '-w' flag.
+`python eve.py -i [your input directory] -o [your output directory]`
+
+Optionally, use the '-w' flag to set the number of parallel workers. If unset the default is 4.
 
 ## Auto Importer
-The import works by first looking for all files ending in ".tif"
+The importer works by first looking for all files ending in ".tif"
 
 Then finds all annotation files ending in .geojson containing the same image name
 
@@ -27,4 +29,9 @@ Annotation files should follow this naming pattern:
 `[image name].ome.tif - Image[optional number].geojson`
 
 
-
+Future of this document:
+1. How to install
+2. How to run
+3. What inputs it takes
+4. What outputs it gives
+5. What processing it does

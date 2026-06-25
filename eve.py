@@ -50,6 +50,8 @@ def eve() -> None:
 
     if args.output:
         kwargs["output_dir"] = args.output
+    if args.workers:
+        kwargs["max_workers"] = args.workers
 
     # Input validation
     if not args.input:

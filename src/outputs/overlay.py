@@ -129,7 +129,7 @@ class Overlay():
 
         output_directory.mkdir(parents=True, exist_ok=True)
 
-        output_file = output_directory/ f"{data.metadata.image_name}-{data.metadata.model_name}_accuracy_mask.tif"
+        output_file = output_directory/ f"{data.metadata.image_name}-{data.metadata.model_name}_accuracy_mask.png"
         fig.savefig(fname=output_file, bbox_inches="tight", pad_inches=0, dpi=400)
 
         plt.close("all")
