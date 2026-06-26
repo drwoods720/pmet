@@ -2,11 +2,13 @@ Bootstrap: docker
 From: python:3.14.3
 
 %files
-    ./ /app
+    ../src /app/src
+    ../eve.py /app
+    ../requirements.txt /app
 
 %post
     pip install --upgrade pip
-    pip install -r /app/requirements.txt --root-user-action
+    pip install -r /app/requirements.txt
 
 %runscript
     exec python3 /app/eve.py "$@"
