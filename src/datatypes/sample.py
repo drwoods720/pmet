@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from src.datatypes import Cell, Metadata, Point, Results, SampleArea
 
 @dataclass
-class Comparison:
+class Sample:
     """
     Contains all the data need to process one sample.
 

@@ -7,7 +7,7 @@ from pathlib import Path
 import src.datatypes as dt
 
 class ScoresCsv():
-    def run(self, data: dt.Comparison, output_directory: Path) -> None:
+    def run(self, data: dt.Sample, output_directory: Path) -> None:
         """
         Outputs the results of one dataset to a csv file.
 

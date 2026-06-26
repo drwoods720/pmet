@@ -5,7 +5,7 @@ import numpy as np
 import src.datatypes as dt
 
 class DetectClippingCells():
-    def run(self, data: dt.Comparison) -> dt.Comparison:
+    def run(self, data: dt.Sample) -> dt.Sample:
         """
         Detects all cells that are cut off by the sample area.
 

@@ -3,7 +3,7 @@
 import src.datatypes as dt
 
 class CalculateScore():
-    def run(self, data: dt.Comparison) -> dt.Comparison:
+    def run(self, data: dt.Sample) -> dt.Sample:
         """
         Calculates the scoring metrics from a specific dataset.
 

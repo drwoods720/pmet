@@ -5,13 +5,13 @@ from .cell import Cell
 from .point import Point
 from .results import Results
 from .sampleArea import SampleArea
-from .comparison import Comparison
+from .sample import Sample
 
 __all__ = [
     "Metadata",
     "Cell",
     "Point",
-    "Comparison",
+    "Sample",
     "Results",
     "SampleArea",
 ]

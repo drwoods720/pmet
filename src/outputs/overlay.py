@@ -69,7 +69,7 @@ class Overlay():
 
         return accuracy_mask
 
-    def run(self, data: dt.Comparison, output_directory: Path) -> None:
+    def run(self, data: dt.Sample, output_directory: Path) -> None:
         """
         Creates and overlays an accuracy mask and points over the original image.
 

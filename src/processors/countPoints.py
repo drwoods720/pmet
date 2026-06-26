@@ -2,7 +2,7 @@
 import src.datatypes as dt
 
 class CountPoints():
-    def run(self, data: dt.Comparison) -> dt.Comparison:
+    def run(self, data: dt.Sample) -> dt.Sample:
         """
         Determines which cell a point is in and how many points are in each cell.
 

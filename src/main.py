@@ -30,7 +30,7 @@ output_pipeline = [
     outputs.Overlay(),
 ]
 
-def importDataset(mask_file: Path, root: Path) -> list[dt.Comparison]:
+def importDataset(mask_file: Path, root: Path) -> list[dt.Sample]:
     """
     Imports and creates all possible datasets associated with a mask file.
 
@@ -40,7 +40,7 @@ def importDataset(mask_file: Path, root: Path) -> list[dt.Comparison]:
     Returns: A list of import dataset objects
     """
 
-    jobs: list[dt.Comparison] = []
+    jobs: list[dt.Sample] = []
 
     # Parse model info
     mask_file_regex = re.compile(
@@ -81,7 +81,7 @@ def importDataset(mask_file: Path, root: Path) -> list[dt.Comparison]:
         metadata: dt.Metadata = dt.Metadata(image_name, model_name, points_file.name, mask_file.name)
 
         # Construct job
-        jobs.append(dt.Comparison(
+        jobs.append(dt.Sample(
             metadata=metadata,
             cells=cell_objects,
             points=points,
@@ -101,7 +101,7 @@ def processJob(mask_file: Path, root: Path, output_directory: Path) -> None:
         output_directory: Path to where output files should be stored
     """
     # Build the job object(s)
-    datasets: list[dt.Comparison] = importDataset(mask_file, root)
+    datasets: list[dt.Sample] = importDataset(mask_file, root)
 
     for data in datasets:
         for process in processing_pipeline:
