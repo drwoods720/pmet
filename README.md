@@ -1,5 +1,7 @@
 # EvE
 
+EvE - (EvE)aluates Various modEls.
+
 ## Installing
 //Coming soon™//
 
