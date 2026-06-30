@@ -6,6 +6,7 @@ from typing import override, Any
 import src.datatypes as dt
 from src.parsers.parser import Parser
 
+
 class Geojson(Parser[list[dt.Point]]):
     @override
     def parse(self, filepath: str) -> list[dt.Point]:
@@ -16,7 +17,6 @@ class Geojson(Parser[list[dt.Point]]):
         filepath: Path to the geojson file to parse.
         Returns: A list of point objects.
         """
-
         points: list[dt.Point] = []
 
         json_data: list[Any] = []

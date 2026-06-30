@@ -14,7 +14,6 @@ class Cell:
         points: List of points that are located within the cell area.
         clipping: If the cell is cutoff by the sample area border.
     """
-
     id: int
     points: list[Point] = field(default_factory=list)
     clipping: bool = False

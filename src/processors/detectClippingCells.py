@@ -22,20 +22,20 @@ class DetectClippingCells(Process):
 
         edges = []
         # Original edge pixels (on the boundary)
-        edges.append(data.mask[ymin, xmin : xmax + 1])
-        edges.append(data.mask[ymax, xmin : xmax + 1])
+        edges.append(data.mask[ymin, xmin: xmax + 1])
+        edges.append(data.mask[ymax, xmin: xmax + 1])
         edges.append(data.mask[ymin:ymax, xmin])
         edges.append(data.mask[ymin:ymax, xmax])
 
         # Pixels behind the clipping line (outside the sample area)
         if ymin > 0:
-            edges.append(data.mask[:ymin, xmin : xmax + 1])  # above
+            edges.append(data.mask[:ymin, xmin: xmax + 1])  # above
         if ymax < mask_height - 1:
-            edges.append(data.mask[ymax + 1 :, xmin : xmax + 1])  # below
+            edges.append(data.mask[ymax + 1:, xmin: xmax + 1])  # below
         if xmin > 0:
             edges.append(data.mask[ymin:ymax, :xmin])  # left
         if xmax < mask_width - 1:
-            edges.append(data.mask[ymin:ymax, xmax + 1 :])  # right
+            edges.append(data.mask[ymin:ymax, xmax + 1:])  # right
 
         clipping_cells: list[int] = []
         for edge in edges:

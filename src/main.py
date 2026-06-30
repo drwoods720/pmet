@@ -71,7 +71,9 @@ def import_dataset(mask_file: Path, root: Path) -> list[dt.Sample]:
     model_name = match.group("model")
 
     # Load cell detection objects and the raw mask array from the mask file.
-    cell_objects: dict[int, dt.Cell] = parsers.cells.Tif().parse(str(mask_file.absolute()))
+    cell_objects: dict[int, dt.Cell] = parsers.cells.Tif().parse(
+        str(mask_file.absolute())
+    )
     mask_array: npt.NDArray[np.uint16] = np.array(
         Image.open(str(mask_file.absolute())), dtype="uint16"
     )
@@ -89,7 +91,12 @@ def import_dataset(mask_file: Path, root: Path) -> list[dt.Sample]:
     for points_file in points_files:
         filepath: str = str(points_file.absolute())
 
-        sample_area: dt.SampleArea = parsers.sampleArea.Geojson().parse(filepath)
+        try:
+            sample_area: dt.SampleArea = parsers.sampleArea.Geojson().parse(filepath)
+        except ValueError as e:
+            print(f"Error: {e} for file {filepath}")
+            continue
+
         points: list[dt.Point] = parsers.points.Geojson().parse(filepath)
 
         metadata: dt.Metadata = dt.Metadata(
@@ -157,12 +164,14 @@ def run(
 
     print(f"Workers: {max_workers}")
 
-    output_path = Path(output_dir) if output_dir else root_path.parent / "Results"
+    output_path = Path(
+        output_dir) if output_dir else root_path.parent / "Results"
 
     mask_filepaths: list[Path] = list(root_path.rglob("*.tif"))
 
     with alive_bar(len(mask_filepaths), title="Processing Data") as bar:
         with ProcessPoolExecutor(max_workers) as pool:
-            job = partial(process_sample, root=root_path, output_directory=output_path)
+            job = partial(process_sample, root=root_path,
+                          output_directory=output_path)
             for _ in pool.map(job, mask_filepaths):
                 bar()

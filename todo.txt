@@ -1,6 +1,5 @@
-1. Add more detailed inline documentation - DOING
-2. dockerize (no acually apptainerize!)
-3. Remove magic numbers - DOING <-
-5. Rename some modules / classes to be more clear - CLEANING
-4. Start work on user documentation - HIGH
-6. Migrate to mapcore github - DO AFTER CLEANING
+1. dockerize (no acually apptainerize!)
+2. Linting / fomatting - Used ruff and black
+3. API documentation - DO NEXT <-
+3. Start work on user documentation - HIGH
+4. Migrate to mapcore github - DO AFTER CLEANING

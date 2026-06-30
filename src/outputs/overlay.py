@@ -53,7 +53,8 @@ class Overlay(Output):
             mask: Original segmentation mask
         Returns: Accuracy image / mask TODO: Find a better name for this
         """
-        accuracy_mask: npt.NDArray[np.uint8] = np.zeros_like(mask, dtype=np.uint8)
+        accuracy_mask: npt.NDArray[np.uint8] = np.zeros_like(
+            mask, dtype=np.uint8)
 
         true_positives: list[int] = []
         false_positives: list[int] = []
@@ -85,14 +86,16 @@ class Overlay(Output):
             data: Input data
         """
 
-        ## Define graph and its limits
+        # Define graph and its limits
         fig, ax = plt.subplots()
 
         padding = 50  # Pixels
 
         # Crop into the points
-        ax.set_ylim(data.sample_area.ymax + padding, data.sample_area.ymin - padding)
-        ax.set_xlim(data.sample_area.xmin - padding, data.sample_area.xmax + padding)
+        ax.set_ylim(data.sample_area.ymax + padding,
+                    data.sample_area.ymin - padding)
+        ax.set_xlim(data.sample_area.xmin - padding,
+                    data.sample_area.xmax + padding)
 
         accuracy_mask: npt.NDArray[np.uint8] = self.generateCellAccuracyMask(
             data.cells, data.mask
@@ -113,7 +116,8 @@ class Overlay(Output):
         rgb_accuracy_mask: npt.NDArray[np.uint8] = colors[accuracy_mask]
 
         # Overlay image
-        overlaid_image = self.overlayImage(data.original_image, rgb_accuracy_mask, 0.2)
+        overlaid_image = self.overlayImage(
+            data.original_image, rgb_accuracy_mask, 0.2)
 
         ax.imshow(overlaid_image, origin="upper", interpolation="none")
 
@@ -148,6 +152,7 @@ class Overlay(Output):
             output_directory
             / f"{data.metadata.image_name}-{data.metadata.model_name}_accuracy_mask.png"
         )
-        fig.savefig(fname=output_file, bbox_inches="tight", pad_inches=0, dpi=400)
+        fig.savefig(fname=output_file, bbox_inches="tight",
+                    pad_inches=0, dpi=400)
 
         plt.close("all")

@@ -10,6 +10,7 @@ from PIL import Image
 import src.datatypes as dt
 from src.parsers.parser import Parser
 
+
 class Tif(Parser[dict[int, dt.Cell]]):
     @override
     def parse(self, filepath: str) -> dict[int, dt.Cell]:
@@ -20,8 +21,9 @@ class Tif(Parser[dict[int, dt.Cell]]):
         filepath: Path to the tif file to parse.
         Returns: A dictionary of cell objects.
         """
-
-        mask_image: npt.NDArray[np.uint16] = np.array(Image.open(filepath), dtype="uint16")
+        mask_image: npt.NDArray[np.uint16] = np.array(
+            Image.open(filepath), dtype="uint16"
+        )
 
         cell_regions = ski.measure.regionprops(mask_image)
 

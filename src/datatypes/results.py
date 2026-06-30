@@ -17,7 +17,6 @@ class Results:
         recall: Final recall score.
         f1: Final combined precision and recall score.
     """
-
     truePositive: int = 0
     falsePositive: int = 0
     falseNegative: int = 0

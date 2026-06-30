@@ -6,7 +6,7 @@ from typing import Any
 
 import src.main as main
 
-title: str = r"""
+TITLE: str = r"""
  _____      _____
 |  ___|    |  ___|
 | |____   _| |__
@@ -41,9 +41,9 @@ def eve() -> None:
         print(
             "[31mS[0m[33mU[0m[32mP[0m[36mE[0m[34mR[0m [35mM[0m[31mO[0m[33mD[0m[32mE[0m [36mA[0m[34mC[0m[35mT[0m[31mI[0m[33mV[0m[32mA[0m[36mT[0m[34mE[0m[35mD[0m[31m![0m"
         )
-        print(title[::-1])
+        print(TITLE[::-1])
     else:
-        print(title)
+        print(TITLE)
 
     kwargs: dict[str, Any] = {
         "root_dir": args.input,

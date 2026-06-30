@@ -7,6 +7,7 @@ import pandas as pd
 import src.datatypes as dt
 from src.parsers.parser import Parser
 
+
 class Csv(Parser[list[dt.Point]]):
     @override
     def parse(self, filepath: str) -> list[dt.Point]:
@@ -17,7 +18,6 @@ class Csv(Parser[list[dt.Point]]):
         filepath: Path to the csv file to parse.
         Returns: A list of point objects.
         """
-
         points: list[dt.Point] = []
 
         dataframe: pd.DataFrame = pd.read_csv(filepath)

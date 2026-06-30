@@ -18,7 +18,6 @@ class Metadata:
         uuid: Unique identifier for sample.
         timestamp: Time the sample was imported into the program.
     """
-
     image_name: str = ""
     model_name: str = ""
     points_file: str = ""

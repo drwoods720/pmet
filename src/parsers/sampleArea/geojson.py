@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
 import json
+from random import sample
 from typing import override, Any
 
 import src.datatypes as dt
 from src.parsers.parser import Parser
+
 
 class Geojson(Parser[dt.SampleArea]):
 
@@ -17,11 +19,13 @@ class Geojson(Parser[dt.SampleArea]):
         Returns: The sample area.
         """
 
+        sample_area: dt.SampleArea | None = None
+
         for annotation in json_data:
             try:
                 if (
-                        annotation["properties"]["classification"]["name"]
-                        == "cell_segmentation_sample_area"
+                    annotation["properties"]["classification"]["name"]
+                    == "cell_segmentation_sample_area"
                 ):
                     area_points = annotation["geometry"]["coordinates"][0]
 
@@ -31,18 +35,20 @@ class Geojson(Parser[dt.SampleArea]):
                     br = area_points[2]
                     tr = area_points[3]
 
-                    sample_area: dt.SampleArea = dt.SampleArea(
+                    sample_area = dt.SampleArea(
                         int(tr[0] - padding),
                         int(tl[0] + padding),
                         int(br[1] - padding),
                         int(tr[1] + padding),
                     )
 
-                    return sample_area
-
             except KeyError:
                 continue
 
+        if sample_area is None:
+            raise ValueError("Failed to parse sample area.")
+
+        return sample_area
 
     @override
     def parse(self, filepath: str) -> dt.SampleArea:
@@ -58,6 +64,4 @@ class Geojson(Parser[dt.SampleArea]):
         with open(filepath, "r") as f:
             json_data = json.load(f)
 
-        sample_area: dt.SampleArea = self.parse_sample_area(json_data)
-
-        return sample_area
+        return self.parse_sample_area(json_data)
