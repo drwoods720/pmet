@@ -70,6 +70,12 @@
              
   <h1>Source code for src.parsers.points.csv</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">csv.py</span>
+
+<span class="sd">Defines the :class:`Csv`, which reads a CSV file and</span>
+<span class="sd">parses it into a list of :class:`~.datatypes.Point` objects.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">override</span>
 
@@ -82,17 +88,30 @@
 <div class="viewcode-block" id="Csv">
 <a class="viewcode-back" href="../../../../api/src.parsers.points.html#src.parsers.points.csv.Csv">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Csv</span><span class="p">(</span><span class="n">Parser</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Point</span><span class="p">]]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse point objects from a CSV file.</span>
+
+<span class="sd">    Reads a CSV file containing manually placed point coordinates</span>
+<span class="sd">    and builds a :class:`~.datatypes.Point` object for each row.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Csv.parse">
 <a class="viewcode-back" href="../../../../api/src.parsers.points.html#src.parsers.points.csv.Csv.parse">[docs]</a>
     <span class="nd">@override</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Point</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generates a list of point objects from a csv file.</span>
+<span class="sd">        Generate point objects from a CSV file.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        filepath: Path to the csv file to parse.</span>
-<span class="sd">        Returns: A list of point objects.</span>
+<span class="sd">        Reads the CSV file at ``filepath`` and builds a</span>
+<span class="sd">        :class:`~.datatypes.Point` object for each row it contains.</span>
+
+<span class="sd">        :param filepath: The path to the CSV file to parse.</span>
+<span class="sd">        :type filepath: str</span>
+
+<span class="sd">        :returns: A list of point objects parsed from the file.</span>
+<span class="sd">        :rtype: list[~.datatypes.Point]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Point</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>

@@ -98,18 +98,33 @@
 </section>
 <section id="module-src.parsers.cells.tif">
 <span id="src-parsers-cells-tif-module"></span><h2>src.parsers.cells.tif module<a class="headerlink" href="#module-src.parsers.cells.tif" title="Link to this heading"></a></h2>
+<p>tif.py</p>
+<p>Defines the <a class="reference internal" href="#src.parsers.cells.tif.Tif" title="src.parsers.cells.tif.Tif"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tif</span></code></a>, which reads a labeled TIFF
+segmentation mask and parses it into a dictionary of
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> objects.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.parsers.cells.tif.Tif">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.parsers.cells.tif.</span></span><span class="sig-name descname"><span class="pre">Tif</span></span><a class="reference internal" href="../_modules/src/parsers/cells/tif.html#Tif"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.cells.tif.Tif" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="src.parsers.html#src.parsers.parser.Parser" title="src.parsers.parser.Parser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <a class="reference internal" href="src.datatypes.html#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a>]]</p>
+<p>Parse cell objects from a labeled TIFF mask.</p>
+<p>Reads a labeled segmentation mask from a TIFF file, where each
+distinct label value corosponds to a single cell region, and
+builds a <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> object for each one.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.parsers.cells.tif.Tif.parse">
 <span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/parsers/cells/tif.html#Tif.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.cells.tif.Tif.parse" title="Link to this definition"></a></dt>
-<dd><p>Generates a dictionary of cell objects from a labeled mask.</p>
-<p>Parameters:
-filepath: Path to the tif file to parse.
-Returns: A dictionary of cell objects.</p>
+<dd><p>Generate cell objects from a labeled mask file.</p>
+<p>Reads a labeled TIFF mask at <code class="docutils literal notranslate"><span class="pre">filepath</span></code> and builds a
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> object for each distinct label
+found in the mask, keyed by its cell ID.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The path to the TIFF file to parse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary mapping each cell ID to its
+corresponding <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> object.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <a class="reference internal" href="src.datatypes.html#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a>]</span></p>
 </dd>
@@ -125,14 +140,25 @@ Returns: A dictionary of cell objects.</p>
 <dt class="sig sig-object py" id="src.parsers.cells.Tif">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.parsers.cells.</span></span><span class="sig-name descname"><span class="pre">Tif</span></span><a class="reference internal" href="../_modules/src/parsers/cells/tif.html#Tif"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.cells.Tif" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="src.parsers.html#src.parsers.parser.Parser" title="src.parsers.parser.Parser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <a class="reference internal" href="src.datatypes.html#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a>]]</p>
+<p>Parse cell objects from a labeled TIFF mask.</p>
+<p>Reads a labeled segmentation mask from a TIFF file, where each
+distinct label value corosponds to a single cell region, and
+builds a <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> object for each one.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.parsers.cells.Tif.parse">
 <span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/parsers/cells/tif.html#Tif.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.cells.Tif.parse" title="Link to this definition"></a></dt>
-<dd><p>Generates a dictionary of cell objects from a labeled mask.</p>
-<p>Parameters:
-filepath: Path to the tif file to parse.
-Returns: A dictionary of cell objects.</p>
+<dd><p>Generate cell objects from a labeled mask file.</p>
+<p>Reads a labeled TIFF mask at <code class="docutils literal notranslate"><span class="pre">filepath</span></code> and builds a
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> object for each distinct label
+found in the mask, keyed by its cell ID.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The path to the TIFF file to parse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary mapping each cell ID to its
+corresponding <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> object.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <a class="reference internal" href="src.datatypes.html#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a>]</span></p>
 </dd>

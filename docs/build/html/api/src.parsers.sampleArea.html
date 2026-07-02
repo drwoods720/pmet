@@ -98,20 +98,32 @@
 </section>
 <section id="module-src.parsers.sampleArea.geojson">
 <span id="src-parsers-samplearea-geojson-module"></span><h2>src.parsers.sampleArea.geojson module<a class="headerlink" href="#module-src.parsers.sampleArea.geojson" title="Link to this heading"></a></h2>
+<p>geojson.py</p>
+<p>Defines the <a class="reference internal" href="#src.parsers.sampleArea.geojson.Geojson" title="src.parsers.sampleArea.geojson.Geojson"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geojson</span></code></a>, which reads a GeoJSON
+file and parses it into a <a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea" title="src.datatypes.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.parsers.sampleArea.geojson.Geojson">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.parsers.sampleArea.geojson.</span></span><span class="sig-name descname"><span class="pre">Geojson</span></span><a class="reference internal" href="../_modules/src/parsers/sampleArea/geojson.html#Geojson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.sampleArea.geojson.Geojson" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="src.parsers.html#src.parsers.parser.Parser" title="src.parsers.parser.Parser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code></a>[<a class="reference internal" href="src.datatypes.html#src.datatypes.sampleArea.SampleArea" title="src.datatypes.sampleArea.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>]</p>
+<dd><p>Bases: <a class="reference internal" href="src.parsers.html#src.parsers.parser.Parser" title="src.parsers.parser.Parser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code></a>[<a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>]</p>
+<p>Parse sample area bounds from a GeoJSON file.</p>
+<p>Reads a QuPath exported GeoJSON file and extracts the
+sample area bounds into a <a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea" title="src.datatypes.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>
+instance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.parsers.sampleArea.geojson.Geojson.parse">
 <span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/parsers/sampleArea/geojson.html#Geojson.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.sampleArea.geojson.Geojson.parse" title="Link to this definition"></a></dt>
-<dd><p>Read the sample area data from a geojson file.</p>
-<p>Parameters:
-filepath: Path to the geojson file.
-Returns: Sample area.</p>
+<dd><p>Read and parse the sample area from a GeoJSON file.</p>
+<p>Reads the file at <code class="docutils literal notranslate"><span class="pre">filepath</span></code> and delegates it to
+<a class="reference internal" href="#src.parsers.sampleArea.geojson.Geojson.parse_sample_area" title="src.parsers.sampleArea.geojson.Geojson.parse_sample_area"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_sample_area()</span></code></a> to extract the sample area bounds.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The path to the GeoJSON file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parsed sample area.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sampleArea.SampleArea" title="src.datatypes.sampleArea.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -119,13 +131,17 @@ Returns: Sample area.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.parsers.sampleArea.geojson.Geojson.parse_sample_area">
 <span class="sig-name descname"><span class="pre">parse_sample_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/parsers/sampleArea/geojson.html#Geojson.parse_sample_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.sampleArea.geojson.Geojson.parse_sample_area" title="Link to this definition"></a></dt>
-<dd><p>Extracts the sample area data from geojson data.</p>
-<p>Parameters:
-json_data: The raw json data to parse.
-Returns: The sample area.</p>
+<dd><p>Extract the sample area data from parsed GeoJSON data.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_data</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span>) – The raw GeoJSON data to extract
+the sample area from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The extracted sample area.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sampleArea.SampleArea" title="src.datatypes.sampleArea.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -138,17 +154,26 @@ Returns: The sample area.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.parsers.sampleArea.Geojson">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.parsers.sampleArea.</span></span><span class="sig-name descname"><span class="pre">Geojson</span></span><a class="reference internal" href="../_modules/src/parsers/sampleArea/geojson.html#Geojson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.sampleArea.Geojson" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="src.parsers.html#src.parsers.parser.Parser" title="src.parsers.parser.Parser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code></a>[<a class="reference internal" href="src.datatypes.html#src.datatypes.sampleArea.SampleArea" title="src.datatypes.sampleArea.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>]</p>
+<dd><p>Bases: <a class="reference internal" href="src.parsers.html#src.parsers.parser.Parser" title="src.parsers.parser.Parser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code></a>[<a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>]</p>
+<p>Parse sample area bounds from a GeoJSON file.</p>
+<p>Reads a QuPath exported GeoJSON file and extracts the
+sample area bounds into a <a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea" title="src.datatypes.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>
+instance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.parsers.sampleArea.Geojson.parse">
 <span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/parsers/sampleArea/geojson.html#Geojson.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.sampleArea.Geojson.parse" title="Link to this definition"></a></dt>
-<dd><p>Read the sample area data from a geojson file.</p>
-<p>Parameters:
-filepath: Path to the geojson file.
-Returns: Sample area.</p>
+<dd><p>Read and parse the sample area from a GeoJSON file.</p>
+<p>Reads the file at <code class="docutils literal notranslate"><span class="pre">filepath</span></code> and delegates it to
+<a class="reference internal" href="#src.parsers.sampleArea.Geojson.parse_sample_area" title="src.parsers.sampleArea.Geojson.parse_sample_area"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_sample_area()</span></code></a> to extract the sample area bounds.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The path to the GeoJSON file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parsed sample area.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sampleArea.SampleArea" title="src.datatypes.sampleArea.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -156,13 +181,17 @@ Returns: Sample area.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.parsers.sampleArea.Geojson.parse_sample_area">
 <span class="sig-name descname"><span class="pre">parse_sample_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/parsers/sampleArea/geojson.html#Geojson.parse_sample_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.sampleArea.Geojson.parse_sample_area" title="Link to this definition"></a></dt>
-<dd><p>Extracts the sample area data from geojson data.</p>
-<p>Parameters:
-json_data: The raw json data to parse.
-Returns: The sample area.</p>
+<dd><p>Extract the sample area data from parsed GeoJSON data.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_data</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span>) – The raw GeoJSON data to extract
+the sample area from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The extracted sample area.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sampleArea.SampleArea" title="src.datatypes.sampleArea.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>

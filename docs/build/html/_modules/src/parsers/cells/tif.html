@@ -70,6 +70,13 @@
              
   <h1>Source code for src.parsers.cells.tif</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">tif.py</span>
+
+<span class="sd">Defines the :class:`Tif`, which reads a labeled TIFF</span>
+<span class="sd">segmentation mask and parses it into a dictionary of</span>
+<span class="sd">:class:`~.datatypes.Cell` objects.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">override</span>
 
@@ -85,17 +92,33 @@
 <div class="viewcode-block" id="Tif">
 <a class="viewcode-back" href="../../../../api/src.parsers.cells.html#src.parsers.cells.tif.Tif">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Tif</span><span class="p">(</span><span class="n">Parser</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">Cell</span><span class="p">]]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse cell objects from a labeled TIFF mask.</span>
+
+<span class="sd">    Reads a labeled segmentation mask from a TIFF file, where each</span>
+<span class="sd">    distinct label value corosponds to a single cell region, and</span>
+<span class="sd">    builds a :class:`~.datatypes.Cell` object for each one.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Tif.parse">
 <a class="viewcode-back" href="../../../../api/src.parsers.cells.html#src.parsers.cells.tif.Tif.parse">[docs]</a>
     <span class="nd">@override</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">Cell</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generates a dictionary of cell objects from a labeled mask.</span>
+<span class="sd">        Generate cell objects from a labeled mask file.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        filepath: Path to the tif file to parse.</span>
-<span class="sd">        Returns: A dictionary of cell objects.</span>
+<span class="sd">        Reads a labeled TIFF mask at ``filepath`` and builds a</span>
+<span class="sd">        :class:`~.datatypes.Cell` object for each distinct label</span>
+<span class="sd">        found in the mask, keyed by its cell ID.</span>
+
+<span class="sd">        :param filepath: The path to the TIFF file to parse.</span>
+<span class="sd">        :type filepath: str</span>
+
+<span class="sd">        :returns: A dictionary mapping each cell ID to its</span>
+<span class="sd">            corresponding :class:`~.datatypes.Cell` object.</span>
+<span class="sd">        :rtype: dict[int, ~.datatypes.Cell]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">mask_image</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint16&quot;</span>
         <span class="p">)</span>

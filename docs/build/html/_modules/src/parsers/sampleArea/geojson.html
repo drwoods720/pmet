@@ -70,6 +70,12 @@
              
   <h1>Source code for src.parsers.sampleArea.geojson</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">geojson.py</span>
+
+<span class="sd">Defines the :class:`Geojson`, which reads a GeoJSON</span>
+<span class="sd">file and parses it into a :class:`~.datatypes.SampleArea`.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample</span>
@@ -82,16 +88,26 @@
 <div class="viewcode-block" id="Geojson">
 <a class="viewcode-back" href="../../../../api/src.parsers.sampleArea.html#src.parsers.sampleArea.geojson.Geojson">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Geojson</span><span class="p">(</span><span class="n">Parser</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">SampleArea</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse sample area bounds from a GeoJSON file.</span>
+
+<span class="sd">    Reads a QuPath exported GeoJSON file and extracts the</span>
+<span class="sd">    sample area bounds into a :class:`~.datatypes.SampleArea`</span>
+<span class="sd">    instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Geojson.parse_sample_area">
 <a class="viewcode-back" href="../../../../api/src.parsers.sampleArea.html#src.parsers.sampleArea.geojson.Geojson.parse_sample_area">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_sample_area</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">SampleArea</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Extracts the sample area data from geojson data.</span>
+<span class="sd">        Extract the sample area data from parsed GeoJSON data.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        json_data: The raw json data to parse.</span>
-<span class="sd">        Returns: The sample area.</span>
+<span class="sd">        :param json_data: The raw GeoJSON data to extract</span>
+<span class="sd">            the sample area from.</span>
+<span class="sd">        :type json_data: list[Any]</span>
+
+<span class="sd">        :returns: The extracted sample area.</span>
+<span class="sd">        :rtype: ~.datatypes.SampleArea</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">sample_area</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">SampleArea</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -131,11 +147,16 @@
     <span class="nd">@override</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">SampleArea</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Read the sample area data from a geojson file.</span>
+<span class="sd">        Read and parse the sample area from a GeoJSON file.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        filepath: Path to the geojson file.</span>
-<span class="sd">        Returns: Sample area.</span>
+<span class="sd">        Reads the file at ``filepath`` and delegates it to</span>
+<span class="sd">        :meth:`parse_sample_area` to extract the sample area bounds.</span>
+
+<span class="sd">        :param filepath: The path to the GeoJSON file.</span>
+<span class="sd">        :type filepath: str</span>
+
+<span class="sd">        :returns: The parsed sample area.</span>
+<span class="sd">        :rtype: ~.datatypes.SampleArea</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">json_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>

@@ -182,20 +182,42 @@
 </section>
 <section id="module-src.parsers.parser">
 <span id="src-parsers-parser-module"></span><h2>src.parsers.parser module<a class="headerlink" href="#module-src.parsers.parser" title="Link to this heading"></a></h2>
+<p>parsers.py</p>
+<p>Defines the <a class="reference internal" href="#src.parsers.parser.Parser" title="src.parsers.parser.Parser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code></a> abstract class, a generic interface
+for parsing a file at a given path into some parsed result type.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.parsers.parser.Parser">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.parsers.parser.</span></span><span class="sig-name descname"><span class="pre">Parser</span></span><a class="reference internal" href="../_modules/src/parsers/parser.html#Parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.parser.Parser" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">R</span></code>]</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<a class="reference internal" href="#src.parsers.parser.R" title="src.parsers.parser.R"><code class="xref py py-obj docutils literal notranslate"><span class="pre">R</span></code></a>]</p>
+<p>Abstract base class for file parsers.</p>
+<p>Generic over the return type <a class="reference internal" href="#src.parsers.parser.R" title="src.parsers.parser.R"><code class="xref py py-data docutils literal notranslate"><span class="pre">R</span></code></a>, the type of the parsed
+result. Subclasses define how a file at a given path is read and
+parsed into an instance of <a class="reference internal" href="#src.parsers.parser.R" title="src.parsers.parser.R"><code class="xref py py-data docutils literal notranslate"><span class="pre">R</span></code></a>. Each concrete subclass
+must implement <a class="reference internal" href="#src.parsers.parser.Parser.parse" title="src.parsers.parser.Parser.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.parsers.parser.Parser.parse">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/parsers/parser.html#Parser.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.parsers.parser.Parser.parse" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Parse the file at the given path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The path to the file to parse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parsed result.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">R</span></code>)</span></p>
 </dd>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.parsers.parser.R">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.parsers.parser.</span></span><span class="sig-name descname"><span class="pre">R</span></span><a class="headerlink" href="#src.parsers.parser.R" title="Link to this definition"></a></dt>
+<dd><p>The type of the parsed result returned by <a class="reference internal" href="#src.parsers.parser.Parser.parse" title="src.parsers.parser.Parser.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Parser.parse()</span></code></a>.</p>
+<p>alias of TypeVar(‘R’)</p>
 </dd></dl>
 
 </section>

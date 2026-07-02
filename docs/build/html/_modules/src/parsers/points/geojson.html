@@ -70,6 +70,12 @@
              
   <h1>Source code for src.parsers.points.geojson</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">geojson.py</span>
+
+<span class="sd">Defines the :class:`Geojson`, which reads a GeoJSON file and</span>
+<span class="sd">parses it into a list of :class:`~.datatypes.Point` objects.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">override</span><span class="p">,</span> <span class="n">Any</span>
@@ -81,17 +87,30 @@
 <div class="viewcode-block" id="Geojson">
 <a class="viewcode-back" href="../../../../api/src.parsers.points.html#src.parsers.points.geojson.Geojson">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Geojson</span><span class="p">(</span><span class="n">Parser</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Point</span><span class="p">]]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse point objects from a QuPath exported GeoJSON file.</span>
+
+<span class="sd">    Reads a GeoJSON file containing manually placed point annotation</span>
+<span class="sd">    objects and builds a :class:`~.datatypes.Point` object for each point.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Geojson.parse">
 <a class="viewcode-back" href="../../../../api/src.parsers.points.html#src.parsers.points.geojson.Geojson.parse">[docs]</a>
     <span class="nd">@override</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Point</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generates a list of point objects from a geojson file.</span>
+<span class="sd">        Generate point objects from a QuPath GeoJSON file.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        filepath: Path to the geojson file to parse.</span>
-<span class="sd">        Returns: A list of point objects.</span>
+<span class="sd">        Reads the GeoJSON file at ``filepath`` and builds a</span>
+<span class="sd">        :class:`~.datatypes.Point` object for each annotation it contains.</span>
+
+<span class="sd">        :param filepath: The path to the GeoJSON file to parse.</span>
+<span class="sd">        :type filepath: str</span>
+
+<span class="sd">        :returns: A list of point objects parsed from the file.</span>
+<span class="sd">        :rtype: list[~.datatypes.Point]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Point</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="n">json_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
