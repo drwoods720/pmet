@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+scoresCsv.py
+
+
+Defines the :class:`ScoresCsv` output generator, which writes the
+processed results of a sample out to a CSV file.
+"""
 
 import csv
 
@@ -9,12 +16,28 @@ from src.outputs.output import Output
 
 
 class ScoresCsv(Output):
+    """
+    Generate a CSV report of a sample's results.
+
+    Writes the computed :class:`~.datatypes.Results` for a sample
+    out to a CSV file.
+    """
+
     def run(self, data: dt.Sample, output_directory: Path) -> None:
         """
-        Outputs the results of one dataset to a csv file.
+        Write the results of one sample to a CSV file.
 
-        Parameters:
-            data: Dataset to save the results of.
+        :param data: The sample whose results should be written to
+            the CSV file.
+        :type data: ~.datatypes.Results
+
+        :param output_directory: The directory to write the
+            generated CSV file to.
+        :type output_directory: pathlib.Path
+
+        :returns: None. The CSV file is written as a side effect to
+            a file within ``output_directory``.
+        :rtype: None
         """
         output_directory.mkdir(parents=True, exist_ok=True)
 

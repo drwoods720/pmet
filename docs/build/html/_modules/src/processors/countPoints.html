@@ -70,6 +70,14 @@
              
   <h1>Source code for src.processors.countPoints</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">countPoints.py</span>
+
+<span class="sd">Defines the :class:`CountPoints` processor, which assigns each point</span>
+<span class="sd">to its containing cell and tallies the number of points located</span>
+<span class="sd">within each cell.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">src.datatypes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">src.processors.processor</span><span class="w"> </span><span class="kn">import</span> <span class="n">Process</span>
 
@@ -77,16 +85,30 @@
 <div class="viewcode-block" id="CountPoints">
 <a class="viewcode-back" href="../../../api/src.processors.html#src.processors.countPoints.CountPoints">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CountPoints</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assign points to cells and count points per cell.</span>
+
+<span class="sd">    Determines which :class:`~.datatypes.Cell` region each</span>
+<span class="sd">    :class:`~.datatypes.Point` in the sample falls within, updating</span>
+<span class="sd">    each point&#39;s :attr:`~.datatypes.Point.cell` reference, and</span>
+<span class="sd">    tallies how many points fall within each cell.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="CountPoints.run">
 <a class="viewcode-back" href="../../../api/src.processors.html#src.processors.countPoints.CountPoints.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Determines which cell a point is in and how many points are in each cell.</span>
+<span class="sd">        Assign each point to its containing cell and count totals.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            data: Sample data to process</span>
-<span class="sd">        Returns: Sample data with updated point counts</span>
+<span class="sd">        :param data: The sample data to process.</span>
+<span class="sd">        :type data: ~.datatypes.Sample</span>
+
+<span class="sd">        :returns: The sample, with each point&#39;s</span>
+<span class="sd">            :attr:`~.datatypes.Point.cell` attribute updated to</span>
+<span class="sd">            reference its containing cell, and per-cell point counts</span>
+<span class="sd">            updated accordingly.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
             <span class="n">containing_cell_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">])</span>
 

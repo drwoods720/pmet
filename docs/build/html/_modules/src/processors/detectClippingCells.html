@@ -70,6 +70,12 @@
              
   <h1>Source code for src.processors.detectClippingCells</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">detectClippingCells.py</span>
+
+<span class="sd">Defines the :class:`DetectClippingCells` processor, which flags</span>
+<span class="sd">cells that are cut off by the boundry of the sample area.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">src.datatypes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">src.processors.processor</span><span class="w"> </span><span class="kn">import</span> <span class="n">Process</span>
@@ -78,15 +84,28 @@
 <div class="viewcode-block" id="DetectClippingCells">
 <a class="viewcode-back" href="../../../api/src.processors.html#src.processors.detectClippingCells.DetectClippingCells">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DetectClippingCells</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Detect cells that are clipped by the sample area boundary.</span>
+
+<span class="sd">    Marks each cell in the sample whose region is cut off by the</span>
+<span class="sd">    edge of the :class:`~.datatypes.SampleArea`, by setting its</span>
+<span class="sd">    :attr:`~.datatypes.Cell.clipping` attribute accordingly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="DetectClippingCells.run">
 <a class="viewcode-back" href="../../../api/src.processors.html#src.processors.detectClippingCells.DetectClippingCells.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Detects all cells that are cut off by the sample area.</span>
+<span class="sd">        Detect and flag all cells clipped off by the sample area.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            data: Dataset to process.</span>
-<span class="sd">        Returns: Processed dataset.</span>
+<span class="sd">        :param data: The sample data to process.</span>
+<span class="sd">        :type data: ~.datatypes.Sample</span>
+
+<span class="sd">        :returns: The sample, with each cell&#39;s</span>
+<span class="sd">            :attr:`~.datatypes.Cell.clipping` attribute updated to</span>
+<span class="sd">            reflect whether it is cut off by the sample area</span>
+<span class="sd">            boundary.</span>
+<span class="sd">        :rtype: ~.datatypes.Sample</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ymin</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">ymin</span>
         <span class="n">ymax</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">ymax</span>

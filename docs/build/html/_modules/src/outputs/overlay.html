@@ -70,6 +70,13 @@
              
   <h1>Source code for src.outputs.overlay</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">overlay.py</span>
+
+<span class="sd">Defines the :class:`Overlay` output generator, which produces</span>
+<span class="sd">a colour-coded overlay image visualizing per-cell accuracy against</span>
+<span class="sd">the original segmentation mask.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">patches</span>
@@ -87,22 +94,38 @@
 <div class="viewcode-block" id="Overlay">
 <a class="viewcode-back" href="../../../api/src.outputs.html#src.outputs.overlay.Overlay">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Overlay</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
-<div class="viewcode-block" id="Overlay.overlayImage">
-<a class="viewcode-back" href="../../../api/src.outputs.html#src.outputs.overlay.Overlay.overlayImage">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">overlayImage</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a colour-coded overlay image for a sample.</span>
+
+<span class="sd">    Produces an image based on the original segmentation mask, where</span>
+<span class="sd">    each cell is color coded according to its classification</span>
+<span class="sd">    accuracy.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Overlay.overlay_image">
+<a class="viewcode-back" href="../../../api/src.outputs.html#src.outputs.overlay.Overlay.overlay_image">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">overlay_image</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">background</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">],</span>
         <span class="n">overlay</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">],</span>
         <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Overlays an image over another with an optional transparency option.</span>
+<span class="sd">        Overlay one image on top of another with optional transparency.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            background: Background image.</span>
-<span class="sd">            overlay: Image to overlay over background image.</span>
-<span class="sd">            alpha: Transparency value 0-1.</span>
-<span class="sd">        Returns: Background image with overlay image overlaid.</span>
+<span class="sd">        :param background: The background image.</span>
+<span class="sd">        :type background: npt.NDArray[np.uint16]</span>
+
+<span class="sd">        :param overlay: The image to overlay on top of the background image.</span>
+<span class="sd">        :type background: npt.NDArray[np.uint16]</span>
+
+<span class="sd">        :param alpha: The transparency value of the overlay image, in the</span>
+<span class="sd">            range ``0`` (fully transparent) to ``1`` (fully opaque).</span>
+<span class="sd">        :type alpha: float</span>
+
+<span class="sd">        :returns: The background image with the overlay image blended on</span>
+<span class="sd">            top of it.</span>
+<span class="sd">        :rtype: npt.NDArray[np.uint16]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">bg</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">background</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
         <span class="n">ov</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">overlay</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span>
@@ -118,18 +141,26 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Overlay.generateCellAccuracyMask">
-<a class="viewcode-back" href="../../../api/src.outputs.html#src.outputs.overlay.Overlay.generateCellAccuracyMask">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generateCellAccuracyMask</span><span class="p">(</span>
+<div class="viewcode-block" id="Overlay.generate_accuracy_mask">
+<a class="viewcode-back" href="../../../api/src.outputs.html#src.outputs.overlay.Overlay.generate_accuracy_mask">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_accuracy_mask</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">cells</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">Cell</span><span class="p">],</span> <span class="n">mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates an image based off the original segmentation mask color coded based on accuracy.</span>
+<span class="sd">        Create an accuracy-coded image from the segmentation mask.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            cells: List of cells</span>
-<span class="sd">            mask: Original segmentation mask</span>
-<span class="sd">        Returns: Accuracy image / mask TODO: Find a better name for this</span>
+<span class="sd">        Builds an image based on the original segmentation mask,</span>
+<span class="sd">        colour coded per cell according to its classification</span>
+<span class="sd">        accuracy.</span>
+
+<span class="sd">        :param cells: The list of cells to colour code in the image.</span>
+<span class="sd">        :type cells: dict[int, ~.datatypes.Cell]</span>
+
+<span class="sd">        :param mask: The original segmentation mask.</span>
+<span class="sd">        :type mask: npt.NDArray[np.uint16]</span>
+
+<span class="sd">        :returns: The original segmentation mask.</span>
+<span class="sd">        :rtype: npt.NDArray[np.uint8]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">accuracy_mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
@@ -160,10 +191,24 @@
 <a class="viewcode-back" href="../../../api/src.outputs.html#src.outputs.overlay.Overlay.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates and overlays an accuracy mask and points over the original image.</span>
+<span class="sd">        Generate and write the accuracy overlay image for a sample.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            data: Input data</span>
+<span class="sd">        Builds the accuracy-coded image via :meth:`generate_accuracy_mask`,</span>
+<span class="sd">        optionally blends it over the sample&#39;s original image via</span>
+<span class="sd">        :func:`overlay_image`, and writes the result to</span>
+<span class="sd">        ``output_directory``.</span>
+
+<span class="sd">        :param data: The processed sample data to generate the</span>
+<span class="sd">            overlay image from.</span>
+<span class="sd">        :type data: ~.datatypes.Sample</span>
+
+<span class="sd">        :param output_directory: The directory to write the</span>
+<span class="sd">            generated overlay image to.</span>
+<span class="sd">        :type output_directory: pathlib.Path</span>
+
+<span class="sd">        :returns: None. The generated image will be written as a side</span>
+<span class="sd">            effect to a file within ``output_directory``.</span>
+<span class="sd">        :rtype: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Define graph and its limits</span>
@@ -175,7 +220,7 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">ymax</span> <span class="o">+</span> <span class="n">padding</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">padding</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">xmin</span> <span class="o">-</span> <span class="n">padding</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">xmax</span> <span class="o">+</span> <span class="n">padding</span><span class="p">)</span>
 
-        <span class="n">accuracy_mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generateCellAccuracyMask</span><span class="p">(</span>
+        <span class="n">accuracy_mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_accuracy_mask</span><span class="p">(</span>
             <span class="n">data</span><span class="o">.</span><span class="n">cells</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">mask</span>
         <span class="p">)</span>
 
@@ -194,7 +239,7 @@
         <span class="n">rgb_accuracy_mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">accuracy_mask</span><span class="p">]</span>
 
         <span class="c1"># Overlay image</span>
-        <span class="n">overlaid_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlayImage</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">original_image</span><span class="p">,</span> <span class="n">rgb_accuracy_mask</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">overlaid_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlay_image</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">original_image</span><span class="p">,</span> <span class="n">rgb_accuracy_mask</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">overlaid_image</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
 

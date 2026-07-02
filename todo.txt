@@ -3,3 +3,4 @@
 3. API documentation - DO NEXT <-
 3. Start work on user documentation - HIGH
 4. Migrate to mapcore github - DO AFTER CLEANING
+5. Casing (camel vs snake?)

@@ -70,6 +70,13 @@
              
   <h1>Source code for src.outputs.scoresCsv</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">scoresCsv.py</span>
+
+
+<span class="sd">Defines the :class:`ScoresCsv` output generator, which writes the</span>
+<span class="sd">processed results of a sample out to a CSV file.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
 
@@ -82,14 +89,30 @@
 <div class="viewcode-block" id="ScoresCsv">
 <a class="viewcode-back" href="../../../api/src.outputs.html#src.outputs.scoresCsv.ScoresCsv">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ScoresCsv</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a CSV report of a sample&#39;s results.</span>
+
+<span class="sd">    Writes the computed :class:`~.datatypes.Results` for a sample</span>
+<span class="sd">    out to a CSV file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="ScoresCsv.run">
 <a class="viewcode-back" href="../../../api/src.outputs.html#src.outputs.scoresCsv.ScoresCsv.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Outputs the results of one dataset to a csv file.</span>
+<span class="sd">        Write the results of one sample to a CSV file.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            data: Dataset to save the results of.</span>
+<span class="sd">        :param data: The sample whose results should be written to</span>
+<span class="sd">            the CSV file.</span>
+<span class="sd">        :type data: ~.datatypes.Results</span>
+
+<span class="sd">        :param output_directory: The directory to write the</span>
+<span class="sd">            generated CSV file to.</span>
+<span class="sd">        :type output_directory: pathlib.Path</span>
+
+<span class="sd">        :returns: None. The CSV file is written as a side effect to</span>
+<span class="sd">            a file within ``output_directory``.</span>
+<span class="sd">        :rtype: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">output_directory</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 

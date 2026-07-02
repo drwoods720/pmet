@@ -1,19 +1,38 @@
 #!/usr/bin/env python3
+"""
+calculateScore.py
+
+Defines the :class:`CalculateScore` processor, which computes
+precision, recall, and F1 scores for a sample from its true/false
+positive and negative counts.
+"""
 
 import src.datatypes as dt
 from src.processors.processor import Process
 
 
 class CalculateScore(Process):
+    """
+    Calculate scoring metrics for a sample.
+
+    Computes precision, recall, and F1 scores from the sample's
+    classification counts, storing them in the sample's
+    :class:`~.datatypes.Results`.
+    """
+
     def run(self, data: dt.Sample) -> dt.Sample:
         """
-        Calculates the scoring metrics from a specific dataset.
+        Calculate and store the scoring metrics for a sample.
 
-        Will calculate precision, recall, and f1 scores.
+        Calculates precision, recall, and F1 scores.
 
-        Parameters:
-            data: Dataset to calculate scores for.
-        Returns: Dataset with scores added.
+        :param data: The sample data to calculate scores for.
+        :type data: ~.datatypes.Sample
+
+        :returns: The sample and its
+            :attr:`~.datatypes.Sample.results` updated to include
+            the calculated precision, recall, and F1 scores.
+        :rtype: ~.datatypes.Sample
         """
         # Count false negatives
         for point in data.points:

@@ -1,17 +1,36 @@
 #!/usr/bin/env python3
+"""
+detectClippingCells.py
+
+Defines the :class:`DetectClippingCells` processor, which flags
+cells that are cut off by the boundry of the sample area.
+"""
 
 import src.datatypes as dt
 from src.processors.processor import Process
 
 
 class DetectClippingCells(Process):
+    """
+    Detect cells that are clipped by the sample area boundary.
+
+    Marks each cell in the sample whose region is cut off by the
+    edge of the :class:`~.datatypes.SampleArea`, by setting its
+    :attr:`~.datatypes.Cell.clipping` attribute accordingly.
+    """
+
     def run(self, data: dt.Sample) -> dt.Sample:
         """
-        Detects all cells that are cut off by the sample area.
+        Detect and flag all cells clipped off by the sample area.
 
-        Parameters:
-            data: Dataset to process.
-        Returns: Processed dataset.
+        :param data: The sample data to process.
+        :type data: ~.datatypes.Sample
+
+        :returns: The sample, with each cell's
+            :attr:`~.datatypes.Cell.clipping` attribute updated to
+            reflect whether it is cut off by the sample area
+            boundary.
+        :rtype: ~.datatypes.Sample
         """
         ymin: int = data.sample_area.ymin
         ymax: int = data.sample_area.ymax

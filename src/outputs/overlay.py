@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+overlay.py
+
+Defines the :class:`Overlay` output generator, which produces
+a colour-coded overlay image visualizing per-cell accuracy against
+the original segmentation mask.
+"""
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -14,20 +21,36 @@ from src.outputs.output import Output
 
 
 class Overlay(Output):
-    def overlayImage(
+    """
+    Generate a colour-coded overlay image for a sample.
+
+    Produces an image based on the original segmentation mask, where
+    each cell is color coded according to its classification
+    accuracy.
+    """
+
+    def overlay_image(
         self,
         background: npt.NDArray[np.uint16],
         overlay: npt.NDArray[np.uint16],
         alpha: float = 1.0,
-    ):
+    ) -> npt.NDArray[np.uint16]:
         """
-        Overlays an image over another with an optional transparency option.
+        Overlay one image on top of another with optional transparency.
 
-        Parameters:
-            background: Background image.
-            overlay: Image to overlay over background image.
-            alpha: Transparency value 0-1.
-        Returns: Background image with overlay image overlaid.
+        :param background: The background image.
+        :type background: npt.NDArray[np.uint16]
+
+        :param overlay: The image to overlay on top of the background image.
+        :type background: npt.NDArray[np.uint16]
+
+        :param alpha: The transparency value of the overlay image, in the
+            range ``0`` (fully transparent) to ``1`` (fully opaque).
+        :type alpha: float
+
+        :returns: The background image with the overlay image blended on
+            top of it.
+        :rtype: npt.NDArray[np.uint16]
         """
         bg: Image.Image = Image.fromarray(background).convert("RGB")
         ov: Image.Image = Image.fromarray(overlay).convert("RGBA")
@@ -42,16 +65,24 @@ class Overlay(Output):
 
         return np.array(result.convert("RGB"))
 
-    def generateCellAccuracyMask(
+    def generate_accuracy_mask(
         self, cells: dict[int, dt.Cell], mask: npt.NDArray[np.uint16]
     ) -> npt.NDArray[np.uint8]:
         """
-        Creates an image based off the original segmentation mask color coded based on accuracy.
+        Create an accuracy-coded image from the segmentation mask.
 
-        Parameters:
-            cells: List of cells
-            mask: Original segmentation mask
-        Returns: Accuracy image / mask TODO: Find a better name for this
+        Builds an image based on the original segmentation mask,
+        colour coded per cell according to its classification
+        accuracy.
+
+        :param cells: The list of cells to colour code in the image.
+        :type cells: dict[int, ~.datatypes.Cell]
+
+        :param mask: The original segmentation mask.
+        :type mask: npt.NDArray[np.uint16]
+
+        :returns: The original segmentation mask.
+        :rtype: npt.NDArray[np.uint8]
         """
         accuracy_mask: npt.NDArray[np.uint8] = np.zeros_like(mask, dtype=np.uint8)
 
@@ -79,10 +110,24 @@ class Overlay(Output):
 
     def run(self, data: dt.Sample, output_directory: Path) -> None:
         """
-        Creates and overlays an accuracy mask and points over the original image.
+        Generate and write the accuracy overlay image for a sample.
 
-        Parameters:
-            data: Input data
+        Builds the accuracy-coded image via :meth:`generate_accuracy_mask`,
+        optionally blends it over the sample's original image via
+        :func:`overlay_image`, and writes the result to
+        ``output_directory``.
+
+        :param data: The processed sample data to generate the
+            overlay image from.
+        :type data: ~.datatypes.Sample
+
+        :param output_directory: The directory to write the
+            generated overlay image to.
+        :type output_directory: pathlib.Path
+
+        :returns: None. The generated image will be written as a side
+            effect to a file within ``output_directory``.
+        :rtype: None
         """
 
         # Define graph and its limits
@@ -94,7 +139,7 @@ class Overlay(Output):
         ax.set_ylim(data.sample_area.ymax + padding, data.sample_area.ymin - padding)
         ax.set_xlim(data.sample_area.xmin - padding, data.sample_area.xmax + padding)
 
-        accuracy_mask: npt.NDArray[np.uint8] = self.generateCellAccuracyMask(
+        accuracy_mask: npt.NDArray[np.uint8] = self.generate_accuracy_mask(
             data.cells, data.mask
         )
 
@@ -113,7 +158,7 @@ class Overlay(Output):
         rgb_accuracy_mask: npt.NDArray[np.uint8] = colors[accuracy_mask]
 
         # Overlay image
-        overlaid_image = self.overlayImage(data.original_image, rgb_accuracy_mask, 0.2)
+        overlaid_image = self.overlay_image(data.original_image, rgb_accuracy_mask, 0.2)
 
         ax.imshow(overlaid_image, origin="upper", interpolation="none")
 
