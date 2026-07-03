@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-detectClippingCells.py
+detect_clipping_cells.py
 
 Defines the :class:`DetectClippingCells` processor, which flags
 cells that are cut off by the boundry of the sample area.

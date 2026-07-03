@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-countPoints.py
+count_points.py
 
 Defines the :class:`CountPoints` processor, which assigns each point
 to its containing cell and tallies the number of points located

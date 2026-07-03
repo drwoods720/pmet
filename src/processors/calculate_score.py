@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-calculateScore.py
+calculate_score.py
 
 Defines the :class:`CalculateScore` processor, which computes
 precision, recall, and F1 scores for a sample from its true/false

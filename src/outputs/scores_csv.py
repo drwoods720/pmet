@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-scoresCsv.py
+scores_csv.py
 
 
 Defines the :class:`ScoresCsv` output generator, which writes the

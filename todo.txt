@@ -4,4 +4,3 @@
 4. Start work on user documentation - HIGH (Not even close to done)
 5. Migrate to mapcore github - DO AFTER CLEANING
 6. Casing (camel vs snake?)
-7. Lisence (choose one)
