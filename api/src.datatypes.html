@@ -1,0 +1,760 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.datatypes package &mdash; EvE 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="src.outputs package" href="src.outputs.html" />
+    <link rel="prev" title="src package" href="src.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EvE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">EvE</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eve.html">eve module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="src.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">src.datatypes package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html">src.outputs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.html">src.parsers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html">src.processors package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.main">src.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EvE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">EvE</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+      <li class="breadcrumb-item active">src.datatypes package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/src.datatypes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-datatypes-package">
+<h1>src.datatypes package<a class="headerlink" href="#src-datatypes-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-src.datatypes.cell">
+<span id="src-datatypes-cell-module"></span><h2>src.datatypes.cell module<a class="headerlink" href="#module-src.datatypes.cell" title="Link to this heading"></a></h2>
+<p>cell.py</p>
+<p>Defines the <a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> dataclass, which represents a single
+segmented cell region extracted from a segmentation mask.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.cell.Cell">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.cell.</span></span><span class="sig-name descname"><span class="pre">Cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/cell.html#Cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.cell.Cell" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent a single cell region within a segmentation mask.</p>
+<p>A <a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> groups all <a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> instances
+that fall within its boundary, along with metadata describing
+the cell’s identity and whether it lies on the edge of the
+sampled area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – The cell’s identifier. Corresponds to the integer label
+assigned to this cell in the segmentation mask.</p></li>
+<li><p><strong>points</strong> (<em>list</em><em>[</em><a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><em>Point</em></a><em>]</em>) – The points located within the cell’s area.
+Defaults to an empty list if none are provided.</p></li>
+<li><p><strong>clipping</strong> (<em>bool</em>) – Whether the cell is clipped (cut off) by the
+border of the sample area. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.cell.Cell.clipping">
+<span class="sig-name descname"><span class="pre">clipping</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#src.datatypes.cell.Cell.clipping" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.cell.Cell.id">
+<span class="sig-name descname"><span class="pre">id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.cell.Cell.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.cell.Cell.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><span class="pre">Point</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#src.datatypes.cell.Cell.points" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.datatypes.metadata">
+<span id="src-datatypes-metadata-module"></span><h2>src.datatypes.metadata module<a class="headerlink" href="#module-src.datatypes.metadata" title="Link to this heading"></a></h2>
+<p>metadata.py</p>
+<p>Defines the <a class="reference internal" href="#src.datatypes.metadata.Metadata" title="src.datatypes.metadata.Metadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">Metadata</span></code></a> dataclass, which stores descriptive
+information about a sample, including its source image, the model used
+to segment it, associated file references, and the time it was imported.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.metadata.Metadata">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.metadata.</span></span><span class="sig-name descname"><span class="pre">Metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'e97192ea-74ce-11f1-920d-e86a64bb7d32'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Timestamp('2026-06-30</span> <span class="pre">14:59:05.381587')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/metadata.html#Metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.metadata.Metadata" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Hold metadata describing a sample.</p>
+<p>Captures identifying information for a sample, including the
+original image, the segmentation model used, references to the
+associated ground truth and mask files, and a unique identifier
+with import timestamp.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_name</strong> – The filename of the sample image.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em>) – The name of the model that generated
+the segmentation mask for this sample.</p></li>
+<li><p><strong>points_file</strong> (<em>str</em>) – The name of the file containing the
+ground truth points for this sample.</p></li>
+<li><p><strong>mask_file</strong> (<em>str</em>) – The name of the labeled segmentation mask file.</p></li>
+<li><p><strong>uuid</strong> (<em>str</em>) – A unique identifier assigned to this sample.</p></li>
+<li><p><strong>timestamp</strong> (<em>pandas.Timestamp</em>) – The date and time this sample was imported
+into the program.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Vartpye image_name<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.metadata.Metadata.image_name">
+<span class="sig-name descname"><span class="pre">image_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#src.datatypes.metadata.Metadata.image_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.metadata.Metadata.mask_file">
+<span class="sig-name descname"><span class="pre">mask_file</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#src.datatypes.metadata.Metadata.mask_file" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.metadata.Metadata.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#src.datatypes.metadata.Metadata.model_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.metadata.Metadata.points_file">
+<span class="sig-name descname"><span class="pre">points_file</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#src.datatypes.metadata.Metadata.points_file" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.metadata.Metadata.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Timestamp</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Timestamp('2026-06-30</span> <span class="pre">14:59:05.381587')</span></span><a class="headerlink" href="#src.datatypes.metadata.Metadata.timestamp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.metadata.Metadata.uuid">
+<span class="sig-name descname"><span class="pre">uuid</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'e97192ea-74ce-11f1-920d-e86a64bb7d32'</span></span><a class="headerlink" href="#src.datatypes.metadata.Metadata.uuid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.datatypes.point">
+<span id="src-datatypes-point-module"></span><h2>src.datatypes.point module<a class="headerlink" href="#module-src.datatypes.point" title="Link to this heading"></a></h2>
+<p>point.py</p>
+<p>Defines the <a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> dataclass, which represents a single
+manually placed point and its associated cell membership.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.point.Point">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.point.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/point.html#Point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.point.Point" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent a single manually placed point.</p>
+<p>A <a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> records a coordinate location along with a
+reference to the cell region it falls within, if any.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>int</em>) – The x coordinate of the point.</p></li>
+<li><p><strong>y</strong> (<em>int</em>) – The y coordinate of the point.</p></li>
+<li><p><strong>cell</strong> (<em>int</em>) – The ID of the <a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> the point
+is located in. A value of <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates the point does not
+fall within any cell region.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.point.Point.cell">
+<span class="sig-name descname"><span class="pre">cell</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#src.datatypes.point.Point.cell" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.point.Point.x">
+<span class="sig-name descname"><span class="pre">x</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.point.Point.x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.point.Point.y">
+<span class="sig-name descname"><span class="pre">y</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.point.Point.y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.datatypes.results">
+<span id="src-datatypes-results-module"></span><h2>src.datatypes.results module<a class="headerlink" href="#module-src.datatypes.results" title="Link to this heading"></a></h2>
+<p>results.py</p>
+<p>Defines the <a class="reference internal" href="#src.datatypes.results.Results" title="src.datatypes.results.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a> dataclass, which stores the outcome
+of processing calculations, including raw counts and derived scoring
+metrics.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.results.Results">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.results.</span></span><span class="sig-name descname"><span class="pre">Results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_positive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_positive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_negative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/results.html#Results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.results.Results" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Hold the results of processing calculations.</p>
+<p>Aggregates the raw classification counts produced during
+evaluation along with the derived precision, recall, and F1
+scores computed from them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>true_positive</strong> (<em>int</em>) – The number of true positives.</p></li>
+<li><p><strong>false_positive</strong> (<em>int</em>) – The number of false positives.</p></li>
+<li><p><strong>false_negative</strong> – The number of false negatives.</p></li>
+<li><p><strong>precision</strong> (<em>float</em>) – The final precision score.</p></li>
+<li><p><strong>recall</strong> (<em>float</em>) – The final recall score.</p></li>
+<li><p><strong>f1</strong> (<em>float</em>) – The final combined precision and recall score
+(F1 score).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.results.Results.f1">
+<span class="sig-name descname"><span class="pre">f1</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#src.datatypes.results.Results.f1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.results.Results.false_negative">
+<span class="sig-name descname"><span class="pre">false_negative</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#src.datatypes.results.Results.false_negative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.results.Results.false_positive">
+<span class="sig-name descname"><span class="pre">false_positive</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#src.datatypes.results.Results.false_positive" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.results.Results.precision">
+<span class="sig-name descname"><span class="pre">precision</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#src.datatypes.results.Results.precision" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.results.Results.recall">
+<span class="sig-name descname"><span class="pre">recall</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#src.datatypes.results.Results.recall" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.results.Results.true_positive">
+<span class="sig-name descname"><span class="pre">true_positive</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#src.datatypes.results.Results.true_positive" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.datatypes.sample">
+<span id="src-datatypes-sample-module"></span><h2>src.datatypes.sample module<a class="headerlink" href="#module-src.datatypes.sample" title="Link to this heading"></a></h2>
+<p>sample.py</p>
+<p>Defines the <a class="reference internal" href="#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a> dataclass, which bundles together all
+the data required to process a single sample: its metadata, detected
+cell regions, manually placed points, segmentation mask, sample area,
+and resulting evaluation scores.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.sample.Sample">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.sample.</span></span><span class="sig-name descname"><span class="pre">Sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_area</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/sample.html#Sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.sample.Sample" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Contain all the data needed to process one sample.</p>
+<p>A <a class="reference internal" href="#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a> ties together a sample’s <a class="reference internal" href="#src.datatypes.metadata.Metadata" title="src.datatypes.metadata.Metadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">Metadata</span></code></a>,
+its detected <a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> regions, the manually placed
+<a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> instances used for ground truth comparison,
+the labeled segmentation mask to be assessed, the bounds of the
+sampled area, and the resulting evaluation <a class="reference internal" href="#src.datatypes.results.Results" title="src.datatypes.results.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metadata</strong> (<a class="reference internal" href="#src.datatypes.metadata.Metadata" title="src.datatypes.metadata.Metadata"><em>Metadata</em></a>) – Information describing the current sample.</p></li>
+<li><p><strong>cells</strong> (<em>dict</em><em>[</em><em>int</em><em>, </em><a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><em>Cell</em></a><em>]</em>) – A mapping of cell ID to the corresponding
+<a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> region for every cell detected in the
+sample.</p></li>
+<li><p><strong>points</strong> (<em>list</em><em>[</em><a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><em>Point</em></a><em>]</em>) – The list of manually placed points within the
+sample.</p></li>
+<li><p><strong>mask</strong> (<em>numpy.typing.NDArray</em><em>[</em><em>numpy.uint16</em><em>]</em>) – The labeled cell segmentation mask to assess, where
+each cell region is identified by its integer label.</p></li>
+<li><p><strong>sample_area</strong> (<a class="reference internal" href="#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><em>SampleArea</em></a>) – The area of the sample used to determine
+which cells and points are in bounds.</p></li>
+<li><p><strong>original_image</strong> (<em>numpy.typing.NDArray</em><em>[</em><em>numpy.uint16</em><em>]</em><em>, </em><em>optional</em>) – The original image the mask was generated
+from. Optional; defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code> if not available.</p></li>
+<li><p><strong>results</strong> (<a class="reference internal" href="#src.datatypes.results.Results" title="src.datatypes.results.Results"><em>Results</em></a>) – The results of processing this sample, including
+true/false positive counts and precision, recall, and F1
+scores. Defaults to an empty <a class="reference internal" href="#src.datatypes.results.Results" title="src.datatypes.results.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>
+instance.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample.Sample.cells">
+<span class="sig-name descname"><span class="pre">cells</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><span class="pre">Cell</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#src.datatypes.sample.Sample.cells" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample.Sample.mask">
+<span class="sig-name descname"><span class="pre">mask</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">uint16</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#src.datatypes.sample.Sample.mask" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample.Sample.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#src.datatypes.metadata.Metadata" title="src.datatypes.metadata.Metadata"><span class="pre">Metadata</span></a></span><a class="headerlink" href="#src.datatypes.sample.Sample.metadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample.Sample.original_image">
+<span class="sig-name descname"><span class="pre">original_image</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">uint16</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#src.datatypes.sample.Sample.original_image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample.Sample.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><span class="pre">Point</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#src.datatypes.sample.Sample.points" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample.Sample.results">
+<span class="sig-name descname"><span class="pre">results</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#src.datatypes.results.Results" title="src.datatypes.results.Results"><span class="pre">Results</span></a></span><a class="headerlink" href="#src.datatypes.sample.Sample.results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample.Sample.sample_area">
+<span class="sig-name descname"><span class="pre">sample_area</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><span class="pre">SampleArea</span></a></span><a class="headerlink" href="#src.datatypes.sample.Sample.sample_area" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.datatypes.sample_area">
+<span id="src-datatypes-sample-area-module"></span><h2>src.datatypes.sample_area module<a class="headerlink" href="#module-src.datatypes.sample_area" title="Link to this heading"></a></h2>
+<p>sample_area.py</p>
+<p>Defines the <a class="reference internal" href="#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a> dataclass, which represents the
+rectangular bounds of the original sample area.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.sample_area.SampleArea">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.sample_area.</span></span><span class="sig-name descname"><span class="pre">SampleArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/sample_area.html#SampleArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.sample_area.SampleArea" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent the bounds of the original sample area.</p>
+<p>Defines the rectangular region of the sample, used to determine
+which cells and points fall within bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xmax</strong> (<em>int</em>) – The maximum x value inside the sample area.</p></li>
+<li><p><strong>xmin</strong> (<em>int</em>) – The minimum x value inside the sample area.</p></li>
+<li><p><strong>ymax</strong> (<em>int</em>) – The maximum y value inside the sample area.</p></li>
+<li><p><strong>ymin</strong> (<em>int</em>) – The minimum y value inside the sample area.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample_area.SampleArea.xmax">
+<span class="sig-name descname"><span class="pre">xmax</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.sample_area.SampleArea.xmax" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample_area.SampleArea.xmin">
+<span class="sig-name descname"><span class="pre">xmin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.sample_area.SampleArea.xmin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample_area.SampleArea.ymax">
+<span class="sig-name descname"><span class="pre">ymax</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.sample_area.SampleArea.ymax" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.sample_area.SampleArea.ymin">
+<span class="sig-name descname"><span class="pre">ymin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.sample_area.SampleArea.ymin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.datatypes">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.datatypes" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.Cell">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.</span></span><span class="sig-name descname"><span class="pre">Cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/cell.html#Cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.Cell" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent a single cell region within a segmentation mask.</p>
+<p>A <a class="reference internal" href="#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> groups all <a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> instances
+that fall within its boundary, along with metadata describing
+the cell’s identity and whether it lies on the edge of the
+sampled area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – The cell’s identifier. Corresponds to the integer label
+assigned to this cell in the segmentation mask.</p></li>
+<li><p><strong>points</strong> (<em>list</em><em>[</em><a class="reference internal" href="#src.datatypes.Point" title="src.datatypes.Point"><em>Point</em></a><em>]</em>) – The points located within the cell’s area.
+Defaults to an empty list if none are provided.</p></li>
+<li><p><strong>clipping</strong> (<em>bool</em>) – Whether the cell is clipped (cut off) by the
+border of the sample area. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Cell.clipping">
+<span class="sig-name descname"><span class="pre">clipping</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#src.datatypes.Cell.clipping" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Cell.id">
+<span class="sig-name descname"><span class="pre">id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.Cell.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Cell.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><span class="pre">Point</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#src.datatypes.Cell.points" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.Metadata">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.</span></span><span class="sig-name descname"><span class="pre">Metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'e97192ea-74ce-11f1-920d-e86a64bb7d32'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Timestamp('2026-06-30</span> <span class="pre">14:59:05.381587')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/metadata.html#Metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.Metadata" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Hold metadata describing a sample.</p>
+<p>Captures identifying information for a sample, including the
+original image, the segmentation model used, references to the
+associated ground truth and mask files, and a unique identifier
+with import timestamp.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_name</strong> – The filename of the sample image.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em>) – The name of the model that generated
+the segmentation mask for this sample.</p></li>
+<li><p><strong>points_file</strong> (<em>str</em>) – The name of the file containing the
+ground truth points for this sample.</p></li>
+<li><p><strong>mask_file</strong> (<em>str</em>) – The name of the labeled segmentation mask file.</p></li>
+<li><p><strong>uuid</strong> (<em>str</em>) – A unique identifier assigned to this sample.</p></li>
+<li><p><strong>timestamp</strong> (<em>pandas.Timestamp</em>) – The date and time this sample was imported
+into the program.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Vartpye image_name<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Metadata.image_name">
+<span class="sig-name descname"><span class="pre">image_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#src.datatypes.Metadata.image_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Metadata.mask_file">
+<span class="sig-name descname"><span class="pre">mask_file</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#src.datatypes.Metadata.mask_file" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Metadata.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#src.datatypes.Metadata.model_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Metadata.points_file">
+<span class="sig-name descname"><span class="pre">points_file</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#src.datatypes.Metadata.points_file" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Metadata.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Timestamp</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Timestamp('2026-06-30</span> <span class="pre">14:59:05.381587')</span></span><a class="headerlink" href="#src.datatypes.Metadata.timestamp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Metadata.uuid">
+<span class="sig-name descname"><span class="pre">uuid</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'e97192ea-74ce-11f1-920d-e86a64bb7d32'</span></span><a class="headerlink" href="#src.datatypes.Metadata.uuid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.Point">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/point.html#Point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.Point" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent a single manually placed point.</p>
+<p>A <a class="reference internal" href="#src.datatypes.Point" title="src.datatypes.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> records a coordinate location along with a
+reference to the cell region it falls within, if any.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>int</em>) – The x coordinate of the point.</p></li>
+<li><p><strong>y</strong> (<em>int</em>) – The y coordinate of the point.</p></li>
+<li><p><strong>cell</strong> (<em>int</em>) – The ID of the <a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> the point
+is located in. A value of <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates the point does not
+fall within any cell region.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Point.cell">
+<span class="sig-name descname"><span class="pre">cell</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#src.datatypes.Point.cell" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Point.x">
+<span class="sig-name descname"><span class="pre">x</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.Point.x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Point.y">
+<span class="sig-name descname"><span class="pre">y</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.Point.y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.Results">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.</span></span><span class="sig-name descname"><span class="pre">Results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_positive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_positive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_negative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/results.html#Results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.Results" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Hold the results of processing calculations.</p>
+<p>Aggregates the raw classification counts produced during
+evaluation along with the derived precision, recall, and F1
+scores computed from them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>true_positive</strong> (<em>int</em>) – The number of true positives.</p></li>
+<li><p><strong>false_positive</strong> (<em>int</em>) – The number of false positives.</p></li>
+<li><p><strong>false_negative</strong> – The number of false negatives.</p></li>
+<li><p><strong>precision</strong> (<em>float</em>) – The final precision score.</p></li>
+<li><p><strong>recall</strong> (<em>float</em>) – The final recall score.</p></li>
+<li><p><strong>f1</strong> (<em>float</em>) – The final combined precision and recall score
+(F1 score).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Results.f1">
+<span class="sig-name descname"><span class="pre">f1</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#src.datatypes.Results.f1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Results.false_negative">
+<span class="sig-name descname"><span class="pre">false_negative</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#src.datatypes.Results.false_negative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Results.false_positive">
+<span class="sig-name descname"><span class="pre">false_positive</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#src.datatypes.Results.false_positive" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Results.precision">
+<span class="sig-name descname"><span class="pre">precision</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#src.datatypes.Results.precision" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Results.recall">
+<span class="sig-name descname"><span class="pre">recall</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#src.datatypes.Results.recall" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Results.true_positive">
+<span class="sig-name descname"><span class="pre">true_positive</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#src.datatypes.Results.true_positive" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.Sample">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.</span></span><span class="sig-name descname"><span class="pre">Sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_area</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/sample.html#Sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.Sample" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Contain all the data needed to process one sample.</p>
+<p>A <a class="reference internal" href="#src.datatypes.Sample" title="src.datatypes.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a> ties together a sample’s <a class="reference internal" href="#src.datatypes.metadata.Metadata" title="src.datatypes.metadata.Metadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">Metadata</span></code></a>,
+its detected <a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> regions, the manually placed
+<a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> instances used for ground truth comparison,
+the labeled segmentation mask to be assessed, the bounds of the
+sampled area, and the resulting evaluation <a class="reference internal" href="#src.datatypes.results.Results" title="src.datatypes.results.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metadata</strong> (<a class="reference internal" href="#src.datatypes.Metadata" title="src.datatypes.Metadata"><em>Metadata</em></a>) – Information describing the current sample.</p></li>
+<li><p><strong>cells</strong> (<em>dict</em><em>[</em><em>int</em><em>, </em><a class="reference internal" href="#src.datatypes.Cell" title="src.datatypes.Cell"><em>Cell</em></a><em>]</em>) – A mapping of cell ID to the corresponding
+<a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> region for every cell detected in the
+sample.</p></li>
+<li><p><strong>points</strong> (<em>list</em><em>[</em><a class="reference internal" href="#src.datatypes.Point" title="src.datatypes.Point"><em>Point</em></a><em>]</em>) – The list of manually placed points within the
+sample.</p></li>
+<li><p><strong>mask</strong> (<em>numpy.typing.NDArray</em><em>[</em><em>numpy.uint16</em><em>]</em>) – The labeled cell segmentation mask to assess, where
+each cell region is identified by its integer label.</p></li>
+<li><p><strong>sample_area</strong> (<a class="reference internal" href="#src.datatypes.SampleArea" title="src.datatypes.SampleArea"><em>SampleArea</em></a>) – The area of the sample used to determine
+which cells and points are in bounds.</p></li>
+<li><p><strong>original_image</strong> (<em>numpy.typing.NDArray</em><em>[</em><em>numpy.uint16</em><em>]</em><em>, </em><em>optional</em>) – The original image the mask was generated
+from. Optional; defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code> if not available.</p></li>
+<li><p><strong>results</strong> (<a class="reference internal" href="#src.datatypes.Results" title="src.datatypes.Results"><em>Results</em></a>) – The results of processing this sample, including
+true/false positive counts and precision, recall, and F1
+scores. Defaults to an empty <a class="reference internal" href="#src.datatypes.results.Results" title="src.datatypes.results.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>
+instance.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Sample.cells">
+<span class="sig-name descname"><span class="pre">cells</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#src.datatypes.cell.Cell" title="src.datatypes.cell.Cell"><span class="pre">Cell</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#src.datatypes.Sample.cells" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Sample.mask">
+<span class="sig-name descname"><span class="pre">mask</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">uint16</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#src.datatypes.Sample.mask" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Sample.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#src.datatypes.metadata.Metadata" title="src.datatypes.metadata.Metadata"><span class="pre">Metadata</span></a></span><a class="headerlink" href="#src.datatypes.Sample.metadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Sample.original_image">
+<span class="sig-name descname"><span class="pre">original_image</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">uint16</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#src.datatypes.Sample.original_image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Sample.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.datatypes.point.Point" title="src.datatypes.point.Point"><span class="pre">Point</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#src.datatypes.Sample.points" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Sample.results">
+<span class="sig-name descname"><span class="pre">results</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#src.datatypes.results.Results" title="src.datatypes.results.Results"><span class="pre">Results</span></a></span><a class="headerlink" href="#src.datatypes.Sample.results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.Sample.sample_area">
+<span class="sig-name descname"><span class="pre">sample_area</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#src.datatypes.sample_area.SampleArea" title="src.datatypes.sample_area.SampleArea"><span class="pre">SampleArea</span></a></span><a class="headerlink" href="#src.datatypes.Sample.sample_area" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.datatypes.SampleArea">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.datatypes.</span></span><span class="sig-name descname"><span class="pre">SampleArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/datatypes/sample_area.html#SampleArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.datatypes.SampleArea" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent the bounds of the original sample area.</p>
+<p>Defines the rectangular region of the sample, used to determine
+which cells and points fall within bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xmax</strong> (<em>int</em>) – The maximum x value inside the sample area.</p></li>
+<li><p><strong>xmin</strong> (<em>int</em>) – The minimum x value inside the sample area.</p></li>
+<li><p><strong>ymax</strong> (<em>int</em>) – The maximum y value inside the sample area.</p></li>
+<li><p><strong>ymin</strong> (<em>int</em>) – The minimum y value inside the sample area.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.SampleArea.xmax">
+<span class="sig-name descname"><span class="pre">xmax</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.SampleArea.xmax" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.SampleArea.xmin">
+<span class="sig-name descname"><span class="pre">xmin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.SampleArea.xmin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.SampleArea.ymax">
+<span class="sig-name descname"><span class="pre">ymax</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.SampleArea.ymax" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.datatypes.SampleArea.ymin">
+<span class="sig-name descname"><span class="pre">ymin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#src.datatypes.SampleArea.ymin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.html" class="btn btn-neutral float-left" title="src package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="src.outputs.html" class="btn btn-neutral float-right" title="src.outputs package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Dylan Woods.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

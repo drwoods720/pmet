@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pandas &mdash; EvE 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EvE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">EvE</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EvE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pandas</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pandas</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s2">&quot;restructuredtext&quot;</span>
+
+<span class="c1"># Let users know if they&#39;re missing any of our hard dependencies</span>
+<span class="c1"># except tzdata (see https://github.com/pandas-dev/pandas/issues/63264)</span>
+<span class="n">_hard_dependencies</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">,</span> <span class="s2">&quot;dateutil&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_dependency</span> <span class="ow">in</span> <span class="n">_hard_dependencies</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">__import__</span><span class="p">(</span><span class="n">_dependency</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Unable to import required dependency </span><span class="si">{</span><span class="n">_dependency</span><span class="si">}</span><span class="s2">. &quot;</span>
+            <span class="s2">&quot;Please see the traceback for details.&quot;</span>
+        <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">_e</span>
+
+<span class="k">del</span> <span class="n">_hard_dependencies</span><span class="p">,</span> <span class="n">_dependency</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># numpy compat</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.compat</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+        <span class="n">is_numpy_dev</span> <span class="k">as</span> <span class="n">_is_numpy_dev</span><span class="p">,</span>  <span class="c1"># pyright: ignore[reportUnusedImport] # noqa: F401</span>
+    <span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">_err</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+    <span class="n">_module</span> <span class="o">=</span> <span class="n">_err</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;C extension: </span><span class="si">{</span><span class="n">_module</span><span class="si">}</span><span class="s2"> not built. If you want to import &quot;</span>
+        <span class="s2">&quot;pandas from the source directory, you may need to run &quot;</span>
+        <span class="s2">&quot;&#39;python -m pip install -ve . --no-build-isolation -Ceditable-verbose=true&#39; &quot;</span>
+        <span class="s2">&quot;to build the C extensions first.&quot;</span>
+    <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">_err</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas._config</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_option</span><span class="p">,</span>
+    <span class="n">set_option</span><span class="p">,</span>
+    <span class="n">reset_option</span><span class="p">,</span>
+    <span class="n">describe_option</span><span class="p">,</span>
+    <span class="n">option_context</span><span class="p">,</span>
+    <span class="n">options</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># let init-time option registration happen</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas.core.config_init</span>  <span class="c1"># pyright: ignore[reportUnusedImport] # noqa: F401</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="c1"># dtype</span>
+    <span class="n">ArrowDtype</span><span class="p">,</span>
+    <span class="n">Int8Dtype</span><span class="p">,</span>
+    <span class="n">Int16Dtype</span><span class="p">,</span>
+    <span class="n">Int32Dtype</span><span class="p">,</span>
+    <span class="n">Int64Dtype</span><span class="p">,</span>
+    <span class="n">UInt8Dtype</span><span class="p">,</span>
+    <span class="n">UInt16Dtype</span><span class="p">,</span>
+    <span class="n">UInt32Dtype</span><span class="p">,</span>
+    <span class="n">UInt64Dtype</span><span class="p">,</span>
+    <span class="n">Float32Dtype</span><span class="p">,</span>
+    <span class="n">Float64Dtype</span><span class="p">,</span>
+    <span class="n">CategoricalDtype</span><span class="p">,</span>
+    <span class="n">PeriodDtype</span><span class="p">,</span>
+    <span class="n">IntervalDtype</span><span class="p">,</span>
+    <span class="n">DatetimeTZDtype</span><span class="p">,</span>
+    <span class="n">StringDtype</span><span class="p">,</span>
+    <span class="n">BooleanDtype</span><span class="p">,</span>
+    <span class="c1"># missing</span>
+    <span class="n">NA</span><span class="p">,</span>
+    <span class="n">isna</span><span class="p">,</span>
+    <span class="n">isnull</span><span class="p">,</span>
+    <span class="n">notna</span><span class="p">,</span>
+    <span class="n">notnull</span><span class="p">,</span>
+    <span class="c1"># indexes</span>
+    <span class="n">Index</span><span class="p">,</span>
+    <span class="n">CategoricalIndex</span><span class="p">,</span>
+    <span class="n">RangeIndex</span><span class="p">,</span>
+    <span class="n">MultiIndex</span><span class="p">,</span>
+    <span class="n">IntervalIndex</span><span class="p">,</span>
+    <span class="n">TimedeltaIndex</span><span class="p">,</span>
+    <span class="n">DatetimeIndex</span><span class="p">,</span>
+    <span class="n">PeriodIndex</span><span class="p">,</span>
+    <span class="n">IndexSlice</span><span class="p">,</span>
+    <span class="c1"># tseries</span>
+    <span class="n">NaT</span><span class="p">,</span>
+    <span class="n">Period</span><span class="p">,</span>
+    <span class="n">period_range</span><span class="p">,</span>
+    <span class="n">Timedelta</span><span class="p">,</span>
+    <span class="n">timedelta_range</span><span class="p">,</span>
+    <span class="n">Timestamp</span><span class="p">,</span>
+    <span class="n">date_range</span><span class="p">,</span>
+    <span class="n">bdate_range</span><span class="p">,</span>
+    <span class="n">Interval</span><span class="p">,</span>
+    <span class="n">interval_range</span><span class="p">,</span>
+    <span class="n">DateOffset</span><span class="p">,</span>
+    <span class="c1"># conversion</span>
+    <span class="n">to_numeric</span><span class="p">,</span>
+    <span class="n">to_datetime</span><span class="p">,</span>
+    <span class="n">to_timedelta</span><span class="p">,</span>
+    <span class="c1"># misc</span>
+    <span class="n">Flags</span><span class="p">,</span>
+    <span class="n">Grouper</span><span class="p">,</span>
+    <span class="n">factorize</span><span class="p">,</span>
+    <span class="n">unique</span><span class="p">,</span>
+    <span class="n">NamedAgg</span><span class="p">,</span>
+    <span class="n">array</span><span class="p">,</span>
+    <span class="n">Categorical</span><span class="p">,</span>
+    <span class="n">set_eng_float_format</span><span class="p">,</span>
+    <span class="n">Series</span><span class="p">,</span>
+    <span class="n">DataFrame</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.col</span><span class="w"> </span><span class="kn">import</span> <span class="n">col</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.dtypes.dtypes</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparseDtype</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">infer_freq</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">offsets</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.computation.api</span><span class="w"> </span><span class="kn">import</span> <span class="nb">eval</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.reshape.api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">concat</span><span class="p">,</span>
+    <span class="n">lreshape</span><span class="p">,</span>
+    <span class="n">melt</span><span class="p">,</span>
+    <span class="n">wide_to_long</span><span class="p">,</span>
+    <span class="n">merge</span><span class="p">,</span>
+    <span class="n">merge_asof</span><span class="p">,</span>
+    <span class="n">merge_ordered</span><span class="p">,</span>
+    <span class="n">crosstab</span><span class="p">,</span>
+    <span class="n">pivot</span><span class="p">,</span>
+    <span class="n">pivot_table</span><span class="p">,</span>
+    <span class="n">get_dummies</span><span class="p">,</span>
+    <span class="n">from_dummies</span><span class="p">,</span>
+    <span class="n">cut</span><span class="p">,</span>
+    <span class="n">qcut</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">api</span><span class="p">,</span> <span class="n">arrays</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">plotting</span><span class="p">,</span> <span class="n">tseries</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">testing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.util._print_versions</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_versions</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.io.api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="c1"># excel</span>
+    <span class="n">ExcelFile</span><span class="p">,</span>
+    <span class="n">ExcelWriter</span><span class="p">,</span>
+    <span class="n">read_excel</span><span class="p">,</span>
+    <span class="c1"># parsers</span>
+    <span class="n">read_csv</span><span class="p">,</span>
+    <span class="n">read_fwf</span><span class="p">,</span>
+    <span class="n">read_table</span><span class="p">,</span>
+    <span class="c1"># pickle</span>
+    <span class="n">read_pickle</span><span class="p">,</span>
+    <span class="n">to_pickle</span><span class="p">,</span>
+    <span class="c1"># pytables</span>
+    <span class="n">HDFStore</span><span class="p">,</span>
+    <span class="n">read_hdf</span><span class="p">,</span>
+    <span class="c1"># sql</span>
+    <span class="n">read_sql</span><span class="p">,</span>
+    <span class="n">read_sql_query</span><span class="p">,</span>
+    <span class="n">read_sql_table</span><span class="p">,</span>
+    <span class="c1"># misc</span>
+    <span class="n">read_clipboard</span><span class="p">,</span>
+    <span class="n">read_parquet</span><span class="p">,</span>
+    <span class="n">read_orc</span><span class="p">,</span>
+    <span class="n">read_feather</span><span class="p">,</span>
+    <span class="n">read_html</span><span class="p">,</span>
+    <span class="n">read_xml</span><span class="p">,</span>
+    <span class="n">read_json</span><span class="p">,</span>
+    <span class="n">read_stata</span><span class="p">,</span>
+    <span class="n">read_sas</span><span class="p">,</span>
+    <span class="n">read_spss</span><span class="p">,</span>
+    <span class="n">read_iceberg</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.io.json._normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">json_normalize</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.util._tester</span><span class="w"> </span><span class="kn">import</span> <span class="n">test</span>
+
+<span class="c1"># use the closest tagged version if possible</span>
+<span class="n">_built_with_meson</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pandas._version_meson</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># pyright: ignore [reportMissingImports]</span>
+        <span class="n">__version__</span><span class="p">,</span>
+        <span class="n">__git_version__</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_built_with_meson</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pandas._version</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_versions</span>
+
+    <span class="n">v</span> <span class="o">=</span> <span class="n">get_versions</span><span class="p">()</span>
+    <span class="n">__version__</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;closest-tag&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">])</span>
+    <span class="n">__git_version__</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;full-revisionid&quot;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">get_versions</span><span class="p">,</span> <span class="n">v</span>
+
+
+<span class="c1"># module level doc-string</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">pandas - a powerful data analysis and manipulation library for Python</span>
+<span class="s2">=====================================================================</span>
+
+<span class="s2">**pandas** is a Python package providing fast, flexible, and expressive data</span>
+<span class="s2">structures designed to make working with &quot;relational&quot; or &quot;labeled&quot; data both</span>
+<span class="s2">easy and intuitive. It aims to be the fundamental high-level building block for</span>
+<span class="s2">doing practical, **real world** data analysis in Python. Additionally, it has</span>
+<span class="s2">the broader goal of becoming **the most powerful and flexible open source data</span>
+<span class="s2">analysis / manipulation tool available in any language**. It is already well on</span>
+<span class="s2">its way toward this goal.</span>
+
+<span class="s2">Main Features</span>
+<span class="s2">-------------</span>
+<span class="s2">Here are just a few of the things that pandas does well:</span>
+
+<span class="s2">  - Easy handling of missing data in floating point as well as non-floating</span>
+<span class="s2">    point data.</span>
+<span class="s2">  - Size mutability: columns can be inserted and deleted from DataFrame and</span>
+<span class="s2">    higher dimensional objects</span>
+<span class="s2">  - Automatic and explicit data alignment: objects can be explicitly aligned</span>
+<span class="s2">    to a set of labels, or the user can simply ignore the labels and let</span>
+<span class="s2">    `Series`, `DataFrame`, etc. automatically align the data for you in</span>
+<span class="s2">    computations.</span>
+<span class="s2">  - Powerful, flexible group by functionality to perform split-apply-combine</span>
+<span class="s2">    operations on data sets, for both aggregating and transforming data.</span>
+<span class="s2">  - Make it easy to convert ragged, differently-indexed data in other Python</span>
+<span class="s2">    and NumPy data structures into DataFrame objects.</span>
+<span class="s2">  - Intelligent label-based slicing, fancy indexing, and subsetting of large</span>
+<span class="s2">    data sets.</span>
+<span class="s2">  - Intuitive merging and joining data sets.</span>
+<span class="s2">  - Flexible reshaping and pivoting of data sets.</span>
+<span class="s2">  - Hierarchical labeling of axes (possible to have multiple labels per tick).</span>
+<span class="s2">  - Robust IO tools for loading data from flat files (CSV and delimited),</span>
+<span class="s2">    Excel files, databases, and saving/loading data from the ultrafast HDF5</span>
+<span class="s2">    format.</span>
+<span class="s2">  - Time series-specific functionality: date range generation and frequency</span>
+<span class="s2">    conversion, moving window statistics, date shifting and lagging.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Use __all__ to let type checkers know what is part of the public API.</span>
+<span class="c1"># Pandas is not (yet) a py.typed library: the public API is determined</span>
+<span class="c1"># based on the documentation.</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ArrowDtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BooleanDtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Categorical&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CategoricalDtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CategoricalIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DataFrame&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DateOffset&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DatetimeIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DatetimeTZDtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExcelFile&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExcelWriter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Flags&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Float32Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Float64Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Grouper&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HDFStore&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Index&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;IndexSlice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Int8Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Int16Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Int32Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Int64Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Interval&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;IntervalDtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;IntervalIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MultiIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NaT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NamedAgg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Period&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PeriodDtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PeriodIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RangeIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Series&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SparseDtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;StringDtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Timedelta&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TimedeltaIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UInt8Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UInt16Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UInt32Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UInt64Dtype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;api&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;array&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;arrays&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bdate_range&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;col&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;concat&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;crosstab&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cut&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;date_range&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;describe_option&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;errors&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;eval&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;factorize&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;from_dummies&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;get_dummies&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;get_option&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;infer_freq&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;interval_range&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isna&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isnull&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;json_normalize&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lreshape&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;melt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;merge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;merge_asof&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;merge_ordered&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;notna&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;notnull&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;offsets&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;option_context&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;options&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;period_range&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pivot&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pivot_table&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;plotting&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;qcut&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_clipboard&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_excel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_feather&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_fwf&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_hdf&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_html&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_iceberg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_orc&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_parquet&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_pickle&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_sas&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_spss&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_sql&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_sql_query&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_sql_table&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_stata&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_table&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;read_xml&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reset_option&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;set_eng_float_format&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;set_option&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;show_versions&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;testing&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timedelta_range&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_datetime&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_numeric&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_pickle&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_timedelta&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tseries&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;unique&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wide_to_long&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Dylan Woods.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

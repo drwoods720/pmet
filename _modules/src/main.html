@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.main &mdash; EvE 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            EvE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">EvE</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EvE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.main</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.main</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Main entry point for the cell scoring pipeline.</span>
+
+<span class="sd">Discovers mask files under a given directory, pairs them with their</span>
+<span class="sd">associated point annotation files, runs each sample through a</span>
+<span class="sd">configurable processing pipeline, and writes results to an output</span>
+<span class="sd">directory.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">alive_progress</span><span class="w"> </span><span class="kn">import</span> <span class="n">alive_bar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">src.datatypes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">src.outputs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">outputs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">src.processors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">processors</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">src.parsers</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">parsers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.outputs.output</span><span class="w"> </span><span class="kn">import</span> <span class="n">Output</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.processors.processor</span><span class="w"> </span><span class="kn">import</span> <span class="n">Process</span>
+
+<span class="c1"># Ordered sequence of processing steps applied to each sample.</span>
+<span class="n">PROCESSING_PIPELINE</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Process</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">processors</span><span class="o">.</span><span class="n">CountPoints</span><span class="p">(),</span>
+    <span class="n">processors</span><span class="o">.</span><span class="n">DetectClippingCells</span><span class="p">(),</span>
+    <span class="n">processors</span><span class="o">.</span><span class="n">CalculateScore</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="c1"># Ordered sequence of output steps run after all processing is complete.</span>
+<span class="n">OUTPUT_PIPELINE</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Output</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">outputs</span><span class="o">.</span><span class="n">ScoresCsv</span><span class="p">(),</span>
+    <span class="n">outputs</span><span class="o">.</span><span class="n">Overlay</span><span class="p">(),</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="import_dataset">
+<a class="viewcode-back" href="../../api/src.html#src.main.import_dataset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">import_dataset</span><span class="p">(</span><span class="n">mask_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build Sample objects for a single mask file.</span>
+
+<span class="sd">    Parses the image and model names from the mask filename, loads cell</span>
+<span class="sd">    detections and the mask array from that file, then searches ``root``</span>
+<span class="sd">    recursively for every GeoJSON point annotation file that belongs to</span>
+<span class="sd">    the same image. One Sample is created per matching GeoJSON file.</span>
+
+<span class="sd">    :param mask_file: Path to the mask ``.tif`` file to import.</span>
+<span class="sd">    :param root: Directory to search for associated GeoJSON annotation files.</span>
+<span class="sd">    :return: A list of Sample objects, one per matched annotation file.</span>
+<span class="sd">    :raises ValueError: If ``mask_file`` does not match the expected naming</span>
+<span class="sd">        convention.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">jobs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Extract the image name and model name from the mask filename.</span>
+    <span class="n">mask_file_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;(?P&lt;image&gt;.+?)\.ome\.tif\s*-\s*Image\d*\s*_?(?P&lt;model&gt;.+?)_label\.tif&quot;</span>
+    <span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">mask_file_regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">mask_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Mask filename does not match expected format: </span><span class="si">{</span><span class="n">mask_file</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">image_name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+    <span class="n">model_name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load cell detection objects and the raw mask array from the mask file.</span>
+    <span class="n">cell_objects</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">Cell</span><span class="p">]</span> <span class="o">=</span> <span class="n">parsers</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Tif</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">mask_file</span><span class="o">.</span><span class="n">absolute</span><span class="p">())</span>
+    <span class="p">)</span>
+    <span class="n">mask_array</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mask_file</span><span class="o">.</span><span class="n">absolute</span><span class="p">())),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint16&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Find all GeoJSON annotation files in ``root`` for this image.</span>
+    <span class="n">points_file_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="sa">rf</span><span class="s2">&quot;^</span><span class="si">{</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">image_name</span><span class="p">)</span><span class="si">}</span><span class="s2">\.ome\.tif - Image\d*\.geojson$&quot;</span>
+    <span class="p">)</span>
+    <span class="n">points_files</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">p</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.geojson&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span> <span class="ow">and</span> <span class="n">points_file_regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">points_file</span> <span class="ow">in</span> <span class="n">points_files</span><span class="p">:</span>
+        <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">points_file</span><span class="o">.</span><span class="n">absolute</span><span class="p">())</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sample_area</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">SampleArea</span> <span class="o">=</span> <span class="n">parsers</span><span class="o">.</span><span class="n">sampleArea</span><span class="o">.</span><span class="n">Geojson</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2"> for file </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Point</span><span class="p">]</span> <span class="o">=</span> <span class="n">parsers</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">Geojson</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+        <span class="n">metadata</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">Metadata</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Metadata</span><span class="p">(</span>
+            <span class="n">image_name</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">points_file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mask_file</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span>
+
+        <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
+                <span class="n">cells</span><span class="o">=</span><span class="n">cell_objects</span><span class="p">,</span>
+                <span class="n">points</span><span class="o">=</span><span class="n">points</span><span class="p">,</span>
+                <span class="n">mask</span><span class="o">=</span><span class="n">mask_array</span><span class="p">,</span>
+                <span class="n">sample_area</span><span class="o">=</span><span class="n">sample_area</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">jobs</span></div>
+
+
+
+<div class="viewcode-block" id="process_sample">
+<a class="viewcode-back" href="../../api/src.html#src.main.process_sample">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_sample</span><span class="p">(</span>
+    <span class="n">mask_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">root</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">output_directory</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Import, process, and write results for a single mask file.</span>
+
+<span class="sd">    Imports all Samples associated with ``mask_file``, runs each through</span>
+<span class="sd">    every step in ``PROCESSING_PIPELINE``, then passes the result to</span>
+<span class="sd">    every step in ``OUTPUT_PIPELINE``.</span>
+
+<span class="sd">    :param mask_file: Path to the mask ``.tif`` file to process.</span>
+<span class="sd">    :param root: Directory to search for associated annotation files.</span>
+<span class="sd">    :param output_directory: Directory where output files will be written.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">datasets</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">]</span> <span class="o">=</span> <span class="n">import_dataset</span><span class="p">(</span><span class="n">mask_file</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">PROCESSING_PIPELINE</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">OUTPUT_PIPELINE</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">output_directory</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="run">
+<a class="viewcode-back" href="../../api/src.html#src.main.run">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+    <span class="n">root_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Discover mask files and run the full processing pipeline.</span>
+
+<span class="sd">    Searches ``root_dir`` recursively for ``.tif`` mask files and</span>
+<span class="sd">    processes each one in parallel. Results are written to ``output_dir``</span>
+<span class="sd">    if provided, otherwise to a ``Results/`` directory placed alongside</span>
+<span class="sd">    ``root_dir``.</span>
+
+<span class="sd">    :param root_dir: Root directory to search for ``.tif`` mask files.</span>
+<span class="sd">    :param output_dir: Directory for output files. Defaults to a</span>
+<span class="sd">        ``Results/`` folder next to ``root_dir``.</span>
+<span class="sd">    :param max_workers: Maximum number of parallel worker processes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">root_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Workers: </span><span class="si">{</span><span class="n">max_workers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">output_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">output_dir</span> <span class="k">else</span> <span class="n">root_path</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;Results&quot;</span>
+
+    <span class="n">mask_filepaths</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">root_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.tif&quot;</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="n">alive_bar</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mask_filepaths</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Processing Data&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">bar</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">job</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">process_sample</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root_path</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="n">output_path</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">mask_filepaths</span><span class="p">):</span>
+                <span class="n">bar</span><span class="p">()</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Dylan Woods.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

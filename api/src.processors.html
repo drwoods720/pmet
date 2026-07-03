@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.processors package &mdash; EvE 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="test module" href="test.html" />
+    <link rel="prev" title="src.parsers.sampleArea package" href="src.parsers.sampleArea.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EvE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">EvE</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eve.html">eve module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="src.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html">src.datatypes package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html">src.outputs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.html">src.parsers package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">src.processors package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.main">src.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EvE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">EvE</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+      <li class="breadcrumb-item active">src.processors package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/src.processors.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-processors-package">
+<h1>src.processors package<a class="headerlink" href="#src-processors-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-src.processors.calculateScore">
+<span id="src-processors-calculatescore-module"></span><h2>src.processors.calculateScore module<a class="headerlink" href="#module-src.processors.calculateScore" title="Link to this heading"></a></h2>
+<p>calculateScore.py</p>
+<p>Defines the <a class="reference internal" href="#src.processors.calculateScore.CalculateScore" title="src.processors.calculateScore.CalculateScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculateScore</span></code></a> processor, which computes
+precision, recall, and F1 scores for a sample from its true/false
+positive and negative counts.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.processors.calculateScore.CalculateScore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.calculateScore.</span></span><span class="sig-name descname"><span class="pre">CalculateScore</span></span><a class="reference internal" href="../_modules/src/processors/calculateScore.html#CalculateScore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.calculateScore.CalculateScore" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
+<p>Calculate scoring metrics for a sample.</p>
+<p>Computes precision, recall, and F1 scores from the sample’s
+classification counts, storing them in the sample’s
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Results" title="src.datatypes.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.processors.calculateScore.CalculateScore.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/calculateScore.html#CalculateScore.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.calculateScore.CalculateScore.run" title="Link to this definition"></a></dt>
+<dd><p>Calculate and store the scoring metrics for a sample.</p>
+<p>Calculates precision, recall, and F1 scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span>) – The sample data to calculate scores for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sample and its
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.results" title="src.datatypes.Sample.results"><code class="xref py py-attr docutils literal notranslate"><span class="pre">results</span></code></a> updated to include
+the calculated precision, recall, and F1 scores.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.processors.countPoints">
+<span id="src-processors-countpoints-module"></span><h2>src.processors.countPoints module<a class="headerlink" href="#module-src.processors.countPoints" title="Link to this heading"></a></h2>
+<p>countPoints.py</p>
+<p>Defines the <a class="reference internal" href="#src.processors.countPoints.CountPoints" title="src.processors.countPoints.CountPoints"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountPoints</span></code></a> processor, which assigns each point
+to its containing cell and tallies the number of points located
+within each cell.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.processors.countPoints.CountPoints">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.countPoints.</span></span><span class="sig-name descname"><span class="pre">CountPoints</span></span><a class="reference internal" href="../_modules/src/processors/countPoints.html#CountPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.countPoints.CountPoints" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
+<p>Assign points to cells and count points per cell.</p>
+<p>Determines which <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> region each
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Point" title="src.datatypes.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> in the sample falls within, updating
+each point’s <a class="reference internal" href="src.datatypes.html#src.datatypes.Point.cell" title="src.datatypes.Point.cell"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cell</span></code></a> reference, and
+tallies how many points fall within each cell.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.processors.countPoints.CountPoints.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/countPoints.html#CountPoints.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.countPoints.CountPoints.run" title="Link to this definition"></a></dt>
+<dd><p>Assign each point to its containing cell and count totals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span>) – The sample data to process.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The sample, with each point’s
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Point.cell" title="src.datatypes.Point.cell"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cell</span></code></a> attribute updated to
+reference its containing cell, and per-cell point counts
+updated accordingly.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.processors.detectClippingCells">
+<span id="src-processors-detectclippingcells-module"></span><h2>src.processors.detectClippingCells module<a class="headerlink" href="#module-src.processors.detectClippingCells" title="Link to this heading"></a></h2>
+<p>detectClippingCells.py</p>
+<p>Defines the <a class="reference internal" href="#src.processors.detectClippingCells.DetectClippingCells" title="src.processors.detectClippingCells.DetectClippingCells"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetectClippingCells</span></code></a> processor, which flags
+cells that are cut off by the boundry of the sample area.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.processors.detectClippingCells.DetectClippingCells">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.detectClippingCells.</span></span><span class="sig-name descname"><span class="pre">DetectClippingCells</span></span><a class="reference internal" href="../_modules/src/processors/detectClippingCells.html#DetectClippingCells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.detectClippingCells.DetectClippingCells" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
+<p>Detect cells that are clipped by the sample area boundary.</p>
+<p>Marks each cell in the sample whose region is cut off by the
+edge of the <a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea" title="src.datatypes.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>, by setting its
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.clipping" title="src.datatypes.Cell.clipping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">clipping</span></code></a> attribute accordingly.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.processors.detectClippingCells.DetectClippingCells.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/detectClippingCells.html#DetectClippingCells.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.detectClippingCells.DetectClippingCells.run" title="Link to this definition"></a></dt>
+<dd><p>Detect and flag all cells clipped off by the sample area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span>) – The sample data to process.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sample, with each cell’s
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.clipping" title="src.datatypes.Cell.clipping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">clipping</span></code></a> attribute updated to
+reflect whether it is cut off by the sample area
+boundary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.processors.processor">
+<span id="src-processors-processor-module"></span><h2>src.processors.processor module<a class="headerlink" href="#module-src.processors.processor" title="Link to this heading"></a></h2>
+<p>processor.py</p>
+<p>Defines the <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a> abstract base class, which establishes
+the interface that all processors must implement to compute raw
+statistics for a sample and return the updated sample data.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.processors.processor.Process">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.processor.</span></span><span class="sig-name descname"><span class="pre">Process</span></span><a class="reference internal" href="../_modules/src/processors/processor.html#Process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.processor.Process" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract base class for processors.</p>
+<p>Subclasses of <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a> are responsible
+for computing the raw statistics for a sample.
+Each concrete subclass must implement <a class="reference internal" href="#src.processors.processor.Process.run" title="src.processors.processor.Process.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.processors.processor.Process.run">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/processor.html#Process.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.processor.Process.run" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.processors">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.processors" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.processors.CalculateScore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">CalculateScore</span></span><a class="reference internal" href="../_modules/src/processors/calculateScore.html#CalculateScore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CalculateScore" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
+<p>Calculate scoring metrics for a sample.</p>
+<p>Computes precision, recall, and F1 scores from the sample’s
+classification counts, storing them in the sample’s
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Results" title="src.datatypes.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.processors.CalculateScore.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/calculateScore.html#CalculateScore.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CalculateScore.run" title="Link to this definition"></a></dt>
+<dd><p>Calculate and store the scoring metrics for a sample.</p>
+<p>Calculates precision, recall, and F1 scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span>) – The sample data to calculate scores for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sample and its
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.results" title="src.datatypes.Sample.results"><code class="xref py py-attr docutils literal notranslate"><span class="pre">results</span></code></a> updated to include
+the calculated precision, recall, and F1 scores.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.processors.CountPoints">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">CountPoints</span></span><a class="reference internal" href="../_modules/src/processors/countPoints.html#CountPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CountPoints" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
+<p>Assign points to cells and count points per cell.</p>
+<p>Determines which <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> region each
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Point" title="src.datatypes.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a> in the sample falls within, updating
+each point’s <a class="reference internal" href="src.datatypes.html#src.datatypes.Point.cell" title="src.datatypes.Point.cell"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cell</span></code></a> reference, and
+tallies how many points fall within each cell.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.processors.CountPoints.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/countPoints.html#CountPoints.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CountPoints.run" title="Link to this definition"></a></dt>
+<dd><p>Assign each point to its containing cell and count totals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span>) – The sample data to process.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The sample, with each point’s
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Point.cell" title="src.datatypes.Point.cell"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cell</span></code></a> attribute updated to
+reference its containing cell, and per-cell point counts
+updated accordingly.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.processors.DetectClippingCells">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">DetectClippingCells</span></span><a class="reference internal" href="../_modules/src/processors/detectClippingCells.html#DetectClippingCells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.DetectClippingCells" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
+<p>Detect cells that are clipped by the sample area boundary.</p>
+<p>Marks each cell in the sample whose region is cut off by the
+edge of the <a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea" title="src.datatypes.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>, by setting its
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.clipping" title="src.datatypes.Cell.clipping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">clipping</span></code></a> attribute accordingly.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.processors.DetectClippingCells.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/detectClippingCells.html#DetectClippingCells.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.DetectClippingCells.run" title="Link to this definition"></a></dt>
+<dd><p>Detect and flag all cells clipped off by the sample area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span>) – The sample data to process.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sample, with each cell’s
+<a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.clipping" title="src.datatypes.Cell.clipping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">clipping</span></code></a> attribute updated to
+reflect whether it is cut off by the sample area
+boundary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.processors.Process">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">Process</span></span><a class="reference internal" href="../_modules/src/processors/processor.html#Process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.Process" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract base class for processors.</p>
+<p>Subclasses of <a class="reference internal" href="#src.processors.Process" title="src.processors.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a> are responsible
+for computing the raw statistics for a sample.
+Each concrete subclass must implement <a class="reference internal" href="#src.processors.Process.run" title="src.processors.Process.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.processors.Process.run">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/processor.html#Process.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.Process.run" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.parsers.sampleArea.html" class="btn btn-neutral float-left" title="src.parsers.sampleArea package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test.html" class="btn btn-neutral float-right" title="test module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Dylan Woods.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

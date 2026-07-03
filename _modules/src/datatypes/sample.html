@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.datatypes.sample &mdash; EvE 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            EvE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">EvE</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EvE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.datatypes.sample</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.datatypes.sample</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">sample.py</span>
+
+<span class="sd">Defines the :class:`Sample` dataclass, which bundles together all</span>
+<span class="sd">the data required to process a single sample: its metadata, detected</span>
+<span class="sd">cell regions, manually placed points, segmentation mask, sample area,</span>
+<span class="sd">and resulting evaluation scores.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.datatypes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Cell</span><span class="p">,</span> <span class="n">Metadata</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Results</span><span class="p">,</span> <span class="n">SampleArea</span>
+
+
+<div class="viewcode-block" id="Sample">
+<a class="viewcode-back" href="../../../api/src.datatypes.html#src.datatypes.sample.Sample">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Sample</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contain all the data needed to process one sample.</span>
+
+<span class="sd">    A :class:`Sample` ties together a sample&#39;s :class:`~.metadata.Metadata`,</span>
+<span class="sd">    its detected :class:`~.cell.Cell` regions, the manually placed</span>
+<span class="sd">    :class:`~.point.Point` instances used for ground truth comparison,</span>
+<span class="sd">    the labeled segmentation mask to be assessed, the bounds of the</span>
+<span class="sd">    sampled area, and the resulting evaluation :class:`~.results.Results`.</span>
+
+<span class="sd">    :ivar metadata: Information describing the current sample.</span>
+<span class="sd">    :vartype metadata: Metadata</span>
+
+<span class="sd">    :ivar cells: A mapping of cell ID to the corresponding</span>
+<span class="sd">        :class:`~.cell.Cell` region for every cell detected in the</span>
+<span class="sd">        sample.</span>
+<span class="sd">    :vartype cells: dict[int, Cell]</span>
+
+<span class="sd">    :ivar points: The list of manually placed points within the</span>
+<span class="sd">        sample.</span>
+<span class="sd">    :vartype points: list[Point]</span>
+
+<span class="sd">    :ivar mask: The labeled cell segmentation mask to assess, where</span>
+<span class="sd">        each cell region is identified by its integer label.</span>
+<span class="sd">    :vartype mask: numpy.typing.NDArray[numpy.uint16]</span>
+
+<span class="sd">    :ivar sample_area: The area of the sample used to determine</span>
+<span class="sd">        which cells and points are in bounds.</span>
+<span class="sd">    :vartype sample_area: SampleArea</span>
+
+<span class="sd">    :ivar original_image: The original image the mask was generated</span>
+<span class="sd">        from. Optional; defaults to ``None`` if not available.</span>
+<span class="sd">    :vartype original_image: numpy.typing.NDArray[numpy.uint16], optional</span>
+
+<span class="sd">    :ivar results: The results of processing this sample, including</span>
+<span class="sd">        true/false positive counts and precision, recall, and F1</span>
+<span class="sd">        scores. Defaults to an empty :class:`~.results.Results`</span>
+<span class="sd">        instance.</span>
+<span class="sd">    :vartype results: Results</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span>
+    <span class="n">cells</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Cell</span><span class="p">]</span>
+    <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point</span><span class="p">]</span>
+    <span class="n">mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">]</span>
+    <span class="n">sample_area</span><span class="p">:</span> <span class="n">SampleArea</span>
+    <span class="n">original_image</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">results</span><span class="p">:</span> <span class="n">Results</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">Results</span><span class="p">)</span>
+
+    <span class="c1"># Sets the original_image value to an all black image the same shape as the mask if none is provided.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">original_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Dylan Woods.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

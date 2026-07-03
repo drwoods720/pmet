@@ -1,0 +1,61 @@
+src.datatypes package
+=====================
+
+Submodules
+----------
+
+src.datatypes.cell module
+-------------------------
+
+.. automodule:: src.datatypes.cell
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.datatypes.metadata module
+-----------------------------
+
+.. automodule:: src.datatypes.metadata
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.datatypes.point module
+--------------------------
+
+.. automodule:: src.datatypes.point
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.datatypes.results module
+----------------------------
+
+.. automodule:: src.datatypes.results
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.datatypes.sample module
+---------------------------
+
+.. automodule:: src.datatypes.sample
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+src.datatypes.sample\_area module
+---------------------------------
+
+.. automodule:: src.datatypes.sample_area
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: src.datatypes
+   :members:
+   :show-inheritance:
+   :undoc-members:

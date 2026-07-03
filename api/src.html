@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src package &mdash; EvE 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="src.datatypes package" href="src.datatypes.html" />
+    <link rel="prev" title="eve module" href="eve.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            EvE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">EvE</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eve.html">eve module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html">src.datatypes package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html">src.outputs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.html">src.parsers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html">src.processors package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.main">src.main module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.main.import_dataset"><code class="docutils literal notranslate"><span class="pre">import_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.main.process_sample"><code class="docutils literal notranslate"><span class="pre">process_sample()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.main.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EvE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">EvE</a></li>
+      <li class="breadcrumb-item active">src package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/src.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-package">
+<h1>src package<a class="headerlink" href="#src-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.datatypes.html">src.datatypes package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.datatypes.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.datatypes.html#module-src.datatypes.cell">src.datatypes.cell module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.cell.Cell"><code class="docutils literal notranslate"><span class="pre">Cell</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.cell.Cell.clipping"><code class="docutils literal notranslate"><span class="pre">Cell.clipping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.cell.Cell.id"><code class="docutils literal notranslate"><span class="pre">Cell.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.cell.Cell.points"><code class="docutils literal notranslate"><span class="pre">Cell.points</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.datatypes.html#module-src.datatypes.metadata">src.datatypes.metadata module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.metadata.Metadata"><code class="docutils literal notranslate"><span class="pre">Metadata</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.metadata.Metadata.image_name"><code class="docutils literal notranslate"><span class="pre">Metadata.image_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.metadata.Metadata.mask_file"><code class="docutils literal notranslate"><span class="pre">Metadata.mask_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.metadata.Metadata.model_name"><code class="docutils literal notranslate"><span class="pre">Metadata.model_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.metadata.Metadata.points_file"><code class="docutils literal notranslate"><span class="pre">Metadata.points_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.metadata.Metadata.timestamp"><code class="docutils literal notranslate"><span class="pre">Metadata.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.metadata.Metadata.uuid"><code class="docutils literal notranslate"><span class="pre">Metadata.uuid</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.datatypes.html#module-src.datatypes.point">src.datatypes.point module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.point.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.point.Point.cell"><code class="docutils literal notranslate"><span class="pre">Point.cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.point.Point.x"><code class="docutils literal notranslate"><span class="pre">Point.x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.point.Point.y"><code class="docutils literal notranslate"><span class="pre">Point.y</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.datatypes.html#module-src.datatypes.results">src.datatypes.results module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.results.Results"><code class="docutils literal notranslate"><span class="pre">Results</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.results.Results.f1"><code class="docutils literal notranslate"><span class="pre">Results.f1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.results.Results.false_negative"><code class="docutils literal notranslate"><span class="pre">Results.false_negative</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.results.Results.false_positive"><code class="docutils literal notranslate"><span class="pre">Results.false_positive</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.results.Results.precision"><code class="docutils literal notranslate"><span class="pre">Results.precision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.results.Results.recall"><code class="docutils literal notranslate"><span class="pre">Results.recall</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.results.Results.true_positive"><code class="docutils literal notranslate"><span class="pre">Results.true_positive</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.datatypes.html#module-src.datatypes.sample">src.datatypes.sample module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample"><code class="docutils literal notranslate"><span class="pre">Sample</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample.cells"><code class="docutils literal notranslate"><span class="pre">Sample.cells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample.mask"><code class="docutils literal notranslate"><span class="pre">Sample.mask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample.metadata"><code class="docutils literal notranslate"><span class="pre">Sample.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample.original_image"><code class="docutils literal notranslate"><span class="pre">Sample.original_image</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample.points"><code class="docutils literal notranslate"><span class="pre">Sample.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample.results"><code class="docutils literal notranslate"><span class="pre">Sample.results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample.sample_area"><code class="docutils literal notranslate"><span class="pre">Sample.sample_area</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.datatypes.html#module-src.datatypes.sample_area">src.datatypes.sample_area module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea"><code class="docutils literal notranslate"><span class="pre">SampleArea</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea.xmax"><code class="docutils literal notranslate"><span class="pre">SampleArea.xmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea.xmin"><code class="docutils literal notranslate"><span class="pre">SampleArea.xmin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea.ymax"><code class="docutils literal notranslate"><span class="pre">SampleArea.ymax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.sample_area.SampleArea.ymin"><code class="docutils literal notranslate"><span class="pre">SampleArea.ymin</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.datatypes.html#module-src.datatypes">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.Cell"><code class="docutils literal notranslate"><span class="pre">Cell</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.clipping"><code class="docutils literal notranslate"><span class="pre">Cell.clipping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.id"><code class="docutils literal notranslate"><span class="pre">Cell.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.points"><code class="docutils literal notranslate"><span class="pre">Cell.points</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.Metadata"><code class="docutils literal notranslate"><span class="pre">Metadata</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Metadata.image_name"><code class="docutils literal notranslate"><span class="pre">Metadata.image_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Metadata.mask_file"><code class="docutils literal notranslate"><span class="pre">Metadata.mask_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Metadata.model_name"><code class="docutils literal notranslate"><span class="pre">Metadata.model_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Metadata.points_file"><code class="docutils literal notranslate"><span class="pre">Metadata.points_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Metadata.timestamp"><code class="docutils literal notranslate"><span class="pre">Metadata.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Metadata.uuid"><code class="docutils literal notranslate"><span class="pre">Metadata.uuid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Point.cell"><code class="docutils literal notranslate"><span class="pre">Point.cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Point.x"><code class="docutils literal notranslate"><span class="pre">Point.x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Point.y"><code class="docutils literal notranslate"><span class="pre">Point.y</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.Results"><code class="docutils literal notranslate"><span class="pre">Results</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Results.f1"><code class="docutils literal notranslate"><span class="pre">Results.f1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Results.false_negative"><code class="docutils literal notranslate"><span class="pre">Results.false_negative</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Results.false_positive"><code class="docutils literal notranslate"><span class="pre">Results.false_positive</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Results.precision"><code class="docutils literal notranslate"><span class="pre">Results.precision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Results.recall"><code class="docutils literal notranslate"><span class="pre">Results.recall</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Results.true_positive"><code class="docutils literal notranslate"><span class="pre">Results.true_positive</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.Sample"><code class="docutils literal notranslate"><span class="pre">Sample</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.cells"><code class="docutils literal notranslate"><span class="pre">Sample.cells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.mask"><code class="docutils literal notranslate"><span class="pre">Sample.mask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.metadata"><code class="docutils literal notranslate"><span class="pre">Sample.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.original_image"><code class="docutils literal notranslate"><span class="pre">Sample.original_image</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.points"><code class="docutils literal notranslate"><span class="pre">Sample.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.results"><code class="docutils literal notranslate"><span class="pre">Sample.results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.Sample.sample_area"><code class="docutils literal notranslate"><span class="pre">Sample.sample_area</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea"><code class="docutils literal notranslate"><span class="pre">SampleArea</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea.xmax"><code class="docutils literal notranslate"><span class="pre">SampleArea.xmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea.xmin"><code class="docutils literal notranslate"><span class="pre">SampleArea.xmin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea.ymax"><code class="docutils literal notranslate"><span class="pre">SampleArea.ymax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea.ymin"><code class="docutils literal notranslate"><span class="pre">SampleArea.ymin</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.outputs.html">src.outputs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.outputs.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.outputs.html#module-src.outputs.output">src.outputs.output module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.outputs.html#src.outputs.output.Output"><code class="docutils literal notranslate"><span class="pre">Output</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.output.Output.run"><code class="docutils literal notranslate"><span class="pre">Output.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.outputs.html#module-src.outputs.overlay">src.outputs.overlay module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.outputs.html#src.outputs.overlay.Overlay"><code class="docutils literal notranslate"><span class="pre">Overlay</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.overlay.Overlay.generate_accuracy_mask"><code class="docutils literal notranslate"><span class="pre">Overlay.generate_accuracy_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.overlay.Overlay.overlay_image"><code class="docutils literal notranslate"><span class="pre">Overlay.overlay_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.overlay.Overlay.run"><code class="docutils literal notranslate"><span class="pre">Overlay.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.outputs.html#module-src.outputs.scoresCsv">src.outputs.scoresCsv module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.outputs.html#src.outputs.scoresCsv.ScoresCsv"><code class="docutils literal notranslate"><span class="pre">ScoresCsv</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.scoresCsv.ScoresCsv.run"><code class="docutils literal notranslate"><span class="pre">ScoresCsv.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.outputs.html#module-src.outputs">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.outputs.html#src.outputs.Output"><code class="docutils literal notranslate"><span class="pre">Output</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.Output.run"><code class="docutils literal notranslate"><span class="pre">Output.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.outputs.html#src.outputs.Overlay"><code class="docutils literal notranslate"><span class="pre">Overlay</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.Overlay.generate_accuracy_mask"><code class="docutils literal notranslate"><span class="pre">Overlay.generate_accuracy_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.Overlay.overlay_image"><code class="docutils literal notranslate"><span class="pre">Overlay.overlay_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.Overlay.run"><code class="docutils literal notranslate"><span class="pre">Overlay.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.outputs.html#src.outputs.ScoresCsv"><code class="docutils literal notranslate"><span class="pre">ScoresCsv</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.outputs.html#src.outputs.ScoresCsv.run"><code class="docutils literal notranslate"><span class="pre">ScoresCsv.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.parsers.html">src.parsers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.parsers.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.parsers.cells.html">src.parsers.cells package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.cells.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.cells.html#module-src.parsers.cells.tif">src.parsers.cells.tif module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.cells.html#module-src.parsers.cells">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.parsers.points.html">src.parsers.points package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.points.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.points.html#module-src.parsers.points.csv">src.parsers.points.csv module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.points.html#module-src.parsers.points.geojson">src.parsers.points.geojson module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.points.html#module-src.parsers.points.tsv">src.parsers.points.tsv module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.points.html#module-src.parsers.points">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.parsers.sampleArea.html">src.parsers.sampleArea package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.sampleArea.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.sampleArea.html#module-src.parsers.sampleArea.geojson">src.parsers.sampleArea.geojson module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.sampleArea.html#module-src.parsers.sampleArea">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.parsers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.parsers.html#module-src.parsers.parser">src.parsers.parser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.parsers.html#src.parsers.parser.Parser"><code class="docutils literal notranslate"><span class="pre">Parser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.parsers.html#src.parsers.parser.Parser.parse"><code class="docutils literal notranslate"><span class="pre">Parser.parse()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.parsers.html#src.parsers.parser.R"><code class="docutils literal notranslate"><span class="pre">R</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.parsers.html#module-src.parsers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.processors.html">src.processors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.processors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.processors.html#module-src.processors.calculateScore">src.processors.calculateScore module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.processors.html#src.processors.calculateScore.CalculateScore"><code class="docutils literal notranslate"><span class="pre">CalculateScore</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html#src.processors.calculateScore.CalculateScore.run"><code class="docutils literal notranslate"><span class="pre">CalculateScore.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.processors.html#module-src.processors.countPoints">src.processors.countPoints module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.processors.html#src.processors.countPoints.CountPoints"><code class="docutils literal notranslate"><span class="pre">CountPoints</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html#src.processors.countPoints.CountPoints.run"><code class="docutils literal notranslate"><span class="pre">CountPoints.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.processors.html#module-src.processors.detectClippingCells">src.processors.detectClippingCells module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.processors.html#src.processors.detectClippingCells.DetectClippingCells"><code class="docutils literal notranslate"><span class="pre">DetectClippingCells</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html#src.processors.detectClippingCells.DetectClippingCells.run"><code class="docutils literal notranslate"><span class="pre">DetectClippingCells.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.processors.html#module-src.processors.processor">src.processors.processor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.processors.html#src.processors.processor.Process"><code class="docutils literal notranslate"><span class="pre">Process</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html#src.processors.processor.Process.run"><code class="docutils literal notranslate"><span class="pre">Process.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.processors.html#module-src.processors">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.processors.html#src.processors.CalculateScore"><code class="docutils literal notranslate"><span class="pre">CalculateScore</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html#src.processors.CalculateScore.run"><code class="docutils literal notranslate"><span class="pre">CalculateScore.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.processors.html#src.processors.CountPoints"><code class="docutils literal notranslate"><span class="pre">CountPoints</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html#src.processors.CountPoints.run"><code class="docutils literal notranslate"><span class="pre">CountPoints.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.processors.html#src.processors.DetectClippingCells"><code class="docutils literal notranslate"><span class="pre">DetectClippingCells</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html#src.processors.DetectClippingCells.run"><code class="docutils literal notranslate"><span class="pre">DetectClippingCells.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.processors.html#src.processors.Process"><code class="docutils literal notranslate"><span class="pre">Process</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.processors.html#src.processors.Process.run"><code class="docutils literal notranslate"><span class="pre">Process.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-src.main">
+<span id="src-main-module"></span><h2>src.main module<a class="headerlink" href="#module-src.main" title="Link to this heading"></a></h2>
+<p>Main entry point for the cell scoring pipeline.</p>
+<p>Discovers mask files under a given directory, pairs them with their
+associated point annotation files, runs each sample through a
+configurable processing pipeline, and writes results to an output
+directory.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.import_dataset">
+<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">import_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/main.html#import_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.import_dataset" title="Link to this definition"></a></dt>
+<dd><p>Build Sample objects for a single mask file.</p>
+<p>Parses the image and model names from the mask filename, loads cell
+detections and the mask array from that file, then searches <code class="docutils literal notranslate"><span class="pre">root</span></code>
+recursively for every GeoJSON point annotation file that belongs to
+the same image. One Sample is created per matching GeoJSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mask_file</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></span>) – Path to the mask <code class="docutils literal notranslate"><span class="pre">.tif</span></code> file to import.</p></li>
+<li><p><strong>root</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></span>) – Directory to search for associated GeoJSON annotation files.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="src.datatypes.html#src.datatypes.sample.Sample" title="src.datatypes.sample.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of Sample objects, one per matched annotation file.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">mask_file</span></code> does not match the expected naming
+convention.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.process_sample">
+<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">process_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/main.html#process_sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.process_sample" title="Link to this definition"></a></dt>
+<dd><p>Import, process, and write results for a single mask file.</p>
+<p>Imports all Samples associated with <code class="docutils literal notranslate"><span class="pre">mask_file</span></code>, runs each through
+every step in <code class="docutils literal notranslate"><span class="pre">PROCESSING_PIPELINE</span></code>, then passes the result to
+every step in <code class="docutils literal notranslate"><span class="pre">OUTPUT_PIPELINE</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mask_file</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></span>) – Path to the mask <code class="docutils literal notranslate"><span class="pre">.tif</span></code> file to process.</p></li>
+<li><p><strong>root</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></span>) – Directory to search for associated annotation files.</p></li>
+<li><p><strong>output_directory</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></span>) – Directory where output files will be written.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.run">
+<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/main.html#run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.run" title="Link to this definition"></a></dt>
+<dd><p>Discover mask files and run the full processing pipeline.</p>
+<p>Searches <code class="docutils literal notranslate"><span class="pre">root_dir</span></code> recursively for <code class="docutils literal notranslate"><span class="pre">.tif</span></code> mask files and
+processes each one in parallel. Results are written to <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>
+if provided, otherwise to a <code class="docutils literal notranslate"><span class="pre">Results/</span></code> directory placed alongside
+<code class="docutils literal notranslate"><span class="pre">root_dir</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Root directory to search for <code class="docutils literal notranslate"><span class="pre">.tif</span></code> mask files.</p></li>
+<li><p><strong>output_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Directory for output files. Defaults to a
+<code class="docutils literal notranslate"><span class="pre">Results/</span></code> folder next to <code class="docutils literal notranslate"><span class="pre">root_dir</span></code>.</p></li>
+<li><p><strong>max_workers</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Maximum number of parallel worker processes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="eve.html" class="btn btn-neutral float-left" title="eve module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="src.datatypes.html" class="btn btn-neutral float-right" title="src.datatypes package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Dylan Woods.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
