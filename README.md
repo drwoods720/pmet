@@ -1,3 +1,20 @@
+# EvE
+EvE - (EvE)aluates Various modEls
+
+EvE is a cell segmentation model evaluation tool. The aim for EvE was to create 
+a quantitative method to evaluate the results of a cell segmentation model without
+requiring a manually generated segmentation mask to compare to.
+
+## Inputs
+
+
+## Outputs
+Outputs are written to a specified output directory.
+If no output directory is specified outputs will be written to a directory alongside
+the input directory.
+
+EvE produces 2 outputs:
+
 # Installing
 
 ## Option 1: Run using the Apptainer container (recommended)
@@ -68,10 +85,10 @@ apptainer run eve.sif -i [/path/to/input] -o [/path/to/output]
 ```
 
 ## Options
-| Argument | Description |
+| Option | Description |
 |----------|-------------|
 | `-h` or `--help` | Show the help message and exit. |
-| `-i` or `--input` | **Required** Specify the input directory. |
+| `-i` or `--input` | **(Required)** Specify the input directory. |
 | `-o` or `--output` | Specify the output directory. |
 | `-w` or `--workers` | Specify the maximum number of parallel processors. |
 
