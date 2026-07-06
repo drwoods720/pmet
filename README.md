@@ -7,7 +7,10 @@ requiring a manually generated segmentation mask to compare to.
 
 ## Inputs
 
-EvE takes a path to a single **input directory**. That directory must contain two types of files:
+EvE takes a path to a single **input directory**. This directory is searched recursively, so files may be
+organized into subfolders in any structure, and the order in which files appear does not matter. 
+
+The directory must contain two types of files:
 
 ### 1. Labeled mask files (`.tif`)
 
@@ -54,14 +57,54 @@ Example:
 #### Each file must contain at least the following annotation types
 | Annotation Type | Geometry Type | Description |
 |-----------------|---------------|-------------|
-| Sample area | Polygon | Defines the region of the mask to include in evaluation. Exactly one per file. This annotation must be named "cell_segmentation_sample_area" |
-| Point annotations | MultiPoint | Individual annotated points marking the center of each cell. |
+| Sample area | Polygon | Defines the region of the mask to include in evaluation. Exactly one per file. properties.classification.name must be equal to "cell_segmentation_sample_area" |
+| Point annotations | MultiPoint | Individual annotated points marking the center of each cell. All features of type `MultiPoint` are treated as point annotations. |
 
 ## Outputs
 Outputs are written to a specified output directory.
 If no output directory is specified outputs will be written to a directory alongside
 the input directory.
 
+EvE provides two outputs:
+
+### 1. Scores CSV file
+A CSV file containing the computed accuracy metrics for each sample. Each row is a unique sample.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| Image Name | String | Name of the original image that the segmentation mask was generated for |
+| Points File | String | Name of the GeoJSON file associated with the current sample |
+| Mask File | String | Name of the .tif file containing the labeled mask for the current sample |
+| Model Name | String | Name of the model that produced the segmentation mask |
+| False Negatives | int | Number of cells the model failed to detect |
+| True Positives | int | Number of correctly identified cells |
+| False Positives | int | Number of incorrectly detected cells |
+| Precision | float | Overall precision score for the current sample |
+| Recall | float | Overall recall score for the current sample |
+| F1 | float | Combined precision and recall score for the current sample |
+
+### 2. Accuracy overlay image
+A visual copy of the original mask, color-coded by accuracy. This image contains three elements:
+
+- The original cell regions colored according to how accurate the prediction was
+- The human annotated points representing the ground truth colored according to how accurately it was detected.
+- The sample border represented by a red line surrounding the image
+
+#### Points color scheme
+| Color | Represented accuracy |
+|-------|----------------------|
+| Green | Cell correctly segmented |
+| Red | Cell missed / was not identified |
+| Blue | Cell undersegmented (cell was incorrectly combined with a neighboring cell) |
+| Grey | Containing cell is clipped by sample border and does not count towards accuracy metrics |
+
+#### Cells color scheme
+| Color | Represented accuracy |
+|-------|----------------------|
+| Green | Detection accurately segments one cell |
+| Red | Incorrectly identified a cell where there was none |
+| Blue | Incorrectly detected multiple cells as one |
+| Grey | Cell is clipped by the sample border and does not count towards accuracy metrics |
 
 # Installing
 
