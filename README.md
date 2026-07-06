@@ -106,6 +106,13 @@ A visual copy of the original mask, color-coded by accuracy. This image contains
 | Blue | Incorrectly detected multiple cells as one |
 | Grey | Cell is clipped by the sample border and does not count towards accuracy metrics |
 
+> [!NOTE]
+> The accuracy overlay image is only intended to provide a simple visual referance.
+> If a detailed inspection is desired it is recommended you use the original image and mask files.
+
+# The scoring algorithm
+
+
 # Installing
 
 ## Option 1: Run using the Apptainer container (recommended)
