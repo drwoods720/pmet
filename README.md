@@ -107,7 +107,7 @@ A visual copy of the original mask, color-coded by accuracy. This image contains
 | Grey | Cell is clipped by the sample border and does not count towards accuracy metrics |
 
 > [!NOTE]
-> The accuracy overlay image is only intended to provide a simple visual referance.
+> The accuracy overlay image is only intended to provide a simple visual reference.
 > If a detailed inspection is desired it is recommended you use the original image and mask files.
 
 # The scoring algorithm
@@ -115,12 +115,12 @@ A visual copy of the original mask, color-coded by accuracy. This image contains
 For each sample, predicted cell regions (from the mask) are matched against user placed ground-truth points
 to compute accuracy.
 
-## Matching process
+## Processing Steps
 
-1. A point is assigned to the cell it is located in.
-2. If a point does not fall within a cell region it is considered undetected.
-3. If a cell region is clipping through the sample area border, it and all of the points that fall within
-its area are disregarded from scoring calculations.
+1. Ground-truth points are associated with predicted cell regions based on which region they are located in.
+2. Cell regions touching the sample area border are detected and the cell along with any points associated
+are disregarded when calculating scoring metrics.
+3. Precision, Recall, and F1 scores are calculated.
 
 ## Classification rules
 
