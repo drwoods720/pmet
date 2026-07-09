@@ -112,6 +112,31 @@ A visual copy of the original mask, color-coded by accuracy. This image contains
 
 # The scoring algorithm
 
+For each sample, predicted cell regions (from the mask) are matched against user placed ground-truth points
+to compute accuracy.
+
+## Matching process
+
+1. A point is assigned to the cell it is located in.
+2. If a point does not fall within a cell region it is considered undetected.
+3. If a cell region is clipping through the sample area border, it and all of the points that fall within
+its area are disregarded from scoring calculations.
+
+## Classification rules
+
+| Outcome | Condition |
+|---------|-----------|
+| True Positive | Exactly one ground-truth point falls within the cell region |
+| False Positive | No ground-truth cells fall within the cell region |
+| False Negative | A ground-truth point does not fall within a labeled cell region |
+| Undersegmented | Two or more ground-truth points fall within a single labeled cell region |
+| Clipped (excluded) | The cell area is touching, or is beyond the sample area border |
+
+## Metric formulas
+
+- **Precision** = TP / (TP + FP)
+- **Recall** = TP / (TP +FN)
+- **F1** = 2 x (Precision x Recall) / (Precision + Recall)
 
 # Installing
 
@@ -192,7 +217,7 @@ apptainer run eve.sif -i [/path/to/input] -o [/path/to/output]
 
 Future of this document:
 1. How to install (done)
-2. How to run
-3. What inputs it takes
-4. What outputs it gives
+2. How to run (done)
+3. What inputs it takes (sorta done)
+4. What outputs it gives (kinda done)
 5. What processing it does
