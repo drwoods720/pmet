@@ -192,10 +192,3 @@ apptainer run eve.sif -i [/path/to/input] -o [/path/to/output]
 | `-i`, `--input`   | **(Required)** Input directory        |
 | `-o`, `--output`  | Output directory                      |
 | `-w`, `--workers` | Maximum number of parallel processors |
-
-Future of this document:
-1. How to install (done)
-2. How to run (done)
-3. What inputs it takes (sorta done)
-4. What outputs it gives (kinda done)
-5. What processing it does
