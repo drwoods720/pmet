@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>src.processors.detectClippingCells &mdash; EvE 0.3.0 documentation</title>
+  <title>src.processors.detect_clipping_cells &mdash; PMET 0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
@@ -29,7 +29,7 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            EvE
+            PMET
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -41,7 +41,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">EvE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/pmet.html">pmet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/test.html">test module</a></li>
 </ul>
 
         </div>
@@ -50,7 +52,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">EvE</a>
+          <a href="../../../index.html">PMET</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -59,7 +61,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">src.processors.detectClippingCells</li>
+      <li class="breadcrumb-item active">src.processors.detect_clipping_cells</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -68,10 +70,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for src.processors.detectClippingCells</h1><div class="highlight"><pre>
+  <h1>Source code for src.processors.detect_clipping_cells</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">detectClippingCells.py</span>
+<span class="sd">detect_clipping_cells.py</span>
 
 <span class="sd">Defines the :class:`DetectClippingCells` processor, which flags</span>
 <span class="sd">cells that are cut off by the boundry of the sample area.</span>
@@ -82,7 +84,7 @@
 
 
 <div class="viewcode-block" id="DetectClippingCells">
-<a class="viewcode-back" href="../../../api/src.processors.html#src.processors.detectClippingCells.DetectClippingCells">[docs]</a>
+<a class="viewcode-back" href="../../../api/src.processors.html#src.processors.detect_clipping_cells.DetectClippingCells">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DetectClippingCells</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Detect cells that are clipped by the sample area boundary.</span>
@@ -93,7 +95,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DetectClippingCells.run">
-<a class="viewcode-back" href="../../../api/src.processors.html#src.processors.detectClippingCells.DetectClippingCells.run">[docs]</a>
+<a class="viewcode-back" href="../../../api/src.processors.html#src.processors.detect_clipping_cells.DetectClippingCells.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">Sample</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Detect and flag all cells clipped off by the sample area.</span>
@@ -116,20 +118,20 @@
 
         <span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># Original edge pixels (on the boundary)</span>
-        <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymin</span><span class="p">,</span> <span class="n">xmin</span> <span class="p">:</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
-        <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymax</span><span class="p">,</span> <span class="n">xmin</span> <span class="p">:</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymin</span><span class="p">,</span> <span class="n">xmin</span><span class="p">:</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymax</span><span class="p">,</span> <span class="n">xmin</span><span class="p">:</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
         <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">,</span> <span class="n">xmin</span><span class="p">])</span>
         <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">,</span> <span class="n">xmax</span><span class="p">])</span>
 
         <span class="c1"># Pixels behind the clipping line (outside the sample area)</span>
         <span class="k">if</span> <span class="n">ymin</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[:</span><span class="n">ymin</span><span class="p">,</span> <span class="n">xmin</span> <span class="p">:</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># above</span>
+            <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[:</span><span class="n">ymin</span><span class="p">,</span> <span class="n">xmin</span><span class="p">:</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># above</span>
         <span class="k">if</span> <span class="n">ymax</span> <span class="o">&lt;</span> <span class="n">mask_height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymax</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:,</span> <span class="n">xmin</span> <span class="p">:</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># below</span>
+            <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:,</span> <span class="n">xmin</span><span class="p">:</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># below</span>
         <span class="k">if</span> <span class="n">xmin</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">,</span> <span class="p">:</span><span class="n">xmin</span><span class="p">])</span>  <span class="c1"># left</span>
         <span class="k">if</span> <span class="n">xmax</span> <span class="o">&lt;</span> <span class="n">mask_width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:])</span>  <span class="c1"># right</span>
+            <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>  <span class="c1"># right</span>
 
         <span class="n">clipping_cells</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>

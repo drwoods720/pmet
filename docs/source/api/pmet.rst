@@ -1,7 +1,7 @@
-eve module
-==========
+pmet module
+===========
 
-.. automodule:: eve
+.. automodule:: pmet
    :members:
    :show-inheritance:
    :undoc-members:

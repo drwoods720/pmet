@@ -4,26 +4,26 @@ src.processors package
 Submodules
 ----------
 
-src.processors.calculateScore module
-------------------------------------
+src.processors.calculate\_score module
+--------------------------------------
 
-.. automodule:: src.processors.calculateScore
+.. automodule:: src.processors.calculate_score
    :members:
    :show-inheritance:
    :undoc-members:
 
-src.processors.countPoints module
----------------------------------
+src.processors.count\_points module
+-----------------------------------
 
-.. automodule:: src.processors.countPoints
+.. automodule:: src.processors.count_points
    :members:
    :show-inheritance:
    :undoc-members:
 
-src.processors.detectClippingCells module
------------------------------------------
+src.processors.detect\_clipping\_cells module
+---------------------------------------------
 
-.. automodule:: src.processors.detectClippingCells
+.. automodule:: src.processors.detect_clipping_cells
    :members:
    :show-inheritance:
    :undoc-members:

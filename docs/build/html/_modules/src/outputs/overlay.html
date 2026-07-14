@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>src.outputs.overlay &mdash; EvE 0.3.0 documentation</title>
+  <title>src.outputs.overlay &mdash; PMET 0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
@@ -29,7 +29,7 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            EvE
+            PMET
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -41,7 +41,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">EvE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/pmet.html">pmet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/test.html">test module</a></li>
 </ul>
 
         </div>
@@ -50,7 +52,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">EvE</a>
+          <a href="../../../index.html">PMET</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -162,7 +164,8 @@
 <span class="sd">        :returns: The original segmentation mask.</span>
 <span class="sd">        :rtype: npt.NDArray[np.uint8]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">accuracy_mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="n">accuracy_mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span>
+            <span class="n">mask</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
         <span class="n">true_positives</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">false_positives</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -217,8 +220,10 @@
         <span class="n">padding</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Pixels</span>
 
         <span class="c1"># Crop into the points</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">ymax</span> <span class="o">+</span> <span class="n">padding</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">padding</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">xmin</span> <span class="o">-</span> <span class="n">padding</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">xmax</span> <span class="o">+</span> <span class="n">padding</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">ymax</span> <span class="o">+</span> <span class="n">padding</span><span class="p">,</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">padding</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">xmin</span> <span class="o">-</span> <span class="n">padding</span><span class="p">,</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">sample_area</span><span class="o">.</span><span class="n">xmax</span> <span class="o">+</span> <span class="n">padding</span><span class="p">)</span>
 
         <span class="n">accuracy_mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_accuracy_mask</span><span class="p">(</span>
             <span class="n">data</span><span class="o">.</span><span class="n">cells</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">mask</span>
@@ -239,7 +244,8 @@
         <span class="n">rgb_accuracy_mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">accuracy_mask</span><span class="p">]</span>
 
         <span class="c1"># Overlay image</span>
-        <span class="n">overlaid_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlay_image</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">original_image</span><span class="p">,</span> <span class="n">rgb_accuracy_mask</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">overlaid_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlay_image</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">original_image</span><span class="p">,</span> <span class="n">rgb_accuracy_mask</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">overlaid_image</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
 
@@ -274,7 +280,8 @@
             <span class="n">output_directory</span>
             <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">image_name</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">model_name</span><span class="si">}</span><span class="s2">_accuracy_mask.png&quot;</span>
         <span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span>
+                    <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span></div>
 </div>

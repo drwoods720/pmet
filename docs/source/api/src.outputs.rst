@@ -20,10 +20,10 @@ src.outputs.overlay module
    :show-inheritance:
    :undoc-members:
 
-src.outputs.scoresCsv module
-----------------------------
+src.outputs.scores\_csv module
+------------------------------
 
-.. automodule:: src.outputs.scoresCsv
+.. automodule:: src.outputs.scores_csv
    :members:
    :show-inheritance:
    :undoc-members:

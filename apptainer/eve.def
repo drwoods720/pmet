@@ -3,23 +3,23 @@ From: python:3.14.3
 
 %labels
     Author Dylan Woods
-    Application EvE
+    Application PMET
     Version 0.3.1
 
 %files
-    ../src /opt/eve/src
-    ../README.md /opt/eve
-    ../LICENSE /opt/eve
-    ../requirements.txt /opt/eve
-    ../eve.py /opt/eve
+    ../src /opt/pmet/src
+    ../README.md /opt/pmet
+    ../LICENSE /opt/pmet
+    ../requirements.txt /opt/pmet
+    ../pmet.py /opt/pmet
 
 %environment
-    export PATH=/opt/eve:$PATH
+    export PATH=/opt/pmet:$PATH
     export PYTHONUNBUFFERED=1
 
 %post
-    pip install --no-cache-dir -r /opt/eve/requirements.txt
+    pip install --no-cache-dir -r /opt/pmet/requirements.txt
 
 %runscript
-    cd /opt/eve
-    exec python eve.py "$@"
+    cd /opt/pmet
+    exec python pmet.py "$@"

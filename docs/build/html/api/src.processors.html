@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>src.processors package &mdash; EvE 0.3.0 documentation</title>
+  <title>src.processors package &mdash; PMET 0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -32,7 +32,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            EvE
+            PMET
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -44,24 +44,29 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">EvE</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="eve.html">eve module</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="src.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="src.datatypes.html">src.datatypes package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="src.outputs.html">src.outputs package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="src.parsers.html">src.parsers package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">src.processors package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmet.html">pmet module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="src.datatypes.html">src.datatypes package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.outputs.html">src.outputs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.parsers.html">src.parsers package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">src.processors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-src.processors.calculate_score">src.processors.calculate_score module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-src.processors.count_points">src.processors.count_points module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-src.processors.detect_clipping_cells">src.processors.detect_clipping_cells module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-src.processors.processor">src.processors.processor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-src.processors">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.main">src.main module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.main">src.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">test module</a></li>
 </ul>
 
         </div>
@@ -70,7 +75,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">EvE</a>
+          <a href="../index.html">PMET</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -78,7 +83,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">EvE</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">&lt;no title&gt;</a></li>
           <li class="breadcrumb-item"><a href="src.html">src package</a></li>
       <li class="breadcrumb-item active">src.processors package</li>
       <li class="wy-breadcrumbs-aside">
@@ -95,23 +100,23 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-src.processors.calculateScore">
-<span id="src-processors-calculatescore-module"></span><h2>src.processors.calculateScore module<a class="headerlink" href="#module-src.processors.calculateScore" title="Link to this heading"></a></h2>
-<p>calculateScore.py</p>
-<p>Defines the <a class="reference internal" href="#src.processors.calculateScore.CalculateScore" title="src.processors.calculateScore.CalculateScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculateScore</span></code></a> processor, which computes
+<section id="module-src.processors.calculate_score">
+<span id="src-processors-calculate-score-module"></span><h2>src.processors.calculate_score module<a class="headerlink" href="#module-src.processors.calculate_score" title="Link to this heading"></a></h2>
+<p>calculate_score.py</p>
+<p>Defines the <a class="reference internal" href="#src.processors.calculate_score.CalculateScore" title="src.processors.calculate_score.CalculateScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculateScore</span></code></a> processor, which computes
 precision, recall, and F1 scores for a sample from its true/false
 positive and negative counts.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="src.processors.calculateScore.CalculateScore">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.calculateScore.</span></span><span class="sig-name descname"><span class="pre">CalculateScore</span></span><a class="reference internal" href="../_modules/src/processors/calculateScore.html#CalculateScore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.calculateScore.CalculateScore" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.processors.calculate_score.CalculateScore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.calculate_score.</span></span><span class="sig-name descname"><span class="pre">CalculateScore</span></span><a class="reference internal" href="../_modules/src/processors/calculate_score.html#CalculateScore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.calculate_score.CalculateScore" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
 <p>Calculate scoring metrics for a sample.</p>
 <p>Computes precision, recall, and F1 scores from the sample’s
 classification counts, storing them in the sample’s
 <a class="reference internal" href="src.datatypes.html#src.datatypes.Results" title="src.datatypes.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="src.processors.calculateScore.CalculateScore.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/calculateScore.html#CalculateScore.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.calculateScore.CalculateScore.run" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.processors.calculate_score.CalculateScore.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/calculate_score.html#CalculateScore.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.calculate_score.CalculateScore.run" title="Link to this definition"></a></dt>
 <dd><p>Calculate and store the scoring metrics for a sample.</p>
 <p>Calculates precision, recall, and F1 scores.</p>
 <dl class="field-list simple">
@@ -132,15 +137,15 @@ the calculated precision, recall, and F1 scores.</p>
 </dd></dl>
 
 </section>
-<section id="module-src.processors.countPoints">
-<span id="src-processors-countpoints-module"></span><h2>src.processors.countPoints module<a class="headerlink" href="#module-src.processors.countPoints" title="Link to this heading"></a></h2>
-<p>countPoints.py</p>
-<p>Defines the <a class="reference internal" href="#src.processors.countPoints.CountPoints" title="src.processors.countPoints.CountPoints"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountPoints</span></code></a> processor, which assigns each point
+<section id="module-src.processors.count_points">
+<span id="src-processors-count-points-module"></span><h2>src.processors.count_points module<a class="headerlink" href="#module-src.processors.count_points" title="Link to this heading"></a></h2>
+<p>count_points.py</p>
+<p>Defines the <a class="reference internal" href="#src.processors.count_points.CountPoints" title="src.processors.count_points.CountPoints"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountPoints</span></code></a> processor, which assigns each point
 to its containing cell and tallies the number of points located
 within each cell.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="src.processors.countPoints.CountPoints">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.countPoints.</span></span><span class="sig-name descname"><span class="pre">CountPoints</span></span><a class="reference internal" href="../_modules/src/processors/countPoints.html#CountPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.countPoints.CountPoints" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.processors.count_points.CountPoints">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.count_points.</span></span><span class="sig-name descname"><span class="pre">CountPoints</span></span><a class="reference internal" href="../_modules/src/processors/count_points.html#CountPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.count_points.CountPoints" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
 <p>Assign points to cells and count points per cell.</p>
 <p>Determines which <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> region each
@@ -148,8 +153,8 @@ within each cell.</p>
 each point’s <a class="reference internal" href="src.datatypes.html#src.datatypes.Point.cell" title="src.datatypes.Point.cell"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cell</span></code></a> reference, and
 tallies how many points fall within each cell.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="src.processors.countPoints.CountPoints.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/countPoints.html#CountPoints.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.countPoints.CountPoints.run" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.processors.count_points.CountPoints.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/count_points.html#CountPoints.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.count_points.CountPoints.run" title="Link to this definition"></a></dt>
 <dd><p>Assign each point to its containing cell and count totals.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -170,22 +175,22 @@ updated accordingly.</p>
 </dd></dl>
 
 </section>
-<section id="module-src.processors.detectClippingCells">
-<span id="src-processors-detectclippingcells-module"></span><h2>src.processors.detectClippingCells module<a class="headerlink" href="#module-src.processors.detectClippingCells" title="Link to this heading"></a></h2>
-<p>detectClippingCells.py</p>
-<p>Defines the <a class="reference internal" href="#src.processors.detectClippingCells.DetectClippingCells" title="src.processors.detectClippingCells.DetectClippingCells"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetectClippingCells</span></code></a> processor, which flags
+<section id="module-src.processors.detect_clipping_cells">
+<span id="src-processors-detect-clipping-cells-module"></span><h2>src.processors.detect_clipping_cells module<a class="headerlink" href="#module-src.processors.detect_clipping_cells" title="Link to this heading"></a></h2>
+<p>detect_clipping_cells.py</p>
+<p>Defines the <a class="reference internal" href="#src.processors.detect_clipping_cells.DetectClippingCells" title="src.processors.detect_clipping_cells.DetectClippingCells"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetectClippingCells</span></code></a> processor, which flags
 cells that are cut off by the boundry of the sample area.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="src.processors.detectClippingCells.DetectClippingCells">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.detectClippingCells.</span></span><span class="sig-name descname"><span class="pre">DetectClippingCells</span></span><a class="reference internal" href="../_modules/src/processors/detectClippingCells.html#DetectClippingCells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.detectClippingCells.DetectClippingCells" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.processors.detect_clipping_cells.DetectClippingCells">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.detect_clipping_cells.</span></span><span class="sig-name descname"><span class="pre">DetectClippingCells</span></span><a class="reference internal" href="../_modules/src/processors/detect_clipping_cells.html#DetectClippingCells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.detect_clipping_cells.DetectClippingCells" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
 <p>Detect cells that are clipped by the sample area boundary.</p>
 <p>Marks each cell in the sample whose region is cut off by the
 edge of the <a class="reference internal" href="src.datatypes.html#src.datatypes.SampleArea" title="src.datatypes.SampleArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleArea</span></code></a>, by setting its
 <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.clipping" title="src.datatypes.Cell.clipping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">clipping</span></code></a> attribute accordingly.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="src.processors.detectClippingCells.DetectClippingCells.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/detectClippingCells.html#DetectClippingCells.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.detectClippingCells.DetectClippingCells.run" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.processors.detect_clipping_cells.DetectClippingCells.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/detect_clipping_cells.html#DetectClippingCells.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.detect_clipping_cells.DetectClippingCells.run" title="Link to this definition"></a></dt>
 <dd><p>Detect and flag all cells clipped off by the sample area.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -237,7 +242,7 @@ Each concrete subclass must implement <a class="reference internal" href="#src.p
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.processors" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.processors.CalculateScore">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">CalculateScore</span></span><a class="reference internal" href="../_modules/src/processors/calculateScore.html#CalculateScore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CalculateScore" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">CalculateScore</span></span><a class="reference internal" href="../_modules/src/processors/calculate_score.html#CalculateScore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CalculateScore" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
 <p>Calculate scoring metrics for a sample.</p>
 <p>Computes precision, recall, and F1 scores from the sample’s
@@ -245,7 +250,7 @@ classification counts, storing them in the sample’s
 <a class="reference internal" href="src.datatypes.html#src.datatypes.Results" title="src.datatypes.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.processors.CalculateScore.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/calculateScore.html#CalculateScore.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CalculateScore.run" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/calculate_score.html#CalculateScore.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CalculateScore.run" title="Link to this definition"></a></dt>
 <dd><p>Calculate and store the scoring metrics for a sample.</p>
 <p>Calculates precision, recall, and F1 scores.</p>
 <dl class="field-list simple">
@@ -267,7 +272,7 @@ the calculated precision, recall, and F1 scores.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="src.processors.CountPoints">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">CountPoints</span></span><a class="reference internal" href="../_modules/src/processors/countPoints.html#CountPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CountPoints" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">CountPoints</span></span><a class="reference internal" href="../_modules/src/processors/count_points.html#CountPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CountPoints" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
 <p>Assign points to cells and count points per cell.</p>
 <p>Determines which <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell" title="src.datatypes.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> region each
@@ -276,7 +281,7 @@ each point’s <a class="reference internal" href="src.datatypes.html#src.dataty
 tallies how many points fall within each cell.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.processors.CountPoints.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/countPoints.html#CountPoints.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CountPoints.run" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/count_points.html#CountPoints.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.CountPoints.run" title="Link to this definition"></a></dt>
 <dd><p>Assign each point to its containing cell and count totals.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -298,7 +303,7 @@ updated accordingly.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="src.processors.DetectClippingCells">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">DetectClippingCells</span></span><a class="reference internal" href="../_modules/src/processors/detectClippingCells.html#DetectClippingCells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.DetectClippingCells" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">src.processors.</span></span><span class="sig-name descname"><span class="pre">DetectClippingCells</span></span><a class="reference internal" href="../_modules/src/processors/detect_clipping_cells.html#DetectClippingCells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.DetectClippingCells" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#src.processors.processor.Process" title="src.processors.processor.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a></p>
 <p>Detect cells that are clipped by the sample area boundary.</p>
 <p>Marks each cell in the sample whose region is cut off by the
@@ -306,7 +311,7 @@ edge of the <a class="reference internal" href="src.datatypes.html#src.datatypes
 <a class="reference internal" href="src.datatypes.html#src.datatypes.Cell.clipping" title="src.datatypes.Cell.clipping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">clipping</span></code></a> attribute accordingly.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.processors.DetectClippingCells.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/detectClippingCells.html#DetectClippingCells.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.DetectClippingCells.run" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/src/processors/detect_clipping_cells.html#DetectClippingCells.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.processors.DetectClippingCells.run" title="Link to this definition"></a></dt>
 <dd><p>Detect and flag all cells clipped off by the sample area.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eve module &mdash; EvE 0.3.0 documentation</title>
+  <title>pmet module &mdash; PMET 0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="src package" href="src.html" />
-    <link rel="prev" title="EvE" href="modules.html" /> 
+    <link rel="prev" title="&lt;no title&gt;" href="modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            EvE
+            PMET
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -44,15 +44,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">EvE</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">eve module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#eve.eve"><code class="docutils literal notranslate"><span class="pre">eve()</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pmet module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pmet.pmet"><code class="docutils literal notranslate"><span class="pre">pmet()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="src.html">src package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">test module</a></li>
 </ul>
 
         </div>
@@ -61,7 +58,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">EvE</a>
+          <a href="../index.html">PMET</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -69,10 +66,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">EvE</a></li>
-      <li class="breadcrumb-item active">eve module</li>
+          <li class="breadcrumb-item"><a href="modules.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">pmet module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/eve.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/pmet.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -80,10 +77,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-eve">
-<span id="eve-module"></span><h1>eve module<a class="headerlink" href="#module-eve" title="Link to this heading"></a></h1>
-<p>eve.py</p>
-<p>Comand-line interface for the EvE program.</p>
+  <section id="module-pmet">
+<span id="pmet-module"></span><h1>pmet module<a class="headerlink" href="#module-pmet" title="Link to this heading"></a></h1>
+<p>pmet.py</p>
+<p>Comand-line interface for the PMET program.</p>
 <p>This module parses command-line arguments, preforms basic input
 validation, and delegates the actual processing work to
 :func:’src.main.run’.</p>
@@ -91,13 +88,13 @@ validation, and delegates the actual processing work to
 <dt class="field-odd">Usage<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>eve.py<span class="w"> </span>-i<span class="w"> </span>/path/to/input<span class="w"> </span>-o<span class="w"> </span>/path/to/output<span class="w"> </span>-w<span class="w"> </span><span class="m">4</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>pmet.py<span class="w"> </span>-i<span class="w"> </span>/path/to/input<span class="w"> </span>-o<span class="w"> </span>/path/to/output<span class="w"> </span>-w<span class="w"> </span><span class="m">4</span>
 </pre></div>
 </div>
 <dl class="py function">
-<dt class="sig sig-object py" id="eve.eve">
-<span class="sig-prename descclassname"><span class="pre">eve.</span></span><span class="sig-name descname"><span class="pre">eve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/eve.html#eve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eve.eve" title="Link to this definition"></a></dt>
-<dd><p>Run the command-line interface for the EvE program.</p>
+<dt class="sig sig-object py" id="pmet.pmet">
+<span class="sig-prename descclassname"><span class="pre">pmet.</span></span><span class="sig-name descname"><span class="pre">pmet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pmet.html#pmet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pmet.pmet" title="Link to this definition"></a></dt>
+<dd><p>Run the command-line interface for the PMET program.</p>
 <p>Parses command-line arguments, validates the provided input
 directory exists, builds the argument dictionary, and invokes
 :func:’src.main.run’.</p>
@@ -130,7 +127,7 @@ does not exist on disk. In both cases the program will exit.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="EvE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="src.html" class="btn btn-neutral float-right" title="src package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

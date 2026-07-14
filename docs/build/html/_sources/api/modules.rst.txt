@@ -1,8 +1,9 @@
-EvE
+PMET
 ===
 
 .. toctree::
    :maxdepth: 4
 
-   eve
+   pmet
    src
+   test

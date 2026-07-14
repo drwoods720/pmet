@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-eve.py
+pmet.py
 
 Comand-line interface for the PMET program.
 
@@ -13,7 +13,7 @@ validation, and delegates the actual processing work to
 
 .. code-block:: console
 
-    $ python eve.py -i /path/to/input -o /path/to/output -w 4
+    $ python pmet.py -i /path/to/input -o /path/to/output -w 4
 
 """
 
@@ -24,20 +24,20 @@ from typing import Any
 import src.main as main
 
 TITLE: str = r"""
- _____      _____
-|  ___|    |  ___|
-| |____   _| |__
-|  __\ \ / /  __|
-| |___\ V /| |___
-\____(_)_(_)____/
-(EvE)aluates Various modEls
+  ____  __  __   _____ _____
+ |  _ \|  \/  | | ____|_   _|
+ | |_) | |\/| | |  _|   | |
+ |  __/| |  | |_| |___ _| |
+ |_| (_)_|  |_(_)_____(_)_|
+Point-based Model Evaluation Tool
+
 Please put on your 3d glasses now.
 """
 
 
-def eve() -> None:
+def pmet() -> None:
     """
-    Run the command-line interface for the EvE program.
+    Run the command-line interface for the PMET program.
 
     Parses command-line arguments, validates the provided input
     directory exists, builds the argument dictionary, and invokes
@@ -60,7 +60,7 @@ def eve() -> None:
     :raises SystemExit: If no input directory is provided, or if the provided directory
         does not exist on disk. In both cases the program will exit.
     """
-    parser = argparse.ArgumentParser(description="(EvE)aluates Various modEls")
+    parser = argparse.ArgumentParser(description="Point-based Model Evaluation Tool")
 
     _ = parser.add_argument("-i", "--input", type=str, help="input directory")
     _ = parser.add_argument("-o", "--output", type=str,
@@ -107,8 +107,8 @@ def eve() -> None:
     main.run(**kwargs)
 
     print("Processing complete!")
-    print("Thank you for using EvE, You can now take off your 3d glasses.")
+    print("Thank you for using PMET, You can now take off your 3d glasses.")
 
 
 if __name__ == "__main__":
-    eve()
+    pmet()
