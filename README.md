@@ -147,18 +147,18 @@ ground-truth points to compute accuracy.
 
 ### Getting the container
 
-**Download pre-built:** grab the `.sif` file from [Releases](https://github.com/drwoods720/EvE/releases).
+**Download pre-built:** grab the `.sif` file from [Releases](https://github.com/drwoods720/pmet/releases).
 
 **Or build locally:**
 ```bash
-git clone https://github.com/drwoods720/EvE.git
-cd EvE/apptainer
-apptainer build eve.sif eve.def
+git clone https://github.com/drwoods720/pmet.git
+cd pmet/apptainer
+apptainer build pmet.sif pmet.def
 ```
 
 ### Run
 ```bash
-apptainer run eve.sif --help
+apptainer run pmet.sif --help
 ```
 
 ## Option 2: Run locally
@@ -168,12 +168,12 @@ apptainer run eve.sif --help
 - pip
 
 ```bash
-git clone https://github.com/drwoods720/EvE.git
-cd EvE
+git clone https://github.com/drwoods720/pmet.git
+cd pmet
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python eve.py --help
+python pmet.py --help
 ```
 
 # Usage
@@ -181,7 +181,7 @@ python eve.py --help
 Run with the Apptainer container or directly with Python.
 
 ```bash
-apptainer run eve.sif -i [/path/to/input] -o [/path/to/output]
+apptainer run pmet.sif -i [/path/to/input] -o [/path/to/output]
 ```
 
 ## Options
