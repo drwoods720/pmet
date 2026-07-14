@@ -3,7 +3,7 @@
 """
 eve.py
 
-Comand-line interface for the EvE program.
+Comand-line interface for the PMET program.
 
 This module parses command-line arguments, preforms basic input
 validation, and delegates the actual processing work to

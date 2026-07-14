@@ -1,12 +1,12 @@
-# EvE
-EvE — (EvE)aluates Various modEls
+# PMET
+PMET — Point-based Model Evaluation Tool
 
-EvE is a cell segmentation model evaluation tool, built to evaluate segmentation
+PMET is a cell segmentation model evaluation tool, built to evaluate segmentation
 model results without requiring a manually generated segmentation mask as a ground truth.
 
 ## Inputs
 
-EvE takes a path to a single **input directory**. This directory is searched recursively and files may be organized
+PMET takes a path to a single **input directory**. This directory is searched recursively and files may be organized
 into subdirectories in any structure.
 
 The input directory must contain two types of files:
@@ -56,7 +56,7 @@ Annotation data exported from QuPath, corresponding to each sample.
 Outputs are written to the directory specified with `-o`/`--output`. If none is specified,
 outputs are written to a directory alongside the input directory.
 
-EvE produces two outputs per sample:
+PMET produces two outputs per sample:
 
 ### 1. Scores CSV file
 
