@@ -39,7 +39,7 @@ OUTPUT_PIPELINE: tuple[Output, ...] = (
 )
 
 
-def import_dataset(mask_file: Path, root: Path) -> list[dt.Sample]:
+def import_dataset(mask_file: Path, root: Path, sample_area_padding: int) -> list[dt.Sample]:
     """
     Build Sample objects for a single mask file.
 
@@ -92,7 +92,7 @@ def import_dataset(mask_file: Path, root: Path) -> list[dt.Sample]:
         filepath: str = str(points_file.absolute())
 
         try:
-            sample_area: dt.SampleArea = parsers.sampleArea.Geojson().parse(filepath)
+            sample_area: dt.SampleArea = parsers.sampleArea.Geojson(sample_area_padding).parse(filepath)
         except ValueError as e:
             print(f"Error: {e} for file {filepath}")
             continue
@@ -120,6 +120,7 @@ def process_sample(
     mask_file: Path,
     root: Path,
     output_directory: Path,
+    sample_area_padding: int,
 ) -> None:
     """
     Import, process, and write results for a single mask file.
@@ -132,7 +133,7 @@ def process_sample(
     :param root: Directory to search for associated annotation files.
     :param output_directory: Directory where output files will be written.
     """
-    datasets: list[dt.Sample] = import_dataset(mask_file, root)
+    datasets: list[dt.Sample] = import_dataset(mask_file, root, sample_area_padding)
 
     for data in datasets:
         for process in PROCESSING_PIPELINE:
@@ -146,6 +147,7 @@ def run(
     root_dir: str,
     output_dir: str | None = None,
     max_workers: int = 4,
+    sample_area_padding: int = 2
 ) -> None:
     """
     Discover mask files and run the full processing pipeline.
@@ -163,6 +165,7 @@ def run(
     root_path = Path(root_dir)
 
     print(f"Workers: {max_workers}")
+    print(f"Sample area padding: {sample_area_padding}")
 
     output_path = Path(
         output_dir) if output_dir else root_path.parent / "Results"
@@ -172,6 +175,7 @@ def run(
     with alive_bar(len(mask_filepaths), title="Processing Data") as bar:
         with ProcessPoolExecutor(max_workers) as pool:
             job = partial(process_sample, root=root_path,
-                          output_directory=output_path)
+                          output_directory=output_path,
+                          sample_area_padding=sample_area_padding)
             for _ in pool.map(job, mask_filepaths):
                 bar()

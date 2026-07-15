@@ -57,6 +57,9 @@ def pmet() -> None:
         is used.
     :type -w, --workers: int
 
+    :param -p, --padding: Padding
+    :type -p, --padding: int
+
     :raises SystemExit: If no input directory is provided, or if the provided directory
         does not exist on disk. In both cases the program will exit.
     """
@@ -67,6 +70,9 @@ def pmet() -> None:
                             help="output directory")
     _ = parser.add_argument(
         "-w", "--workers", type=int, help="maximum number of parallel processes"
+    )
+    _ = parser.add_argument(
+        "-p", "--padding", type=int, help="number of pixels to move the sample area in by"
     )
 
     # Hidden cheat code argument
@@ -92,6 +98,8 @@ def pmet() -> None:
         kwargs["output_dir"] = args.output
     if args.workers:
         kwargs["max_workers"] = args.workers
+    if args.padding:
+        kwargs["sample_area_padding"] = args.padding
 
     # Input validation
     if not args.input:

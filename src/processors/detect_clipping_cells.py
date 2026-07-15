@@ -9,6 +9,8 @@ cells that are cut off by the boundry of the sample area.
 import src.datatypes as dt
 from src.processors.processor import Process
 
+import numpy as np
+import numpy.typing as npt
 
 class DetectClippingCells(Process):
     """
@@ -37,30 +39,11 @@ class DetectClippingCells(Process):
         xmin: int = data.sample_area.xmin
         xmax: int = data.sample_area.xmax
 
-        mask_height, mask_width = data.mask.shape[:2]
+        outside_mask: npt.NDArray[bool] = np.ones(data.mask.shape, dtype=bool)
+        outside_mask[ymin:ymax + 1, xmin:xmax +1] = False
 
-        edges = []
-        # Original edge pixels (on the boundary)
-        edges.append(data.mask[ymin, xmin: xmax + 1])
-        edges.append(data.mask[ymax, xmin: xmax + 1])
-        edges.append(data.mask[ymin:ymax, xmin])
-        edges.append(data.mask[ymin:ymax, xmax])
-
-        # Pixels behind the clipping line (outside the sample area)
-        if ymin > 0:
-            edges.append(data.mask[:ymin, xmin: xmax + 1])  # above
-        if ymax < mask_height - 1:
-            edges.append(data.mask[ymax + 1:, xmin: xmax + 1])  # below
-        if xmin > 0:
-            edges.append(data.mask[ymin:ymax, :xmin])  # left
-        if xmax < mask_width - 1:
-            edges.append(data.mask[ymin:ymax, xmax + 1:])  # right
-
-        clipping_cells: list[int] = []
-        for edge in edges:
-            for pixel in edge.flat:  # .flat handles both 1D and 2D arrays
-                if pixel != 0 and pixel not in clipping_cells:
-                    clipping_cells.append(pixel)
+        clipping_cells: list[int] = set(data.mask[outside_mask])
+        clipping_cells.discard(0)
 
         for cell_id in clipping_cells:
             data.cells[cell_id].clipping = True

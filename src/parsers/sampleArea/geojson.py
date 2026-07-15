@@ -7,7 +7,6 @@ file and parses it into a :class:`~.datatypes.SampleArea`.
 """
 
 import json
-from random import sample
 from typing import override, Any
 
 import src.datatypes as dt
@@ -22,6 +21,9 @@ class Geojson(Parser[dt.SampleArea]):
     sample area bounds into a :class:`~.datatypes.SampleArea`
     instance.
     """
+
+    def __init__(self, sample_area_padding: int):
+        self.sample_area_padding: int = sample_area_padding
 
     def parse_sample_area(self, json_data: list[Any]) -> dt.SampleArea:
         """
@@ -45,7 +47,7 @@ class Geojson(Parser[dt.SampleArea]):
                 ):
                     area_points = annotation["geometry"]["coordinates"][0]
 
-                    padding: int = 2
+                    padding: int = self.sample_area_padding
 
                     tl = area_points[0]
                     br = area_points[2]
