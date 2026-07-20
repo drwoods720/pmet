@@ -133,19 +133,27 @@
 <span class="sd">    :param -p, --padding: Number of pixels to shrink the sample border by.</span>
 <span class="sd">    :type -p, --padding: int</span>
 
+<span class="sd">    :param -b, --bar: Enable or disable the status bar.</span>
+<span class="sd">    :type -b, --bar: bool</span>
+
 <span class="sd">    :raises SystemExit: If no input directory is provided, or if the provided directory</span>
 <span class="sd">        does not exist on disk. In both cases the program will exit.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Point-based Model Evaluation Tool&quot;</span><span class="p">)</span>
 
     <span class="n">_</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="s2">&quot;--input&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;input directory&quot;</span><span class="p">)</span>
-    <span class="n">_</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
-                            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;output directory&quot;</span><span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;output directory&quot;</span><span class="p">)</span>
     <span class="n">_</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;-w&quot;</span><span class="p">,</span> <span class="s2">&quot;--workers&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;maximum number of parallel processes&quot;</span>
     <span class="p">)</span>
     <span class="n">_</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="s2">&quot;--padding&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of pixels to shrink the sample border by&quot;</span>
+        <span class="s2">&quot;-p&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--padding&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of pixels to shrink the sample border by&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-n&quot;</span><span class="p">,</span> <span class="s2">&quot;--no-progress&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Disable the progress bar&quot;</span>
     <span class="p">)</span>
 
     <span class="c1"># Hidden cheat code argument</span>
@@ -173,6 +181,8 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;max_workers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">workers</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">padding</span><span class="p">:</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;sample_area_padding&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">padding</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">no_progress</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;no_progress&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">no_progress</span>
 
     <span class="c1"># Input validation</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">:</span>
