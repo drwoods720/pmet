@@ -60,19 +60,27 @@ def pmet() -> None:
     :param -p, --padding: Number of pixels to shrink the sample border by.
     :type -p, --padding: int
 
+    :param -b, --bar: Enable or disable the status bar.
+    :type -b, --bar: bool
+
     :raises SystemExit: If no input directory is provided, or if the provided directory
         does not exist on disk. In both cases the program will exit.
     """
     parser = argparse.ArgumentParser(description="Point-based Model Evaluation Tool")
 
     _ = parser.add_argument("-i", "--input", type=str, help="input directory")
-    _ = parser.add_argument("-o", "--output", type=str,
-                            help="output directory")
+    _ = parser.add_argument("-o", "--output", type=str, help="output directory")
     _ = parser.add_argument(
         "-w", "--workers", type=int, help="maximum number of parallel processes"
     )
     _ = parser.add_argument(
-        "-p", "--padding", type=int, help="Number of pixels to shrink the sample border by"
+        "-p",
+        "--padding",
+        type=int,
+        help="Number of pixels to shrink the sample border by",
+    )
+    _ = parser.add_argument(
+        "-n", "--no-progress", action="store_true", help="Disable the progress bar"
     )
 
     # Hidden cheat code argument
@@ -100,6 +108,8 @@ def pmet() -> None:
         kwargs["max_workers"] = args.workers
     if args.padding:
         kwargs["sample_area_padding"] = args.padding
+    if args.no_progress:
+        kwargs["no_progress"] = args.no_progress
 
     # Input validation
     if not args.input:

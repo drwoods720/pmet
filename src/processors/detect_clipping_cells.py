@@ -12,6 +12,7 @@ from src.processors.processor import Process
 import numpy as np
 import numpy.typing as npt
 
+
 class DetectClippingCells(Process):
     """
     Detect cells that are clipped by the sample area boundary.
@@ -34,16 +35,17 @@ class DetectClippingCells(Process):
             boundary.
         :rtype: ~.datatypes.Sample
         """
-        ymin: int = data.sample_area.ymin
-        ymax: int = data.sample_area.ymax
-        xmin: int = data.sample_area.xmin
-        xmax: int = data.sample_area.xmax
+        # Max is used to ensure all limits are >= 0
+        ymin: int = max(data.sample_area.ymin, 0)
+        ymax: int = max(data.sample_area.ymax, 0)
+        xmin: int = max(data.sample_area.xmin, 0)
+        xmax: int = max(data.sample_area.xmax, 0)
 
-        outside_mask: npt.NDArray[bool] = np.ones(data.mask.shape, dtype=bool)
-        outside_mask[ymin:ymax + 1, xmin:xmax +1] = False
+        outside_mask: npt.NDArray[np.bool] = np.ones(data.mask.shape, dtype=bool)
+        outside_mask[ymin : ymax + 1, xmin : xmax + 1] = False
 
-        clipping_cells: list[int] = set(data.mask[outside_mask])
-        clipping_cells.discard(0)
+        clipping_cells: set[int] = set(data.mask[outside_mask])
+        clipping_cells.discard(0)  # Remove background pixels
 
         for cell_id in clipping_cells:
             data.cells[cell_id].clipping = True

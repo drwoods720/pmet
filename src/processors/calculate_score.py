@@ -57,10 +57,8 @@ class CalculateScore(Process):
             fp: int = data.results.false_positive
             fn: int = data.results.false_negative
 
-            data.results.precision = round(
-                tp / (tp + fp) if (tp + fp) > 0 else 0.0, 3)
-            data.results.recall = round(
-                tp / (tp + fn) if (tp + fn) > 0 else 0.0, 3)
+            data.results.precision = round(tp / (tp + fp) if (tp + fp) > 0 else 0.0, 3)
+            data.results.recall = round(tp / (tp + fn) if (tp + fn) > 0 else 0.0, 3)
             data.results.f1 = round(
                 (2 * tp / (2 * tp + fp + fn) if (2 * tp + fp + fn) > 0 else 0.0), 3
             )

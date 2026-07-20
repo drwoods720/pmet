@@ -39,7 +39,9 @@ OUTPUT_PIPELINE: tuple[Output, ...] = (
 )
 
 
-def import_dataset(mask_file: Path, root: Path, sample_area_padding: int) -> list[dt.Sample]:
+def import_dataset(
+    mask_file: Path, root: Path, sample_area_padding: int
+) -> list[dt.Sample]:
     """
     Build Sample objects for a single mask file.
 
@@ -93,7 +95,9 @@ def import_dataset(mask_file: Path, root: Path, sample_area_padding: int) -> lis
         filepath: str = str(points_file.absolute())
 
         try:
-            sample_area: dt.SampleArea = parsers.sampleArea.Geojson(sample_area_padding).parse(filepath)
+            sample_area: dt.SampleArea = parsers.sampleArea.Geojson(
+                sample_area_padding
+            ).parse(filepath)
         except ValueError as e:
             print(f"Error: {e} for file {filepath}")
             continue
@@ -148,7 +152,8 @@ def run(
     root_dir: str,
     output_dir: str | None = None,
     max_workers: int = 4,
-    sample_area_padding: int = 2
+    sample_area_padding: int = 2,
+    no_progress: bool = False,
 ) -> None:
     """
     Discover mask files and run the full processing pipeline.
@@ -161,25 +166,38 @@ def run(
     :param root_dir: Root directory to search for ``.tif`` mask files.
     :param output_dir: Directory for output files. Defaults to a
         ``Results/`` folder next to ``root_dir``.
-
-    :param sample_area_padding: Amount to shrink the sample border by.
-
     :param max_workers: Maximum number of parallel worker processes.
+    :param sample_area_padding: Amount to shrink the sample border by.
+    :param no_progress: Disable the progress bar.
     """
     root_path = Path(root_dir)
 
     print(f"Workers: {max_workers}")
     print(f"Sample area padding: {sample_area_padding}")
 
-    output_path = Path(
-        output_dir) if output_dir else root_path.parent / "Results"
+    output_path = Path(output_dir) if output_dir else root_path.parent / "Results"
 
     mask_filepaths: list[Path] = list(root_path.rglob("*.tif"))
 
-    with alive_bar(len(mask_filepaths), title="Processing Data") as bar:
+    if not no_progress:
+        with alive_bar(len(mask_filepaths), title="Processing Data") as bar:
+            with ProcessPoolExecutor(max_workers) as pool:
+                job = partial(
+                    process_sample,
+                    root=root_path,
+                    output_directory=output_path,
+                    sample_area_padding=sample_area_padding,
+                )
+                for _ in pool.map(job, mask_filepaths):
+                    bar()
+    else:
+        print("Status bar disabled. The program is still running in the background...")
         with ProcessPoolExecutor(max_workers) as pool:
-            job = partial(process_sample, root=root_path,
-                          output_directory=output_path,
-                          sample_area_padding=sample_area_padding)
+            job = partial(
+                process_sample,
+                root=root_path,
+                output_directory=output_path,
+                sample_area_padding=sample_area_padding,
+            )
             for _ in pool.map(job, mask_filepaths):
-                bar()
+                pass

@@ -84,8 +84,7 @@ class Overlay(Output):
         :returns: The original segmentation mask.
         :rtype: npt.NDArray[np.uint8]
         """
-        accuracy_mask: npt.NDArray[np.uint8] = np.zeros_like(
-            mask, dtype=np.uint8)
+        accuracy_mask: npt.NDArray[np.uint8] = np.zeros_like(mask, dtype=np.uint8)
 
         true_positives: list[int] = []
         false_positives: list[int] = []
@@ -137,10 +136,8 @@ class Overlay(Output):
         padding = 50  # Pixels
 
         # Crop into the points
-        ax.set_ylim(data.sample_area.ymax + padding,
-                    data.sample_area.ymin - padding)
-        ax.set_xlim(data.sample_area.xmin - padding,
-                    data.sample_area.xmax + padding)
+        ax.set_ylim(data.sample_area.ymax + padding, data.sample_area.ymin - padding)
+        ax.set_xlim(data.sample_area.xmin - padding, data.sample_area.xmax + padding)
 
         accuracy_mask: npt.NDArray[np.uint8] = self.generate_accuracy_mask(
             data.cells, data.mask
@@ -161,8 +158,7 @@ class Overlay(Output):
         rgb_accuracy_mask: npt.NDArray[np.uint8] = colors[accuracy_mask]
 
         # Overlay image
-        overlaid_image = self.overlay_image(
-            data.original_image, rgb_accuracy_mask, 0.2)
+        overlaid_image = self.overlay_image(data.original_image, rgb_accuracy_mask, 0.2)
 
         ax.imshow(overlaid_image, origin="upper", interpolation="none")
 
@@ -187,7 +183,7 @@ class Overlay(Output):
         height: int = data.sample_area.ymax - bly
 
         sample_border = patches.Rectangle(
-            (blx, bly), width, height, edgecolor="r", facecolor="none", linewidth=0.2
+            (blx, bly), width, height, edgecolor="r", facecolor="none", linewidth=0.5
         )
         ax.add_patch(sample_border)
 
@@ -197,7 +193,6 @@ class Overlay(Output):
             output_directory
             / f"{data.metadata.image_name}-{data.metadata.model_name}_accuracy_mask.png"
         )
-        fig.savefig(fname=output_file, bbox_inches="tight",
-                    pad_inches=0, dpi=400)
+        fig.savefig(fname=output_file, bbox_inches="tight", pad_inches=0, dpi=400)
 
         plt.close("all")

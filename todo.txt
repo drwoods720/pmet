@@ -1,5 +1,1 @@
-1. Allow the user to change the sample border padding.
-2. Migrate to mapcore github - DO AFTER CLEANING
-3. Testing
-
-PMET
+1. Testing
