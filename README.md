@@ -151,7 +151,7 @@ ground-truth points to compute accuracy.
 
 **Or build locally:**
 ```bash
-git clone https://github.com/drwoods720/pmet.git
+git clone https://github.com/GPEC/pmet.git
 cd pmet/apptainer
 apptainer build pmet.sif pmet.def
 ```
@@ -168,7 +168,7 @@ apptainer run pmet.sif --help
 - pip
 
 ```bash
-git clone https://github.com/drwoods720/pmet.git
+git clone https://github.com/GPEC/pmet.git
 cd pmet
 python3 -m venv .venv
 source .venv/bin/activate
