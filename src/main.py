@@ -8,6 +8,7 @@ configurable processing pipeline, and writes results to an output
 directory.
 """
 
+from curses import meta
 import re
 from concurrent.futures import ProcessPoolExecutor
 from functools import partial
@@ -22,6 +23,7 @@ import src.datatypes as dt
 import src.outputs as outputs
 import src.processors as processors
 import src.parsers as parsers
+import src.file_matcher as file_matcher
 from src.outputs.output import Output
 from src.processors.processor import Process
 
@@ -120,7 +122,7 @@ def import_dataset(
 
     return jobs
 
-
+"""
 def process_sample(
     mask_file: Path,
     root: Path,
@@ -128,6 +130,7 @@ def process_sample(
     sample_area_padding: int,
 ) -> None:
     """
+"""
     Import, process, and write results for a single mask file.
 
     Imports all Samples associated with ``mask_file``, runs each through
@@ -138,6 +141,8 @@ def process_sample(
     :param root: Directory to search for associated annotation files.
     :param output_directory: Directory where output files will be written.
     """
+"""
+    importer.import_samples_from_mask(mask_file, root, sample_area_padding)
     datasets: list[dt.Sample] = import_dataset(mask_file, root, sample_area_padding)
 
     for data in datasets:
@@ -146,6 +151,48 @@ def process_sample(
 
         for output in OUTPUT_PIPELINE:
             output.run(data, output_directory)
+"""
+
+def process_sample(
+        mask_file_path: Path,
+        annotation_file_path: Path,
+        output_directory: Path,
+        sample_area_padding: int,
+) -> None:
+    # Load data into memory
+
+    cells: dict[int, dt.Cell] = parsers.cells.Tif().parse(
+        str(mask_file_path.absolute())
+    )
+
+    points: list[dt.Point] = parsers.points.Geojson().parse(
+        str(annotation_file_path.absolute())
+    )
+
+    mask: npt.NDArray[np.uint16] = np.array(
+        Image.open(str(mask_file_path.absolute())),
+        dtype="uint16"
+    )
+
+    sample_area: dt.SampleArea = parsers.sampleArea.Geojson(
+        sample_area_padding
+    ).parse(str(annotation_file_path.absolute()))
+
+    image_name: str = mask_file_path.name.split(".ome.tif")[0]
+    model_name: str = mask_file_path.name.split(" ")[-1].split("_label")[0]
+    metadata: dt.Metadata = dt.Metadata(image_name,
+                                        model_name,
+                                        str(annotation_file_path.absolute()),
+                                        str(mask_file_path.absolute())
+                                        )
+
+    data: dt.Sample = dt.Sample(metadata, cells, points, mask, sample_area)
+
+    for process in PROCESSING_PIPELINE:
+        data = process.run(data)
+
+    for output in OUTPUT_PIPELINE:
+        output.run(data, output_directory)
 
 
 def run(
@@ -171,11 +218,28 @@ def run(
     :param no_progress: Disable the progress bar.
     """
     root_path = Path(root_dir)
+    output_directory: Path = Path(output_dir) if output_dir else root_path.parent / "Results"
 
+    # Discover files
+    print("Searching for files...")
+    file_associations: dict[Path, list[Path]] = file_matcher.associate_files(root_path)
+
+    for annotation_file_path in file_associations:
+        mask_files: list[Path] = file_associations[annotation_file_path]
+
+        for mask_file_path in mask_files:
+            process_sample(mask_file_path,
+                           annotation_file_path,
+                           output_directory,
+                           sample_area_padding,
+                           )
+
+"""
+    # Begin processing
     print(f"Workers: {max_workers}")
     print(f"Sample area padding: {sample_area_padding}")
 
-    output_path = Path(output_dir) if output_dir else root_path.parent / "Results"
+    output_path = Path(output_dir) if output_dir else root_path.parent / "PMET_output"
 
     mask_filepaths: list[Path] = list(root_path.rglob("*.tif"))
 
@@ -201,3 +265,4 @@ def run(
             )
             for _ in pool.map(job, mask_filepaths):
                 pass
+"""
