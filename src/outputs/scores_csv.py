@@ -10,6 +10,7 @@ processed results of a sample out to a CSV file.
 import csv
 
 from pathlib import Path
+from filelock import FileLock
 
 import src.datatypes as dt
 from src.outputs.output import Output
@@ -43,13 +44,13 @@ class ScoresCsv(Output):
 
         output_file = output_directory / "accuracy_scores.csv"
         output_row = {
-            "Image Name": data.metadata.image_name,
-            "Points File": data.metadata.points_file,
-            "Mask File": data.metadata.mask_file,
-            "Model Name": data.metadata.model_name,
-            "False Negatives": data.results.false_negative,
-            "True Positives": data.results.true_positive,
-            "False Positives": data.results.false_positive,
+            "ImageName": data.metadata.image_name,
+            "PointsFile": data.metadata.points_file,
+            "MaskFile": data.metadata.mask_file,
+            "ModelName": data.metadata.model_name,
+            "FalseNegatives": data.results.false_negative,
+            "TruePositives": data.results.true_positive,
+            "FalsePositives": data.results.false_positive,
             "Precision": data.results.precision,
             "Recall": data.results.recall,
             "F1": data.results.f1,
@@ -58,14 +59,15 @@ class ScoresCsv(Output):
         # print(f"Recall: {data.results.recall}")
         # print(f"F1: {data.results.f1}")
 
-        file_exists: bool = Path(output_file).exists()
 
-        with open(output_file, "a", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=output_row.keys())
+        flock = FileLock(f"{output_file}.lock")
+        with flock:
+            file_exists: bool = Path(output_file).exists()
 
-            if not file_exists:
-                writer.writeheader()
+            with open(output_file, "a", newline="") as f:
+                writer = csv.DictWriter(f, fieldnames=output_row.keys())
 
-            writer.writerow(output_row)
+                if not file_exists:
+                    writer.writeheader()
 
-        pass
+                    writer.writerow(output_row)

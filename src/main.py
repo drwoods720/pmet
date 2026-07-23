@@ -154,12 +154,15 @@ def process_sample(
 """
 
 def process_sample(
-        mask_file_path: Path,
-        annotation_file_path: Path,
+        mask_file: tuple[Path, str],
+        annotation_file: tuple[Path, str],
         output_directory: Path,
         sample_area_padding: int,
 ) -> None:
     # Load data into memory
+
+    mask_file_path: Path = mask_file[0]
+    annotation_file_path: Path = annotation_file[0]
 
     cells: dict[int, dt.Cell] = parsers.cells.Tif().parse(
         str(mask_file_path.absolute())
@@ -178,8 +181,8 @@ def process_sample(
         sample_area_padding
     ).parse(str(annotation_file_path.absolute()))
 
-    image_name: str = mask_file_path.name.split(".ome.tif")[0]
-    model_name: str = mask_file_path.name.split(" ")[-1].split("_label")[0]
+    image_name: str = annotation_file[1]
+    model_name: str = mask_file[1]
     metadata: dt.Metadata = dt.Metadata(image_name,
                                         model_name,
                                         str(annotation_file_path.absolute()),
@@ -220,19 +223,24 @@ def run(
     root_path = Path(root_dir)
     output_directory: Path = Path(output_dir) if output_dir else root_path.parent / "Results"
 
+    print(f"Workers: {max_workers}")
+    print(f"Sample area padding: {sample_area_padding}\n")
+
     # Discover files
     print("Searching for files...")
-    file_associations: dict[Path, list[Path]] = file_matcher.associate_files(root_path)
+    file_associations: dict[tuple[Path, str], list[tuple[Path, str]]] = file_matcher.associate_files(root_path)
 
-    for annotation_file_path in file_associations:
-        mask_files: list[Path] = file_associations[annotation_file_path]
+    for annotation_file in file_associations:
+        mask_files: list[tuple[Path, str]] = file_associations[annotation_file]
 
-        for mask_file_path in mask_files:
-            process_sample(mask_file_path,
-                           annotation_file_path,
+        for mask_file in mask_files:
+            process_sample(mask_file,
+                           annotation_file,
                            output_directory,
                            sample_area_padding,
                            )
+
+    # TODO: Add paralell processing back in
 
 """
     # Begin processing
