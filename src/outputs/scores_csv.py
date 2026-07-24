@@ -70,4 +70,4 @@ class ScoresCsv(Output):
                 if not file_exists:
                     writer.writeheader()
 
-                    writer.writerow(output_row)
+                writer.writerow(output_row)

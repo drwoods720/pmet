@@ -8,10 +8,9 @@ configurable processing pipeline, and writes results to an output
 directory.
 """
 
-from curses import meta
 import re
-from concurrent.futures import ProcessPoolExecutor
-from functools import partial
+import os
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
 import numpy as np
@@ -122,37 +121,6 @@ def import_dataset(
 
     return jobs
 
-"""
-def process_sample(
-    mask_file: Path,
-    root: Path,
-    output_directory: Path,
-    sample_area_padding: int,
-) -> None:
-    """
-"""
-    Import, process, and write results for a single mask file.
-
-    Imports all Samples associated with ``mask_file``, runs each through
-    every step in ``PROCESSING_PIPELINE``, then passes the result to
-    every step in ``OUTPUT_PIPELINE``.
-
-    :param mask_file: Path to the mask ``.tif`` file to process.
-    :param root: Directory to search for associated annotation files.
-    :param output_directory: Directory where output files will be written.
-    """
-"""
-    importer.import_samples_from_mask(mask_file, root, sample_area_padding)
-    datasets: list[dt.Sample] = import_dataset(mask_file, root, sample_area_padding)
-
-    for data in datasets:
-        for process in PROCESSING_PIPELINE:
-            data = process.run(data)
-
-        for output in OUTPUT_PIPELINE:
-            output.run(data, output_directory)
-"""
-
 def process_sample(
         mask_file: tuple[Path, str],
         annotation_file: tuple[Path, str],
@@ -201,7 +169,7 @@ def process_sample(
 def run(
     root_dir: str,
     output_dir: str | None = None,
-    max_workers: int = 4,
+    max_workers: int | None = None,
     sample_area_padding: int = 2,
     no_progress: bool = False,
 ) -> None:
@@ -223,6 +191,10 @@ def run(
     root_path = Path(root_dir)
     output_directory: Path = Path(output_dir) if output_dir else root_path.parent / "Results"
 
+    if not max_workers:
+        print("No maximum parallel processor count set. Using number of cpu cores...\n")
+        max_workers = os.cpu_count()
+
     print(f"Workers: {max_workers}")
     print(f"Sample area padding: {sample_area_padding}\n")
 
@@ -230,47 +202,29 @@ def run(
     print("Searching for files...")
     file_associations: dict[tuple[Path, str], list[tuple[Path, str]]] = file_matcher.associate_files(root_path)
 
-    for annotation_file in file_associations:
-        mask_files: list[tuple[Path, str]] = file_associations[annotation_file]
+    # Create processor pool
+    with ProcessPoolExecutor(max_workers) as executor:
+            futures = []
 
-        for mask_file in mask_files:
-            process_sample(mask_file,
-                           annotation_file,
-                           output_directory,
-                           sample_area_padding,
-                           )
+            for annotation_file in file_associations:
+                mask_files: list[tuple[Path, str]] = file_associations[annotation_file]
+
+                for mask_file in mask_files:
+                    future = executor.submit(process_sample,
+                                             mask_file,
+                                             annotation_file,
+                                             output_directory,
+                                             sample_area_padding,
+                                             )
+                    futures.append(future)
+
+            if no_progress:
+                print("Status bar disabled. The program is still running in the background...")
+                for _ in as_completed(futures):
+                    pass
+            else:
+                with alive_bar(len(futures)) as bar:
+                    for _ in as_completed(futures):
+                        bar()
 
     # TODO: Add paralell processing back in
-
-"""
-    # Begin processing
-    print(f"Workers: {max_workers}")
-    print(f"Sample area padding: {sample_area_padding}")
-
-    output_path = Path(output_dir) if output_dir else root_path.parent / "PMET_output"
-
-    mask_filepaths: list[Path] = list(root_path.rglob("*.tif"))
-
-    if not no_progress:
-        with alive_bar(len(mask_filepaths), title="Processing Data") as bar:
-            with ProcessPoolExecutor(max_workers) as pool:
-                job = partial(
-                    process_sample,
-                    root=root_path,
-                    output_directory=output_path,
-                    sample_area_padding=sample_area_padding,
-                )
-                for _ in pool.map(job, mask_filepaths):
-                    bar()
-    else:
-        print("Status bar disabled. The program is still running in the background...")
-        with ProcessPoolExecutor(max_workers) as pool:
-            job = partial(
-                process_sample,
-                root=root_path,
-                output_directory=output_path,
-                sample_area_padding=sample_area_padding,
-            )
-            for _ in pool.map(job, mask_filepaths):
-                pass
-"""
