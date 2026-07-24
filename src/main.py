@@ -226,5 +226,3 @@ def run(
                 with alive_bar(len(futures)) as bar:
                     for _ in as_completed(futures):
                         bar()
-
-    # TODO: Add paralell processing back in
